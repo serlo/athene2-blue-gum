@@ -1,0 +1,231 @@
+
+$navbar-padding-left: 3.5rem;
+$navbar-height: 11.5rem;
+
+
+.navbar {
+	padding: 0;
+	height: $navbar-height;
+    align-items: left;
+	position: static;
+
+	.container {
+		align-items: start;
+	}
+
+	form {
+		background-color: $lightblue;
+		width: 100%;
+		display: block;
+		margin-top: 1rem;
+		transition: background-color 0.4s ease;
+
+		&:focus-within {
+			background-color: $green;
+		}
+
+		.form-control {
+			color: $white;
+			width: calc(100% - 3rem);
+			display: inline-block;
+			background-color: transparent;
+			border: 0;
+			height:2.5rem;
+			padding-left: $navbar-padding-left;
+			box-shadow: none;
+		}
+		
+		.form-control::placeholder {
+			color: rgba($white,0.6);
+		}
+
+		button {
+			width: 2.5rem;
+			height: 2.5rem;
+			border: 0;
+			color: $white;
+			display: inline-block;
+			position: absolute;
+			right: 0;
+		}
+	}
+}
+
+.bg-light {
+	background-color: $blue !important;
+}
+
+
+.navbar-brand-wrap {
+
+	h1 {
+		padding-bottom: 0;
+		margin-bottom: 0.2rem;
+	}
+	
+	img{
+		width: 9rem;
+		padding: 0.8rem 0 0 0.8rem;
+	}
+
+	.navbar-brand{
+		padding-bottom: 0;
+	}
+}
+
+.navbar-subline {
+	color: rgba(#fff,0.4);
+	font-weight: 300;
+	font-size: 1.66rem;
+	padding-left: $navbar-padding-left;
+	letter-spacing: 0.04rem;
+}
+
+.navbar-light .navbar-toggler {
+	margin-top: .7rem;
+	padding: 0.2rem;
+	margin-right: 0.1rem;
+	outline-color: $white;
+}
+
+@include media-breakpoint-down(sm) {
+	.navbar-collapse {
+		background-color: #f0f7fb;
+		padding: 3rem 1rem 5rem 1.8rem;
+		font-size: 1.66rem;
+
+		position: absolute;
+		z-index: 9999;
+		top: $navbar-height;
+		height: calc(100vh - 11.5rem);
+		max-height: calc(100vh - 11.5rem);
+		width: 100%;
+		overflow: auto;
+
+		opacity: 1;
+		transition: opacity 0.4s ease;
+
+		i {
+			color: $lighterblue;
+		}
+
+		.nav-item.seperator{
+			border-bottom:1px solid $lighterblue;
+			margin: 2rem 2rem 2rem 0;
+		}
+
+	}
+}
+
+body.overlay-menu
+{
+	overflow: hidden;
+
+	.container{
+		overflow: hidden;
+	}
+}
+
+.collapsing {
+	opacity: 0;
+}
+
+
+
+
+/* bigger screens */
+
+@include media-breakpoint-up(md) {
+
+	div.content {
+		margin-top: 2rem;
+	}
+
+	.navbar-expand-md .navbar-collapse{
+		// display: none !important;
+	}
+
+	.navbar {
+	    height: 9.5rem;
+    	padding-top: 1rem;
+
+    	.navbar-nav {
+    		text-align: right;
+    	}
+
+    	&.navbar-light .navbar-nav .nav-link {
+    		color: $lighterblue;
+    		
+			&:hover {
+				color: #fff;
+			}
+    	}
+
+		form {
+			width: 16rem;
+			position: absolute;
+			top: 6.8rem;
+			right: 2rem;
+			margin-top: 0rem;
+			border-bottom: 0.2rem solid #52a6d0;
+			background-color: transparent;
+
+			.form-control {
+				width: 100%;
+				padding-left: 1rem;
+			}
+
+			button {
+				top:0;
+			}
+		}
+	}
+
+	.navbar-nav {
+		margin-right: 1rem;
+
+		.nav-item.seperator{
+			display: none;
+		}
+		
+		i.far, i.fas {
+			display: none;
+		}
+		.nav-item.donate {
+			a.nav-link {
+				margin: 0.3rem 0 0 0.5rem;
+				background-color: $lightblue;
+				padding: 0.1rem 0.5rem;
+				border-radius: 1rem;
+				color: #fff;
+
+				&:hover {
+					background-color: $green;
+				}
+			}
+			i {
+				display: inline;
+			}
+		}
+	}
+}
+
+
+@include media-breakpoint-up(xl) {
+	nav.navbar{
+		
+		.navbar-brand-wrap{
+    		margin-left: -3.5rem;
+		}
+
+		form {
+			right: auto;
+			margin-left: 37.5rem;
+		}
+	}
+}
+
+// 	body{
+// 		background:red;
+// 	}
+// }
