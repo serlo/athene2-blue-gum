@@ -2,6 +2,11 @@
 
 Complete rework of the current Athene2 design with a focus on responsive, mobile first.
 
+The idea is to develop the html+css parts with quicker tools and then move this into athene2 when the template is done.
+
+##Demo
+
+https://elbotho.github.io/athene2-blue-gum/
 
 ----
 

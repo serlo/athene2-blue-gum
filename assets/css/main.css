@@ -9059,7 +9059,7 @@ html {
   font-size: 16px; }
 
 body {
-  font-family: Karmilla;
+  font-family: Karla;
   line-height: 1.3; }
 
 h1, h2, h3, h4, h5, h6,
@@ -9915,8 +9915,7 @@ body.overlay-menu {
   nav.navbar .navbar-brand-wrap {
     margin-left: -3.5rem; }
   nav.navbar form {
-    right: auto;
-    margin-left: 37.5rem; } }
+    right: 0; } }
 
 footer {
   width: 100%;
@@ -9929,7 +9928,12 @@ footer {
   footer .brand {
     margin-top: 3rem;
     background-color: #007EC1;
-    padding: 1rem 0 2rem  0; }
+    padding: 1rem 0 2rem  0;
+    position: relative; }
+    footer .brand #toplink {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem; }
   footer .summary {
     background-color: #52a6d0;
     color: #fff;
@@ -9977,7 +9981,7 @@ nav.footernav {
       margin-top: 0;
       padding: 0.5rem 2rem; }
     footer .summary {
-      padding: 2rem 2rem 0 2rem; } }
+      padding: 2rem 1rem 0 1rem; } }
 
 @media (min-width: 1200px) {
   nav.footernav ul li {
