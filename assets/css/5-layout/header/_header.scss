@@ -2,6 +2,9 @@
 $navbar-padding-left: 3.5rem;
 $navbar-height: 11.5rem;
 
+@import 'search';
+
+
 
 .navbar {
 	padding: 0;
@@ -12,49 +15,11 @@ $navbar-height: 11.5rem;
 	.container {
 		align-items: start;
 	}
-
-	form {
-		background-color: $lightblue;
-		width: 100%;
-		display: block;
-		margin-top: 1rem;
-		transition: background-color 0.4s ease;
-
-		&:focus-within {
-			background-color: $green;
-		}
-
-		.form-control {
-			color: $white;
-			width: calc(100% - 3rem);
-			display: inline-block;
-			background-color: transparent;
-			border: 0;
-			height:2.5rem;
-			padding-left: $navbar-padding-left;
-			box-shadow: none;
-		}
-		
-		.form-control::placeholder {
-			color: rgba($white,0.6);
-		}
-
-		button {
-			width: 2.5rem;
-			height: 2.5rem;
-			border: 0;
-			color: $white;
-			display: inline-block;
-			position: absolute;
-			right: 0;
-		}
-	}
 }
 
 .bg-light {
 	background-color: $blue !important;
 }
-
 
 .navbar-brand-wrap {
 
@@ -160,25 +125,6 @@ body.overlay-menu
 				color: #fff;
 			}
     	}
-
-		form {
-			width: 16rem;
-			position: absolute;
-			top: 6.8rem;
-			right: 2rem;
-			margin-top: 0rem;
-			border-bottom: 0.2rem solid #52a6d0;
-			background-color: transparent;
-
-			.form-control {
-				width: 100%;
-				padding-left: 1rem;
-			}
-
-			button {
-				top:0;
-			}
-		}
 	}
 
 	.navbar-nav {
@@ -212,14 +158,9 @@ body.overlay-menu
 
 
 @include media-breakpoint-up(xl) {
-	nav.navbar{
-		
+	nav.navbar{		
 		.navbar-brand-wrap{
     		margin-left: -3.5rem;
-		}
-
-		form {
-			right: 0;
 		}
 	}
 }

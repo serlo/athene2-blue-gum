@@ -9765,6 +9765,91 @@ section.license {
     font-weight: bold;
     color: #91c5e4; }
 
+.navbar form {
+  background-color: #52a6d0;
+  width: 100%;
+  display: block;
+  margin-top: 1rem;
+  -webkit-transition: background-color 0.4s ease;
+  transition: background-color 0.4s ease; }
+  .navbar form:focus-within {
+    background-color: #95bc1a; }
+  .navbar form input.form-control {
+    color: #fff;
+    font-weight: bold;
+    width: calc(100% - 3rem);
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    height: 2.5rem;
+    padding-left: 3.5rem;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+  .navbar form .form-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.6); }
+  .navbar form .form-control:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.6); }
+  .navbar form .form-control::-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.6); }
+  .navbar form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6); }
+  .navbar form button {
+    float: right;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    color: #fff;
+    display: inline-block; }
+
+@media (min-width: 768px) {
+  .navbar form {
+    width: 7rem;
+    position: absolute;
+    top: 6.3rem;
+    right: 2rem;
+    background-color: transparent;
+    border-radius: 1.1rem;
+    height: 2.2rem;
+    margin-top: 0;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease; }
+    .navbar form:focus-within {
+      width: 12rem; }
+      .navbar form:focus-within .form-control::-webkit-input-placeholder {
+        opacity: 0; }
+      .navbar form:focus-within .form-control:-ms-input-placeholder {
+        opacity: 0; }
+      .navbar form:focus-within .form-control::-ms-input-placeholder {
+        opacity: 0; }
+      .navbar form:focus-within .form-control::placeholder {
+        opacity: 0; }
+    .navbar form input.form-control {
+      padding: 0 0 0 1rem;
+      margin-top: -0.2rem; }
+    .navbar form .form-control::-webkit-input-placeholder {
+      text-align: right;
+      margin-top: -0.1rem; }
+    .navbar form .form-control:-ms-input-placeholder {
+      text-align: right;
+      margin-top: -0.1rem; }
+    .navbar form .form-control::-ms-input-placeholder {
+      text-align: right;
+      margin-top: -0.1rem; }
+    .navbar form .form-control::placeholder {
+      text-align: right;
+      margin-top: -0.1rem; }
+    .navbar form button {
+      top: 0;
+      padding: 0.1rem 0 0 0.1rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 1.1rem; } }
+
+@media (min-width: 1200px) {
+  nav.navbar form {
+    right: auto;
+    margin-left: 46.5rem; } }
+
 .navbar {
   padding: 0;
   height: 11.5rem;
@@ -9776,41 +9861,6 @@ section.license {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: start; }
-  .navbar form {
-    background-color: #52a6d0;
-    width: 100%;
-    display: block;
-    margin-top: 1rem;
-    -webkit-transition: background-color 0.4s ease;
-    transition: background-color 0.4s ease; }
-    .navbar form:focus-within {
-      background-color: #95bc1a; }
-    .navbar form .form-control {
-      color: #fff;
-      width: calc(100% - 3rem);
-      display: inline-block;
-      background-color: transparent;
-      border: 0;
-      height: 2.5rem;
-      padding-left: 3.5rem;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-    .navbar form .form-control::-webkit-input-placeholder {
-      color: rgba(255, 255, 255, 0.6); }
-    .navbar form .form-control:-ms-input-placeholder {
-      color: rgba(255, 255, 255, 0.6); }
-    .navbar form .form-control::-ms-input-placeholder {
-      color: rgba(255, 255, 255, 0.6); }
-    .navbar form .form-control::placeholder {
-      color: rgba(255, 255, 255, 0.6); }
-    .navbar form button {
-      width: 2.5rem;
-      height: 2.5rem;
-      border: 0;
-      color: #fff;
-      display: inline-block;
-      position: absolute;
-      right: 0; }
 
 .bg-light {
   background-color: #007EC1 !important; }
@@ -9881,19 +9931,6 @@ body.overlay-menu {
       color: #91c5e4; }
       .navbar.navbar-light .navbar-nav .nav-link:hover {
         color: #fff; }
-    .navbar form {
-      width: 16rem;
-      position: absolute;
-      top: 6.8rem;
-      right: 2rem;
-      margin-top: 0rem;
-      border-bottom: 0.2rem solid #52a6d0;
-      background-color: transparent; }
-      .navbar form .form-control {
-        width: 100%;
-        padding-left: 1rem; }
-      .navbar form button {
-        top: 0; }
   .navbar-nav {
     margin-right: 1rem; }
     .navbar-nav .nav-item.seperator {
@@ -9913,9 +9950,7 @@ body.overlay-menu {
 
 @media (min-width: 1200px) {
   nav.navbar .navbar-brand-wrap {
-    margin-left: -3.5rem; }
-  nav.navbar form {
-    right: 0; } }
+    margin-left: -3.5rem; } }
 
 footer {
   width: 100%;
