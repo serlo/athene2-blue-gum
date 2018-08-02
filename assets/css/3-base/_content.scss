@@ -133,6 +133,18 @@ div.content {
       color: #888;
     }
 
+    a {
+      // border-bottom:1px solid transparent;
+      font-weight: bold;
+
+      &:hover{
+        background: rgba(0, 126, 193, 0.7);
+        // border-bottom:1px solid $blue;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+
 } //content
 
   // Taxonomy
@@ -248,3 +260,12 @@ section.license{
 
 
 
+.content article{
+  ::selection {
+    background: fade-out($green,0.3);
+  }
+  a::selection {
+    color: #fff;
+    background: fade-out($blue,0.3);
+  }
+}

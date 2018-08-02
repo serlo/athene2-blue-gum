@@ -5,7 +5,6 @@ $navbar-height: 11.5rem;
 @import 'search';
 
 
-
 .navbar {
 	padding: 0;
 	height: $navbar-height;
@@ -106,13 +105,18 @@ body.overlay-menu
 		margin-top: 2rem;
 	}
 
+	.navbar-brand-wrap a:hover {
+		color: #fff;
+		text-decoration: none;
+	}
+
 	.navbar-expand-md .navbar-collapse{
 		// display: none !important;
 	}
 
 	.navbar {
 	    height: 9.5rem;
-    	padding-top: 1rem;
+	    border-bottom: .5rem solid $lighterblue;
 
     	.navbar-nav {
     		text-align: right;
