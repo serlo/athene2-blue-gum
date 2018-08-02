@@ -54,7 +54,7 @@ $navbar-height: 11.5rem;
 
 @include media-breakpoint-down(sm) {
 	.navbar-collapse {
-		background-color: #f0f7fb;
+		background-color: $bluewhite;
 		padding: 3rem 1rem 5rem 1.8rem;
 		font-size: 1.66rem;
 
@@ -76,6 +76,20 @@ $navbar-height: 11.5rem;
 		.nav-item.seperator{
 			border-bottom:1px solid $lighterblue;
 			margin: 2rem 2rem 2rem 0;
+		}
+
+		.dropdown-item {
+			font-size: 1.66rem;
+			color: #555;
+		}
+
+		.dropdown-menu {
+		    background-color: transparent;
+		    border: 0;
+		    padding: 0;
+		    margin-top: -0.3rem;
+		    margin-left: 0.3rem;
+		    padding-bottom: 1rem;
 		}
 
 	}
@@ -125,7 +139,7 @@ body.overlay-menu
     	&.navbar-light .navbar-nav .nav-link {
     		color: $lighterblue;
     		
-			&:hover {
+			&:hover, &:focus {
 				color: #fff;
 			}
     	}
@@ -136,6 +150,23 @@ body.overlay-menu
 
 		.nav-item.seperator{
 			display: none;
+		}
+
+		.dropdown-menu {
+			background-color: $lightblue;
+			border: 0;
+			left: auto;
+			right: 0;
+			text-align: right;
+			border-radius: 0.3rem;
+		}
+
+		.dropdown-item {
+			color: #fff;
+			padding: .3rem .8rem;
+			&:hover {
+				background: $lighterblue;
+			}
 		}
 		
 		i.far, i.fas {

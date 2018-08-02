@@ -18,7 +18,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav id="top" class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container">
       <div class="navbar-brand-wrap">
         <h1><a class="navbar-brand" href="."><img alt="Serlo" src="assets/img/serlo-logo.svg"></a></h1>
@@ -44,8 +44,13 @@
          <li class="nav-item active">
            <a class="nav-link" href="."><i class="fas fa-xs fa-arrow-circle-right"></i> Lernen! <span class="sr-only">(current)</span></a>
          </li>
-         <li class="nav-item">
-           <a class="nav-link" href="#"><i class="far fa-xs fa-newspaper"></i> Was ist Serlo?</a>
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="id="about_serlo_link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-xs fa-newspaper"></i> Was ist Serlo?</a>
+			<div class="dropdown-menu" aria-labelledby="about_serlo_link">
+			<a class="dropdown-item" href="#">Action</a>
+	          <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
          </li>
          <li class="nav-item donate">
            <a class="nav-link" href="#"><i class="fas fa-xs fa-hand-holding-heart"></i> Spenden</a>
@@ -171,13 +176,13 @@
                 <h1><a class="navbar-brand" href="."><img alt="Serlo" src="assets/img/serlo-logo.svg"></a></h1>
                 <h2><a class="navbar-subline" href="#subject">Die freie Lernplattform</a></h2>
               </div>
-              <a id="toplink" href="#" title="Mit Serlo ganz nach oben ;)"><i class="fas fa-chevron-up fa-2x"></i></a>
+              <a id="toplink" href="#top" title="Mit Serlo ganz nach oben ;)"><i class="fas fa-chevron-up fa-2x"></i></a>
             </div>
 
             <div class="col-lg-4">
               <div class="summary row">
                 <div class="col">
-                  <h2>Serlo.org ist die Wikipedia fürs Lernen.</h2>
+                  <h2><a href="#">Serlo.org</a> ist die Wikipedia fürs Lernen.</h2>
                   <p>Wir sind eine engagierte Gemeinschaft, die daran arbeitet, hochwertige Bildung weltweit frei verfügbar zu machen.</p>
                   <p><a href="#"><i class="fas fa-chevron-circle-right"></i> Mehr erfahren</a></p>
                 </div>

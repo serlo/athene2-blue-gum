@@ -8,6 +8,10 @@ footer {
 
   a {
     color: #fff;
+
+    &:hover{
+      color: #fff;
+    }
   }
 
   .brand{
@@ -27,6 +31,9 @@ footer {
     background-color: $lightblue;
     color: #fff;
     padding-top: 2.5rem;
+    @include media-breakpoint-down(md) {
+      padding-left: 3rem;
+    }
 
     h2 {
       font-size: 1rem;
@@ -52,9 +59,9 @@ footer {
 
   nav.footernav {
 
-    background-color: #eee;
+    background-color: lighten($blue,60%);
     padding: 3rem;
-    color: #555;
+    color: #444;
 
     h3{
       font-size: 1rem;
@@ -62,6 +69,9 @@ footer {
 
     a {
       color: #888;
+      &:hover{
+        color:#444;
+      }
     }
     ul {
       list-style-type: none;
