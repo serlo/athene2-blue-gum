@@ -46,10 +46,16 @@ $navbar-height: 11.5rem;
 }
 
 .navbar-light .navbar-toggler {
-	margin-top: .7rem;
-	padding: 0.2rem;
-	margin-right: 0.1rem;
-	outline-color: $white;
+	position: absolute;
+	top: .5rem;
+	right: .4rem;
+	padding: .4rem;
+	transition: $transition-base;
+
+	&:active { outline: none; }
+	&:focus { background: $green; outline:none;}
+	&.collapsed { background: transparent; outline:none;}
+	&.collapsed:focus { background: $lightblue; }
 }
 
 @include media-breakpoint-down(sm) {
@@ -67,7 +73,7 @@ $navbar-height: 11.5rem;
 		overflow: auto;
 
 		opacity: 1;
-		transition: opacity 0.4s ease;
+		transition: $transition-base;
 
 		i {
 			color: $lighterblue;
@@ -113,8 +119,8 @@ body.overlay-menu
 
 /* bigger screens */
 
-@include media-breakpoint-up(md) {
-
+@include media-breakpoint-up(md) {	
+	
 	div.content {
 		margin-top: 2rem;
 	}
@@ -126,6 +132,8 @@ body.overlay-menu
 
 	.navbar-expand-md .navbar-collapse{
 		// display: none !important;
+	    position: absolute;
+	    right: .95rem;
 	}
 
 	.navbar {

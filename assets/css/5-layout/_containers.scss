@@ -1,4 +1,9 @@
 
+
+.wide-container{
+		padding: 0 1vw;
+	}
+
 @include media-breakpoint-down(lg) {
 	body .container {
 	   	max-width: none;
@@ -18,5 +23,8 @@
 	.container{
 		max-width: 56rem !important;
 		position: relative;
+	}
+	.wide-container{
+		padding: 0 4rem;
 	}
 }

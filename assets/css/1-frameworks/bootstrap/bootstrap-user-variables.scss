@@ -44,6 +44,7 @@ $blue:    #007EC1 !default;
 $lightblue:  #52a6d0 !default;
 $lighterblue: #91c5e4 !default;
 $bluewhite: #f0f7fb !default;
+$helperblue: #00b4d5 !default;
 // $indigo:  #6610f2 !default;
 // $purple:  #6f42c1 !default;
 // $pink:    #e83e8c !default;
@@ -108,7 +109,7 @@ $green:   #95bc1a !default;
 // // Quickly modify global styling by enabling or disabling optional features.
 //
 // $enable-caret:              true !default;
-$enable-rounded:            false !default;
+// $enable-rounded:            true !default;
 // $enable-shadows:            false !default;
 // $enable-gradients:          false !default;
 // $enable-transitions:        true !default;
@@ -205,7 +206,7 @@ $enable-rounded:            false !default;
 // // Set the number of columns and specify the width of the gutters.
 //
 // $grid-columns:                12 !default;
-// $grid-gutter-width:           30px !default;
+$grid-gutter-width:           2rem !default;
 //
 // // Components
 // //
@@ -217,9 +218,10 @@ $enable-rounded:            false !default;
 // $border-width:                1px !default;
 // $border-color:                $gray-300 !default;
 //
-// $border-radius:               .25rem !default;
-// $border-radius-lg:            .3rem !default;
-// $border-radius-sm:            .2rem !default;
+$border-radius:               50% !default;
+$border-radius-lg:            50% !default;
+$border-radius-sm:            50% !default;
+
 //
 // $box-shadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
 // $box-shadow:                  0 .5rem 1rem rgba($black, .15) !default;
@@ -230,7 +232,7 @@ $enable-rounded:            false !default;
 //
 // $caret-width:                 .3em !default;
 //
-// $transition-base:             all .2s ease-in-out !default;
+$transition-base:             all .4s ease-in-out !default;
 // $transition-fade:             opacity .15s linear !default;
 // $transition-collapse:         height .35s ease !default;
 //
@@ -388,11 +390,11 @@ $enable-rounded:            false !default;
 // $btn-block-spacing-y:         .5rem !default;
 //
 // // Allows for customizing button radius independently from global border radius
-// $btn-border-radius:           $border-radius !default;
-// $btn-border-radius-lg:        $border-radius-lg !default;
-// $btn-border-radius-sm:        $border-radius-sm !default;
+$btn-border-radius:           $border-radius !default;
+$btn-border-radius-lg:        $border-radius-lg !default;
+$btn-border-radius-sm:        $border-radius-sm !default;
 //
-// $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+$btn-transition:              color .2s ease-in-out, background-color .2s ease-in-out !default;
 //
 //
 // // Forms
@@ -646,7 +648,7 @@ $enable-rounded:            false !default;
 // $navbar-dark-hover-color:           rgba($white, .75) !default;
 // $navbar-dark-active-color:          $white !default;
 // $navbar-dark-disabled-color:        rgba($white, .25) !default;
-//$navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+// $navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
 // $navbar-dark-toggler-border-color:  rgba($white, 0) !default;
 //
 
