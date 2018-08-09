@@ -13,14 +13,7 @@
 		svg {
 			width: 25vw;
       height: 6.2rem;
-      transition: transform .4s cubic-bezier(0.175, 0.885, 0.320, 1.275);
-      &.bio { transform: scaleX(-1); }
-    }
-    &:hover svg {
-      &.sus { transform: rotate(-35deg); }
-      &.abc { transform: rotate(8deg) scale(1.15); }
-      &.math {  transform: rotateY(-180deg) rotateX(-3deg); }
-      &.bio {  transform: scaleX(-1) translateY(-.3rem) rotate(-90deg); }
+      // transition: transform .4s cubic-bezier(0.175, 0.885, 0.320, 1.275);
     }
 
 		h2 {
@@ -77,7 +70,6 @@
 }
 
 @include media-breakpoint-up(md) {
-
 
   .page {
     .container-fluid{
@@ -144,27 +136,8 @@
 	}
 
 
-
-
-
   .home-emph-link svg .blue { fill: lighten($lighterblue,5%); }
-
 	.home-emph-link svg .green { fill: #becd2b; }
-
-
-
-	// .home-emph-link:active,.home-emph-link:focus,.home-emph-link:hover {
-	// 	text-decoration:none;
-	// 	color:#007ec1
-	// }
-
-	// 	.home-emph-link:active .home-subject-symbol .blue,.home-emph-link:focus .home-subject-symbol .blue,.home-emph-link:hover .home-subject-symbol .blue{
-	// 		fill:#00b2d8;
-	// 	}
-
-	// 		.home-emph-link:active .home-subject-symbol .green,.home-emph-link:focus .home-subject-symbol .green,.home-emph-link:hover .home-subject-symbol .green{fill:#becd2b}.home-emph-link:active i,.home-emph-link:focus i,.home-emph-link:hover i{
-	// 			color:#007ec1;
-	// 		}
 
 }
 
@@ -258,4 +231,40 @@
       height: 24rem;
       margin: auto;
     }
+}
+
+
+
+
+/* subject icon animations */
+
+.landing-page .subject{
+
+  svg {
+    transition: transform .4s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    animation-play-state: paused; 
+    &.math { transition-duration: .6s; }
+    &.sus path.water{
+      transform: scale(0) translateY(-30px);
+      transform-origin: 9% 60%;
+      transition: transform .6s cubic-bezier(0.175, 0.6, 0.32, 1.275);
+    }
+  }
+
+  &:hover svg, &:focus svg, &:active svg{
+    &.bio { animation: jump .7s ease-in-out; }
+    &.abc { transform: scale(1.25) rotate(10deg); }
+    &.math { transform: rotateY(-180deg) rotateX(-3deg); }
+    &.sus { transform: rotate(-30deg); }
+    &.sus .blue.water{ transform: scale(1.08); }
+  }
+}
+
+@keyframes jump {
+  16% { transform: translateY(1rem); }
+  33% { transform: translateY(-.6rem); }
+  50% { transform: translateY(.4rem); }
+  67% { transform: translateY(0); }
+  100% { transform: translateY(0); }
 }

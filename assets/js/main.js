@@ -17,6 +17,10 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
 //# sourceMappingURL=bootstrap.min.js.map
 $( document ).ready(function() {
 
+
+	
+  	$('section.home-subjects [data-toggle="tooltip"]').tooltip();
+
 	$('#navbarMobileMenu').on('show.bs.collapse', function () {
 		$('body').addClass('overlay-menu');
 	});

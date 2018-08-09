@@ -1,5 +1,9 @@
 $( document ).ready(function() {
 
+
+	
+  	$('section.home-subjects [data-toggle="tooltip"]').tooltip();
+
 	$('#navbarMobileMenu').on('show.bs.collapse', function () {
 		$('body').addClass('overlay-menu');
 	});
