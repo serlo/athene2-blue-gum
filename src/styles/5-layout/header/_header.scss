@@ -75,7 +75,7 @@ $navbar-height: 11.5rem;
 		opacity: 1;
 		transition: $transition-base;
 
-		i {
+		svg {
 			color: $lighterblue;
 		}
 
@@ -177,7 +177,7 @@ body.overlay-menu
 			}
 		}
 		
-		i.far, i.fas {
+		svg {
 			display: none;
 		}
 		.nav-item.donate {
@@ -192,7 +192,7 @@ body.overlay-menu
 					background-color: $green;
 				}
 			}
-			i {
+			svg {
 				display: inline;
 			}
 		}

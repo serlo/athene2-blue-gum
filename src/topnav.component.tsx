@@ -9,6 +9,14 @@ import DropdownMenu from 'reactstrap/lib/DropdownMenu'
 import DropdownItem from 'reactstrap/lib/DropdownItem'
 import { css } from 'emotion'
 
+// TODO: do some kind of autoimport, atm. it imports everything, also: how will the input data look like for icons?
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+library.add(fab, fas)
+
+
 const logo = require('./img/serlo-logo.svg')
 
 // TODO: should be in an external file
@@ -16,7 +24,6 @@ const blue = '#007EC1'
 
 export class Topnav extends React.Component {
   public render() {
-    console.log(this.props)
     return (
       <React.Fragment>
         {/* FIXME: */}
@@ -26,7 +33,6 @@ export class Topnav extends React.Component {
           expand="md"
           className={css({ backgroundColor: `${blue} !important` })}
         >
-          {/* <nav id="top" className="navbar navbar-expand-md navbar-light bg-light"> */}
           <div className="container">
             <div className="navbar-brand-wrap">
               <h1>
@@ -54,10 +60,6 @@ export class Topnav extends React.Component {
               <span className="navbar-toggler-icon" />
             </button>
 
-            {/* <div
-              className="collapse navbar-collapse justify-content-end"
-              id="navbarMobileMenu"
-            > */}
             <UncontrolledCollapse
               toggler="#mobile-toggle"
               navbar
@@ -65,46 +67,23 @@ export class Topnav extends React.Component {
             >
               <ul className="navbar-nav">
                 {this.props.links.map((link, index) => {
+                  
+                  var linkClassStr = 'nav-item';
+                  if(link.class) linkClassStr += ' ' + link.class;
+                  
+                  var iconStr = '';
+                  if(link.icon) iconStr = <FontAwesomeIcon icon={link.icon} size="xs" />
+
+                  var linkStr = ''
+                  if(!link.children) linkStr = <a className="nav-link" href={link.url}>{iconStr} {link.title}</a>
+                  else linkStr = getDropdown(link)
+
                   return (
-                    <li key={index} className="nav-item">
-                      <a className="nav-link" href={link.url}>
-                        {link.title}
-                      </a>
+                    <li key={index} className={linkClassStr} >
+                      {linkStr}
                     </li>
                   )
                 })}
-                {/* <li className="nav-item">
-                  <a className="nav-link" href=".">
-                    <i className="fas fa-xs fa-question-circle" /> Neu hier?
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href=".">
-                    <i className="fas fa-xs fa-user-circle" /> Anmelden
-                  </a>
-                </li>
-                <li className="nav-item seperator" />
-                <li className="nav-item active">
-                  <a className="nav-link" href=".">
-                    <i className="fas fa-xs fa-arrow-circle-right" /> Lernen!{' '}
-                    <span className="sr-only">(current)</span>
-                  </a>
-                </li> */}
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    <i className="far fa-xs fa-newspaper" /> Was ist Serlo?
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>Action</DropdownItem>
-                    <DropdownItem>Another action</DropdownItem>
-                    <DropdownItem>Something else here</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-                <li className="nav-item donate">
-                  <a className="nav-link" href="#">
-                    <i className="fas fa-xs fa-hand-holding-heart" /> Spenden
-                  </a>
-                </li>
               </ul>
             </UncontrolledCollapse>
 
@@ -126,3 +105,33 @@ export class Topnav extends React.Component {
     )
   }
 }
+
+
+function getDropdown(parent){
+  return(
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret>
+          <FontAwesomeIcon icon={parent.icon} size="xs"/> {parent.title}
+        </DropdownToggle>
+        <DropdownMenu right>   
+      { parent.children.map( (link,index) => {
+        return <DropdownItem key={index}>{link.title}</DropdownItem>          
+        })}
+        </DropdownMenu>
+      </UncontrolledDropdown>
+  )
+}
+
+
+{/* 
+  
+  <UncontrolledDropdown nav inNavbar>
+  <DropdownToggle nav caret>
+    <i className="far fa-xs fa-newspaper" /> Was ist Serlo?
+  </DropdownToggle>
+  <DropdownMenu right>
+    <DropdownItem>Action</DropdownItem>
+    <DropdownItem>Another action</DropdownItem>
+    <DropdownItem>Something else here</DropdownItem>
+  </DropdownMenu>
+</UncontrolledDropdown> */}
