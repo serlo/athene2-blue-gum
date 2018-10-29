@@ -7,7 +7,7 @@ import { FooterNav } from '../src/footernav.component'
 import { ContentWrapper } from '../src/contentwrapper.component'
 import { ContentFooter } from '../src/contentfooter.component'
 
-import { articleContent,topNavLinks,footerNavLinks, serloSlogan } from "./dummycontent";
+import { articleContent,topNavLinks,footerNavLinks, serloSlogan } from './dummycontent';
 
 import '../src/styles'
 

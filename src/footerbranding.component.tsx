@@ -1,24 +1,25 @@
 import * as React from 'react'
 import { css } from 'emotion'
 
+import { library, FontAwesomeIcon } from './fontawesome'
 
 const logoSrc = require('./img/serlo-logo.svg')
 const participateSrc = require('./img/footer_participate.svg')
 const donateSrc = require('./img/footer_donate.svg')
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fab, fas)
 
 // TODO: should be in an external file
 const blue = '#007EC1'
 
-export class FooterBranding extends React.Component {
+export interface Props {
+  serloSlogan: string;
+}
+
+export class FooterBranding extends React.Component<Props>{
+
   public render() {
+
     return (
-      <React.Fragment>
         <div className="row footerbranding">
             <div className="brand col-lg-8">
                 <div className="navbar-brand-wrap">
@@ -49,7 +50,6 @@ export class FooterBranding extends React.Component {
 
             </div>
         </div>        
-       </React.Fragment>
     )
     
   }

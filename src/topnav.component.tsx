@@ -8,6 +8,7 @@ import {
 import DropdownMenu from 'reactstrap/lib/DropdownMenu'
 import DropdownItem from 'reactstrap/lib/DropdownItem'
 import { css } from 'emotion'
+import { cx } from 'emotion'
 
 // TODO: do some kind of autoimport, atm. it imports everything, also: how will the input data look like for icons?
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,7 +23,14 @@ const logo = require('./img/serlo-logo.svg')
 // TODO: should be in an external file
 const blue = '#007EC1'
 
-export class Topnav extends React.Component {
+type Entry = { title: string, url?: string, class?: string, icon?: string, children?: Array<Entry> }
+type NavLinks = Array<Entry>
+
+export interface Props {
+  links: NavLinks;
+}
+
+export class Topnav extends React.Component<Props> {
   public render() {
     return (
       <React.Fragment>
@@ -68,18 +76,17 @@ export class Topnav extends React.Component {
               <ul className="navbar-nav">
                 {this.props.links.map((link, index) => {
                   
-                  var linkClassStr = 'nav-item';
-                  if(link.class) linkClassStr += ' ' + link.class;
+                  const linkClass = cx('nav-item', { [link.class]: !!link.class })
                   
-                  var iconStr = '';
+                  var iconStr = {}
                   if(link.icon) iconStr = <FontAwesomeIcon icon={link.icon} size="xs" />
 
-                  var linkStr = ''
-                  if(!link.children) linkStr = <a className="nav-link" href={link.url}>{iconStr} {link.title}</a>
-                  else linkStr = getDropdown(link)
+                  var linkStr = {}
+                  if(!link.children) linkStr = <a className='nav-link' href={link.url}>{iconStr} {link.title}</a>
+                  else linkStr = this.getDropdown(link)
 
                   return (
-                    <li key={index} className={linkClassStr} >
+                    <li key={index} className={linkClass} >
                       {linkStr}
                     </li>
                   )
@@ -104,22 +111,21 @@ export class Topnav extends React.Component {
       </React.Fragment>
     )
   }
-}
 
-
-function getDropdown(parent){
-  return(
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
-          <FontAwesomeIcon icon={parent.icon} size="xs"/> {parent.title}
-        </DropdownToggle>
-        <DropdownMenu right>   
-      { parent.children.map( (link,index) => {
-        return <DropdownItem key={index}>{link.title}</DropdownItem>          
-        })}
-        </DropdownMenu>
-      </UncontrolledDropdown>
-  )
+  getDropdown(parent: Entry){
+    return(
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            <FontAwesomeIcon icon={parent.icon} size="xs"/> {parent.title}
+          </DropdownToggle>
+          <DropdownMenu right>   
+        { parent.children.map( (link,index) => {
+          return <DropdownItem key={index}>{link.title}</DropdownItem>          
+          })}
+          </DropdownMenu>
+        </UncontrolledDropdown>
+    )
+  }
 }
 
 
