@@ -1,7 +1,7 @@
 {
   "name": "@serlo-org/athene2-blue-gum",
   "version": "0.0.0",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "author": "Serlo Education e.V.",
   "scripts": {
     "start": "start-storybook -p 9000 -c .storybook"
