@@ -9,16 +9,16 @@ The idea is to develop the html+css parts with quicker tools and then move this 
 (not up to date)
 https://elbotho.github.io/athene2-blue-gum/
 
-----
+---
 
 ## Based on:
 
-* [Bootstrap](https://getbootstrap.com/) (v4.1.0) and 
-* [Sass](http://sass-lang.com/)
-* React, Storybook, yarn …
-
+- [Bootstrap](https://getbootstrap.com/) (v4.1.0) and
+- [Sass](http://sass-lang.com/)
+- React, Storybook, yarn …
 
 ## Quick Start
+
 ```
 # 1 Clone this repo
 git clone https://github.com/elbotho/athene2-blue-gum.git
@@ -27,13 +27,12 @@ git clone https://github.com/elbotho/athene2-blue-gum.git
 cd athene2-blue-gum
 
 # 3 Install all node packages
-npm install
 yarn
 
 # 4 Get started
 yarn start
 ```
 
-
 ## Overwriting Bootstrap sass variables
+
 You can overwrite specific bootstrap sass variables by uncommenting lines in assets/css/1-frameworks/bootstrap/bootstrap-user-variables.scss
