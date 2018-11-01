@@ -4,6 +4,7 @@
   "license": "Apache-2.0",
   "author": "Serlo Education e.V.",
   "scripts": {
+    "build": "build-storybook -c .storybook -o dist",
     "start": "start-storybook -p 9000 -c .storybook"
   },
   "dependencies": {
