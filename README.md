@@ -6,8 +6,8 @@ The idea is to develop the html+css parts with quicker tools and then move this 
 
 ## Demo
 
-(not up to date)
-https://elbotho.github.io/athene2-blue-gum/
+- https://athene2-blue-gum.netlify.com
+- (not up to date) https://elbotho.github.io/athene2-blue-gum/
 
 ---
 
