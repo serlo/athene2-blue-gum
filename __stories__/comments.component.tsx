@@ -40,7 +40,8 @@ storiesOf('Comments', module).add('default', () => {
                 },
                 timestamp: new Date()
               }
-            ]
+            ],
+            entity: { id: 1234, label: 'Aufgaben' }
           },
           {
             id: '2',
@@ -57,7 +58,7 @@ storiesOf('Comments', module).add('default', () => {
               id: 12345,
               username: 'SebSoGa'
             },
-            timestamp: new Date(),
+            timestamp: new Date('October 13, 2014 11:13:00'),
             children: [
               {
                 id: '2',
@@ -71,9 +72,10 @@ storiesOf('Comments', module).add('default', () => {
                   id: 54321,
                   username: 'Nish'
                 },
-                timestamp: new Date()
+                timestamp: new Date(2018, 4, 21, 3, 23, 34)
               }
-            ]
+            ],
+            entity: { id: 12345, label: 'Aufgaben2' }
           }
         ]}
       />

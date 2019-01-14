@@ -17,6 +17,7 @@
     "@types/react-textarea-autosize": "^4.3.3",
     "emotion": "^9.0.0",
     "grommet": "^2.0.0",
+    "moment": "^2.23.0",
     "polished": "^2.0.0",
     "react-textarea-autosize": "^7.1.0",
     "reactstrap": "^6.0.0",

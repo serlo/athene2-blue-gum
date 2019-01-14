@@ -1,7 +1,8 @@
-import { Box, Button, Heading } from 'grommet'
+import { Box, Button, Heading, Text, Anchor } from 'grommet'
 import * as React from 'react'
 import styled from 'styled-components'
 import TextareaAutosize from 'react-textarea-autosize'
+import * as moment from 'moment'
 
 const outerBorderColor = '#2e6da4'
 const innerBorderColor = '#46b8da'
@@ -14,7 +15,15 @@ const TextareaStyle = styled(TextareaAutosize)({
   border: 'none',
   outline: 'none',
   overflow: 'hidden',
-  resize: 'none'
+  resize: 'none',
+  paddingLeft: '10px',
+  paddingRight: '10px'
+})
+
+const SpanStyle = styled.span({
+  cursor: 'help',
+  borderBottom: '1px dotted #777',
+  color: '#979797'
 })
 
 export function Comments({ data }: CommentsProps) {
@@ -23,7 +32,7 @@ export function Comments({ data }: CommentsProps) {
       <Box pad="medium">
         <Heading level="2">Kommentare</Heading>
         <Box margin={{ bottom: 'medium' }}>
-          <TextareaStyle />
+          <TextareaStyle placeholder="Frage oder Verbesserungsvorschlag" />
           <BoxStyle />
         </Box>
         <Button label="Kommentar abschicken" primary />
@@ -37,7 +46,14 @@ export function Comments({ data }: CommentsProps) {
   )
 }
 
-function Comment({ author, body, children, timestamp, leaf }: CommentProps) {
+function Comment({
+  author,
+  body,
+  children,
+  timestamp,
+  leaf,
+  entity
+}: CommentProps) {
   return (
     <React.Fragment>
       <Box
@@ -49,9 +65,31 @@ function Comment({ author, body, children, timestamp, leaf }: CommentProps) {
           size: 'medium'
         }}
       >
-        <Heading level="3">
-          Autor: {author.username}, {timestamp.toString()}
-        </Heading>
+        {entity !== undefined ? (
+          <Text>
+            Zu{' '}
+            <Anchor href={`https://serlo.org/${entity.id}`}>
+              {entity.label}
+            </Anchor>
+            :
+          </Text>
+        ) : null}
+        <Text margin="small" size={'85%'}>
+          <Anchor href={`https://serlo.org/${author.id}`}>
+            {' '}
+            {author.username}
+          </Anchor>{' '}
+          <SpanStyle
+            title={moment(timestamp)
+              .locale('de')
+              .format('DD.MM.YYYY, HH:mm:ss ')}
+          >
+            {moment(timestamp)
+              .locale('de')
+              .startOf()
+              .fromNow()}
+          </SpanStyle>
+        </Text>
         {body}
         {children && !leaf
           ? children.map(comment => {
@@ -60,8 +98,15 @@ function Comment({ author, body, children, timestamp, leaf }: CommentProps) {
           : null}
         {leaf ? null : (
           <React.Fragment>
-            <Box margin={{ bottom: 'medium' }}>{/* <TextArea  /> */}</Box>
-            <Button label="Antwort abschicken" primary />
+            <Box pad="medium">
+              <TextareaStyle placeholder="Deine Antwort" />
+              <BoxStyle />
+            </Box>
+            <Button
+              margin={{ horizontal: 'medium' }}
+              label="Antwort abschicken"
+              primary
+            />
           </React.Fragment>
         )}
       </Box>
@@ -83,9 +128,15 @@ interface Comment {
   body: string
   children?: Comment[]
   timestamp: Date
+  entity?: Entity
 }
 
 interface User {
   id: number
   username: string
+}
+
+interface Entity {
+  id: number
+  label: string
 }
