@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "@fortawesome/fontawesome-free": "^5.6.3",
     "@fortawesome/fontawesome-svg-core": "^1.0.0",
     "@fortawesome/free-brands-svg-icons": "^5.0.0",
     "@fortawesome/free-solid-svg-icons": "^5.0.0",
     "@fortawesome/react-fontawesome": "^0.1.0",
+    "@storybook/addon-actions": "^4.1.6",
     "@types/react-textarea-autosize": "^4.3.3",
     "emotion": "^9.0.0",
     "grommet": "^2.0.0",
