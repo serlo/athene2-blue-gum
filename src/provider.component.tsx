@@ -25,10 +25,25 @@ const theme = {
        * more important blue,
        * professional, reliable
        */
-      brand: '#007ec1'
+      brand: '#007ec1',
+      footerBackground: '#f4fbff'
     },
     font: {
-      family: '"Open Sans", sans-serif'
+      family: '"Karmilla","Work Sans", sans-serif'
+    },
+    global: {
+      breakpoints: {
+        xsmall: {
+          value: 500
+        },
+        small: {
+          value: 900
+        },
+        medium: undefined,
+        middle: {
+          value: 3000
+        }
+      }
     }
   }
 }
