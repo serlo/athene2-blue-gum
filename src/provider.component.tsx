@@ -15,7 +15,65 @@ export function Provider({ children }: ProviderProps) {
   )
 }
 
+
+export const GlobalStyle = createGlobalStyle`
+  html  {
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Karla';
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing:-0.01em;
+    -webkit-text-stroke: .6px;
+  }
+
+
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px){ /* TODO: Get lg */
+    html{
+      font-size: 18px;
+    }
+  }
+
+  @media (min-width: 1200px){ /* TODO: Get xl */
+	html{
+		font-size: 20px;
+  }
+  
+	/*.container{
+		max-width: 56rem !important;
+		position: relative;
+  }
+  
+	.wide-container{
+		padding: 0 4rem;
+	}*/
+}
+`
+
 const theme = {
+  flexboxgrid: {
+    gridSize: 12, // columns
+    gutterWidth: 2, // rem
+    outerMargin: 3, // rem
+    mediaQuery: 'only screen',
+    container: {
+      sm: 46, // rem
+      md: 61, // rem
+      lg: 76  // rem
+    },
+    breakpoints: {
+      xs: 0,  // em
+      sm: 48, // em
+      md: 64, // em
+      lg: 75  // em
+    }
+  },
   global: {
     colors: {
       /**
@@ -26,24 +84,15 @@ const theme = {
        * professional, reliable
        */
       brand: '#007ec1',
-      footerBackground: '#f4fbff'
+      footerBackground: '#f4fbff',
+      lightblue: '#52a6d0',
+      lighterblue: '#91c5e4',
+      bluewhite: '#f0f7fb',
+      helperblue: '#00b4d5',
+      green: '#95bc1a'
     },
     font: {
       family: '"Karmilla","Work Sans", sans-serif'
-    },
-    global: {
-      breakpoints: {
-        xsmall: {
-          value: 500
-        },
-        small: {
-          value: 900
-        },
-        medium: undefined,
-        middle: {
-          value: 3000
-        }
-      }
     }
   }
 }
