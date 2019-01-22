@@ -16,47 +16,11 @@ export function Provider({ children }: ProviderProps) {
 }
 
 
-export const GlobalStyle = createGlobalStyle`
-  html  {
-    font-size: 16px;
-  }
-
-  body {
-    font-family: 'Karla';
-    font-weight: 400;
-    line-height: 1.35;
-    letter-spacing:-0.01em;
-    -webkit-text-stroke: .6px;
-  }
-
-
-  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-weight: 700;
-  }
-
-  @media (min-width: 768px){ /* TODO: Get lg */
-    html{
-      font-size: 18px;
-    }
-  }
-
-  @media (min-width: 1200px){ /* TODO: Get xl */
-	html{
-		font-size: 20px;
-  }
-  
-	/*.container{
-		max-width: 56rem !important;
-		position: relative;
-  }
-  
-	.wide-container{
-		padding: 0 4rem;
-	}*/
-}
-`
-
 const theme = {
+  xs: '0rem',
+  sm: '48rem',
+  md: '64rem',
+  lg: '75rem',
   flexboxgrid: {
     gridSize: 12, // columns
     gutterWidth: 2, // rem
@@ -96,6 +60,48 @@ const theme = {
     }
   }
 }
+
+
+export const GlobalStyle = createGlobalStyle`
+  html  {
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Karla';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing:-0.01em;
+    -webkit-text-stroke: .6px;
+  }
+
+
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 700;
+  }
+
+  @media (min-width: ${theme.flexboxgrid.breakpoints.md + 'rem'} ){
+    html{
+      font-size: 18px;
+    }
+  }
+
+  @media (min-width: ${theme.flexboxgrid.breakpoints.lg + 'rem'}){
+	html{
+		font-size: 20px;
+  }
+  
+	/*.container{
+		max-width: 56rem !important;
+		position: relative;
+  }
+  
+	.wide-container{
+		padding: 0 4rem;
+	}*/
+}
+`
 
 interface ProviderProps {
   children: React.ReactNode

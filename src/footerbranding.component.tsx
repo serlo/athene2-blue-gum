@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import {Grid, Col, Row} from 'react-styled-flexboxgrid'
 
 import { library, FontAwesomeIcon } from './fontawesome'
+import Logo from './logo.component'
 
-const logoSrc = require('./img/serlo-logo.svg')
 const participateSrc = require('./img/footer_participate.svg')
 const donateSrc = require('./img/footer_donate.svg')
 
@@ -21,18 +21,7 @@ export class FooterBranding extends React.Component<Props> {
       <BrandingGrid fluid>
         <BrandingWrap>
           <Col xs={12} md={8} className="brand">
-            <div className="navbar-brand-wrap">
-              <h1>
-                <a className="navbar-brand" href=".">
-                  <img alt="Serlo" src={logoSrc} />
-                </a>
-              </h1>
-              <h2>
-                <a className="navbar-subline icon" href="#subject">
-                  {this.props.serloSlogan}
-                </a>
-              </h2>
-            </div>
+            <Logo serloSlogan={this.props.serloSlogan}/>
             <a id="toplink" href="#top" title="Mit Serlo ganz nach oben ;)">
               <FontAwesomeIcon icon="chevron-up" size="2x" />
             </a>
@@ -84,19 +73,8 @@ const BrandingGrid = styled(Grid)`
 `
 
 const BrandingWrap = styled(Row)`
-  
-  /*@media (max-width: 1200px){  /*media-breakpoint-up(lg)*/
-    /*
-    .brand{
-      margin-top: 0;
-      padding: 0.5rem 2rem;
-    }
-    .summary {
-      padding: 2rem 1rem 0 1rem;
-    }
-    .support {
-    }
-  }*/
+
+  margin-right: 0;
 
   a:not(.icon), a.icon {
     text-decoration: none;
@@ -125,18 +103,6 @@ const BrandingWrap = styled(Row)`
   background-color: ${props => props.theme.global.colors.brand};
   position: relative;
 
-  a.navbar-subline {
-    color: rgba(255, 255, 255, 0.4);
-    &:hover {
-      color: #fff;
-    }
-  }
-
-  a {
-    border: 0 !important;
-    padding-bottom: 0
-  }
-
   #toplink {
     position: absolute;
     top: 1.5rem;
@@ -149,7 +115,7 @@ const BrandingWrap = styled(Row)`
   color: #fff;
   padding-top: 2.5rem;
   
-  @media (max-width: ${props => props.theme.flexboxgrid.breakpoints.md + 'rem'}) {
+  @media (max-width: ${props => props.theme.md}) {
     padding-left: 3rem;
   }
 
@@ -172,32 +138,6 @@ const BrandingWrap = styled(Row)`
   img{
     max-width: 5rem;
   }
-}
-
-
-.navbar-brand-wrap {
-
-  h1 {
-    padding-bottom: 0;
-    margin-bottom: 0.2rem;
-  }
-
-  img{
-    width: 9rem;
-    padding: 0.8rem 0 0 0.8rem;
-  }
-
-  .navbar-brand{
-    padding-bottom: 0;
-  }
-}
-
-.navbar-subline {
-	color: rgba(#fff,0.4);
-	font-weight: 300;
-	font-size: 1.66rem;
-	padding-left: 3.5rem;
-	letter-spacing: 0.04rem;
 }
 
 `

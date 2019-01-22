@@ -1,15 +1,17 @@
 import * as React from 'react'
-// import { css } from 'emotion'
-import { library, FontAwesomeIcon } from './fontawesome'
-import { Box, Grommet } from 'grommet';
+import { FontAwesomeIcon } from './fontawesome'
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import styled from 'styled-components';
 import {Grid, Col, Row} from 'react-styled-flexboxgrid'
 
-const logoSrc = require('./img/serlo-logo.svg')
-const participateSrc = require('./img/footer_participate.svg')
-const donateSrc = require('./img/footer_donate.svg')
+type Child = { title: string, url: string, icon?:IconProp }
+type Entry = { title: string, class?: string, children: Child[] }
 
-export class FooterNav extends React.Component {
+export interface Props {
+  links: Entry[]
+}
+
+export class FooterNav extends React.Component<Props> {
   public render() {
     return (
       <FooterNavGrid fluid>
@@ -48,9 +50,8 @@ const FooterNavGrid = styled(Grid)`
 
 `
 
-
 const CategoryHeader = styled.h3`
-  font-size: 20px;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
   color: #444;
 `
@@ -60,7 +61,6 @@ const NavList = styled.ul `
   list-style-type: none;
   padding: 0;
   margin: 0;
-  font-size: 20px;
   line-height: 1.35;
 
   a{
@@ -100,7 +100,7 @@ const NavList = styled.ul `
       margin-left: 0.4rem;
     }
 
-    @media (min-width: 1200px) { /*${props => props.theme.flexboxgrid.breakpoints.md}*/
+    @media (min-width:${props => props.theme.lg}) {
       li {
         display: block;
         margin-top: .3rem;
@@ -110,5 +110,4 @@ const NavList = styled.ul `
     }
 
 }
-
 `
