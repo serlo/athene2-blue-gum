@@ -14,14 +14,11 @@ export interface Props {
 
 export class FooterBranding extends React.Component<Props> {
   public render() {
-
-    console.log(this.props)
-
     return (
       <BrandingGrid fluid>
         <BrandingWrap>
           <Col xs={12} md={8} className="brand">
-            <Logo serloSlogan={this.props.serloSlogan}/>
+            <Logo subline={this.props.serloSlogan} />
             <a id="toplink" href="#top" title="Mit Serlo ganz nach oben ;)">
               <FontAwesomeIcon icon="chevron-up" size="2x" />
             </a>

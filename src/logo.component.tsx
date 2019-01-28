@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const logoSrc = require('./img/serlo-logo.svg')
 
 export interface Props {
-  serloSlogan?: string
+  subline?: string
 }
 
 export default class Logo extends React.Component<Props> {
@@ -16,10 +16,10 @@ export default class Logo extends React.Component<Props> {
             <img alt="Serlo" src={logoSrc} />
           </a>
         </h1>
-        { !this.props.serloSlogan ? null : 
+        { !this.props.subline ? null : 
         <h2>
           <a className="subline icon" href="#subject">
-            {this.props.serloSlogan}
+            {this.props.subline}
           </a>
         </h2>
         }
@@ -52,6 +52,7 @@ const LogoWrap = styled.div`
       font-size: 1.66rem;
       padding-left: 3.5rem;
       letter-spacing: 0.04rem;
+      text-decoration: none;
 
       &:hover {
         color: #fff;
