@@ -277,7 +277,7 @@ class Components extends React.Component {
 }
 
 
-storiesOf("Grommet", module).add("All", () => <Components />)
+storiesOf("Grommet Components", module).add("All", () => <Components />)
 .add("Buttons", () =>
   <Provider>
     <Normalize/>
