@@ -7,7 +7,7 @@ import { Normalize } from 'styled-normalize'
 
 import { UserContext, EntityContext } from '../src/context'
 
-import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Heading, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video } from "grommet";
+import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Heading, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video, Image } from "grommet";
 
 import { grommet } from "grommet/themes";
 import { generate } from "grommet/themes/base";
@@ -277,16 +277,55 @@ class Components extends React.Component {
 }
 
 
-storiesOf("Grommet Components", module).add("All", () => <Components />)
+storiesOf("Grommet", module).add("All", () => <Components />)
 .add("Buttons", () =>
   <Provider>
     <Normalize/>
     <GlobalStyle/>
-    <p><Button label="Secondary" secondary onClick={() => {}} /></p>
-    <p><Button label="Primary" primary onClick={() => {}} /></p>
-    <p><Button label="Icon" icon={<FontAwesomeIcon icon={faHeart}/>} primary onClick={() => {}} /></p>
-    <p><Button label="Reverse" secondary reverse icon={<FontAwesomeIcon icon={faArrowCircleRight}/>} onClick={() => {}} /></p>
-    <p><Button label="Green" primary color='brandGreen' onClick={() => {}} /></p>
-    <p><Button icon={<FontAwesomeIcon icon={faHeart}/>} onClick={() => {}} /></p>
+    <Box pad="medium" width="small">
+      <Button label="Secondary" secondary onClick={() => {}} /><br/>
+      <Button label="Primary" primary onClick={() => {}} /><br/>
+      <Button label="Icon" icon={<FontAwesomeIcon icon={faHeart}/>} primary onClick={() => {}} /><br/>
+      <Button label="Reverse" secondary reverse icon={<FontAwesomeIcon icon={faArrowCircleRight}/>} onClick={() => {}} /><br/>
+      <Button label="Green" primary color='brandGreen' onClick={() => {}} /><br/>
+      <Button icon={<FontAwesomeIcon icon={faHeart}/>} onClick={() => {}} /><br/>
+    </Box>
   </Provider>
-);
+)
+.add("Brand", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box pad="medium" width="small">
+      Logo + Slogan Component
+    </Box>
+  </Provider>
+)
+.add("Headings", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box pad="medium">
+      <Heading level={1}>Heading level 1</Heading>
+      <Heading level={2}>Heading level 2</Heading>
+      <Heading level={3}>Heading level 3</Heading>
+      <Heading level={4}>Heading level 4</Heading>
+      <Heading level={5}>Heading level 5</Heading>
+    </Box>
+  </Provider>
+)
+.add("Images", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box pad="medium" width="medium">
+      <h3>Responsive Image (cover)</h3>
+      <Image
+        fit="cover"
+        src="//assets.serlo.org/legacy/56d9f598ebea2_1581a51d8fbbce8e4abac1cb6793c714febe5a48.png"
+      />
+      <br />
+      <h3>Image with caption</h3>
+    </Box>
+  </Provider>
+)
