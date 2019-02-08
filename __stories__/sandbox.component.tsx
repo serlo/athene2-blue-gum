@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
-import { Topnav } from '../src/topnav.component'
+import { Header } from '../src/header'
+import { SearchInput } from '../src/header/search-input'
 import { FooterNav } from '../src/footernav.component'
 import { FooterBranding } from '../src/footerbranding.component'
-import { SearchInput } from '../src/searchinput.component'
 import { Provider, GlobalStyle } from '../src/provider.component'
 import { Normalize } from 'styled-normalize'
 
@@ -26,7 +26,7 @@ storiesOf('Header', module).add('SearchInput', () => {
     <Provider>
       <Normalize/>
       <GlobalStyle/>
-      <Topnav
+      <Header
         links={topNavLinks}
       />
     </Provider>
@@ -55,10 +55,10 @@ storiesOf('Footer', module).add('complete', () => {
   )
 });
 
-// storiesOf('Topnav', module).add('default', () => {
+// storiesOf('Header', module).add('default', () => {
 //     return (
-//       <Provider>  
-//         <Topnav
+//       <Provider>
+//         <Header
 //           links={topNavLinks}
 //         />
 //       </Provider>
