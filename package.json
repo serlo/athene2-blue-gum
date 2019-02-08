@@ -10,22 +10,21 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@fortawesome/fontawesome-free": "^5.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.0.0",
     "@fortawesome/free-brands-svg-icons": "^5.0.0",
     "@fortawesome/free-solid-svg-icons": "^5.0.0",
     "@fortawesome/react-fontawesome": "^0.1.0",
-    "@storybook/addon-actions": "^4.1.6",
-    "@types/react-textarea-autosize": "^4.3.3",
+    "@storybook/addon-actions": "^4.0.0",
     "emotion": "^9.0.0",
     "grommet": "^2.0.0",
-    "moment": "^2.23.0",
+    "moment": "^2.0.0",
     "polished": "^2.0.0",
     "react-styled-flexboxgrid": "^3.0.0",
-    "react-textarea-autosize": "^7.1.0",
+    "react-textarea-autosize": "^7.0.0",
     "reactstrap": "^6.0.0",
     "styled-components": "^4.0.0",
-    "styled-normalize": "^8.0.4"
+    "styled-normalize": "^8.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -42,21 +41,23 @@
     "@babel/preset-typescript": "^7.0.0",
     "@storybook/addon-options": "^4.0.0",
     "@storybook/react": "^4.0.0",
-    "@types/react": "^16.7.0-0",
+    "@types/react": "^16.8.0",
+    "@types/react-dom": "^16.8.0",
+    "@types/react-textarea-autosize": "^4.0.0",
     "@types/reactstrap": "^6.0.0",
     "@types/styled-components": "^4.0.0",
     "css-loader": "^2.0.0",
     "node-sass": "^4.0.0",
     "prettier": "^1.0.0",
-    "react": "^16.7.0-0",
-    "react-dom": "^16.7.0-0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "sass-loader": "^7.0.0",
     "style-loader": "^0.23.0",
     "typescript": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^16.7.0-0",
-    "react-dom": "^16.7.0-0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "private": true
 }

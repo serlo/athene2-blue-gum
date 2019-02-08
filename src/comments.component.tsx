@@ -1,6 +1,6 @@
-import { Box, Button, Heading, Text, Anchor, Grid, DropButton } from 'grommet'
 import * as React from 'react'
 import styled from 'styled-components'
+import { Box, Button, Heading, Text, Anchor, Grid, DropButton } from 'grommet'
 import TextareaAutosize from 'react-textarea-autosize'
 import * as moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -108,7 +108,6 @@ export class CommentForm extends React.Component<
                 <Button
                   label="Kommentar abschicken"
                   primary
-                  color={outerBorderColor}
                   onClick={() =>
                     onSendComment({
                       entity_id: entity.id,
