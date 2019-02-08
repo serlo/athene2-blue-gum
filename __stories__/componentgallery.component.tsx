@@ -9,6 +9,9 @@ import { UserContext, EntityContext } from '../src/context'
 
 import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Heading, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video, Image } from "grommet";
 
+import Logo from '../src/logo.component'
+import LicenseInfo from '../src/licenseinfo.component'
+
 import { grommet } from "grommet/themes";
 import { generate } from "grommet/themes/base";
 import { deepMerge } from "grommet/utils";
@@ -277,7 +280,7 @@ class Components extends React.Component {
 }
 
 
-storiesOf("Grommet", module).add("All", () => <Components />)
+storiesOf("Components Gallery", module).add("All", () => <Components />)
 .add("Buttons", () =>
   <Provider>
     <Normalize/>
@@ -296,8 +299,8 @@ storiesOf("Grommet", module).add("All", () => <Components />)
   <Provider>
     <Normalize/>
     <GlobalStyle/>
-    <Box pad="medium" width="small">
-      Logo + Slogan Component
+    <Box pad="medium" background="brand">
+      <Logo subline="Super good Serlo Slogan" />
     </Box>
   </Provider>
 )
@@ -326,6 +329,15 @@ storiesOf("Grommet", module).add("All", () => <Components />)
       />
       <br />
       <h3>Image with caption</h3>
+    </Box>
+  </Provider>
+)
+.add("Content: License Info", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box pad="medium" width="large">
+      <LicenseInfo />
     </Box>
   </Provider>
 )

@@ -16,22 +16,23 @@ export default class Logo extends React.Component<Props> {
             <img alt="Serlo" src={logoSrc} />
           </a>
         </h1>
-        {!this.props.subline ? null : (
-          <h2>
-            <a className="subline icon" href="#subject">
-              {this.props.subline}
-            </a>
-          </h2>
-        )}
+        { !this.props.subline ? null : 
+        <h2>
+          <a className="subline icon" href="#subject">
+            {this.props.subline}
+          </a>
+        </h2>
+        }
       </LogoWrap>
     )
   }
 }
 
 const LogoWrap = styled.div`
+
   a {
     border: 0 !important;
-    padding-bottom: 0;
+    padding-bottom: 0
   }
 
   h1 {
@@ -39,7 +40,7 @@ const LogoWrap = styled.div`
     margin-bottom: 0.2rem;
   }
 
-  img {
+  img{
     width: 9rem;
     padding: 0.8rem 0 0 0.8rem;
   }

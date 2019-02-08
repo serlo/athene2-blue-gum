@@ -7,6 +7,7 @@ import Logo from './logo.component'
 
 const participateSrc = require('./img/footer_participate.svg')
 const donateSrc = require('./img/footer_donate.svg')
+import Logo from './logo.component'
 
 export interface Props {
   serloSlogan: string

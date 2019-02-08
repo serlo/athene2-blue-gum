@@ -112,6 +112,20 @@ const theme = {
       dark: 'accent-1',
       light: 'brand'
     },
+    // font: {
+    //   size: '16px',
+    //   height: '22px',
+    //   maxWidth: '432px',
+    //   family: 'Karmilla, sans-serif'
+    // }
+  },
+  anchor: {
+    textDecoration: 'none',
+    fontWeight: 600,
+    color: {
+      dark: 'accent-1',
+      light: 'brand'
+    },
     hover: {
       textDecoration: 'none'
     },
