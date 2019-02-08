@@ -15,7 +15,6 @@ export function Provider({ children }: ProviderProps) {
   )
 }
 
-
 const theme = {
   xs: '0rem',
   sm: '48rem',
@@ -29,13 +28,13 @@ const theme = {
     container: {
       sm: 46, // rem
       md: 61, // rem
-      lg: 76  // rem
+      lg: 76 // rem
     },
     breakpoints: {
-      xs: 0,  // em
+      xs: 0, // em
       sm: 48, // em
       md: 64, // em
-      lg: 75  // em
+      lg: 75 // em
     }
   },
   global: {
@@ -60,7 +59,6 @@ const theme = {
     }
   }
 }
-
 
 export const GlobalStyle = createGlobalStyle`
   html  {

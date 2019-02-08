@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {Grid, Col, Row} from 'react-styled-flexboxgrid'
+import { Grid, Col, Row } from 'react-styled-flexboxgrid'
 
 import { library, FontAwesomeIcon } from './fontawesome'
 import Logo from './logo.component'
@@ -50,7 +50,7 @@ export class FooterBranding extends React.Component<Props> {
                   <span>Mitmachen</span>
                 </a>
               </Col>
-              <Col xs> 
+              <Col xs>
                 <a href="#" className="icon">
                   <img alt="part" src={donateSrc} />
                   <span>Spenden</span>
@@ -64,26 +64,26 @@ export class FooterBranding extends React.Component<Props> {
   }
 }
 
-
 const BrandingGrid = styled(Grid)`
   padding: 0;
 `
 
 const BrandingWrap = styled(Row)`
-
   margin-right: 0;
 
-  a:not(.icon), a.icon {
+  a:not(.icon),
+  a.icon {
     text-decoration: none;
     color: #fff;
-    padding-bottom: .03em;
-    border-bottom: .1rem solid transparent;
+    padding-bottom: 0.03em;
+    border-bottom: 0.1rem solid transparent;
   }
 
-  a:not(.icon):hover, a.icon:hover span{
+  a:not(.icon):hover,
+  a.icon:hover span {
     color: #fff;
     text-decoration: none;
-    border-bottom: .1rem solid;
+    border-bottom: 0.1rem solid;
   }
 
   a.icon {
@@ -91,50 +91,49 @@ const BrandingWrap = styled(Row)`
     color: #fff;
   }
 
-.support img {
-  display: block;
-  margin: 0 auto;
-}
-
-.brand{
-  background-color: ${props => props.theme.global.colors.brand};
-  position: relative;
-
-  #toplink {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-  }
-}
-
-.summary {
-  background-color: ${props => props.theme.global.colors.lightblue};
-  color: #fff;
-  padding-top: 2.5rem;
-  
-  @media (max-width: ${props => props.theme.md}) {
-    padding-left: 3rem;
+  .support img {
+    display: block;
+    margin: 0 auto;
   }
 
-  h2 {
-    font-size: 1rem;
-    font-weight: bold;
+  .brand {
+    background-color: ${props => props.theme.global.colors.brand};
+    position: relative;
+
+    #toplink {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
   }
 
-  p {
-    margin: 2rem 0;
+  .summary {
+    background-color: ${props => props.theme.global.colors.lightblue};
+    color: #fff;
+    padding-top: 2.5rem;
+
+    @media (max-width: ${props => props.theme.md}) {
+      padding-left: 3rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    p {
+      margin: 2rem 0;
+    }
   }
-}
 
-.support {
-  padding: 1rem 0;
-  background-color: ${props => props.theme.global.colors.green};
-  color: #fff;
-  text-align: center;
+  .support {
+    padding: 1rem 0;
+    background-color: ${props => props.theme.global.colors.green};
+    color: #fff;
+    text-align: center;
 
-  img{
-    max-width: 5rem;
+    img {
+      max-width: 5rem;
+    }
   }
-}
-
 `

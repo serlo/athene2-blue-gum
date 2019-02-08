@@ -7,16 +7,22 @@ import * as React from 'react'
 // } from 'reactstrap'
 // import DropdownMenu from 'reactstrap/lib/DropdownMenu'
 // import DropdownItem from 'reactstrap/lib/DropdownItem'
-import { Grommet, Menu, DropButton, Box, Heading, Button, Text } from 'grommet';
+import { Grommet, Menu, DropButton, Box, Heading, Button, Text } from 'grommet'
 
 import { SearchInput } from './searchinput.component'
 
 import Logo from './logo.component'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 import { FontAwesomeIcon } from './fontawesome'
 
-type Entry = { title: string, url?: string, class?: string, icon?: string, children?: Array<Entry> }
+type Entry = {
+  title: string
+  url?: string
+  class?: string
+  icon?: string
+  children?: Array<Entry>
+}
 type NavLinks = Entry[]
 
 export interface Props {
@@ -25,34 +31,35 @@ export interface Props {
 
 const DropContent = ({ onClose }) => (
   <MobileMenuOverlay pad="small">
-   HEYHEY
+    HEYHEY
     <Box direction="row" justify="between" align="center">
       <Heading level={3} margin="small">
         Heading
       </Heading>
-      <Button icon={<FontAwesomeIcon icon={['fas', 'times']} />} onClick={onClose} />
+      <Button
+        icon={<FontAwesomeIcon icon={['fas', 'times']} />}
+        onClick={onClose}
+      />
     </Box>
     <Text>Content</Text>
   </MobileMenuOverlay>
-);
-
+)
 
 export class Topnav extends React.Component<Props> {
-  
   constructor(props) {
-    super(props);
-    this.topNavBottomRef = React.createRef();
+    super(props)
+    this.topNavBottomRef = React.createRef()
   }
 
-  state = {};
+  state = {}
 
   onClose = () => {
-    this.setState({ open: false });
-    setTimeout(() => this.setState({ open: undefined }), 1);
-  };
+    this.setState({ open: false })
+    setTimeout(() => this.setState({ open: undefined }), 1)
+  }
 
   public render() {
-    const { open } = this.state;
+    const { open } = this.state
 
     return (
       <React.Fragment>
@@ -66,8 +73,8 @@ export class Topnav extends React.Component<Props> {
             <MobileMenuIcon icon={open ? ['fas', 'times'] : ['fas', 'bars']} />
           </MobileMenuIconWrap>
 
-        <Logo subline="Mathematik"/>
-        {/* <Menu
+          <Logo subline="Mathematik" />
+          {/* <Menu
           label="Actions"
           items={[
             { label: "Launch", onClick: () => {} },
@@ -123,7 +130,8 @@ export class Topnav extends React.Component<Props> {
                     else linkStr = this.getDropdown(link)
 
                     return (
-                      <li key={index} /*className={linkClass}*/}{/*>
+                      <li key={index} /*className={linkClass}*/}
+          {/*>
                         {linkStr}
                       </li>
                     )
@@ -135,7 +143,7 @@ export class Topnav extends React.Component<Props> {
             </div>
                 </Navbar> */}
         </TopNavWrap>
-        <div  ref={this.topNavBottomRef} />
+        <div ref={this.topNavBottomRef} />
       </React.Fragment>
     )
   }
@@ -156,7 +164,6 @@ export class Topnav extends React.Component<Props> {
   // }
 }
 
-
 const TopNavWrap = styled.div`
   background-color: ${props => props.theme.global.colors.brand};
   padding: 1rem 0 0 0;
@@ -170,18 +177,27 @@ const TopNavWrap = styled.div`
 }
 `
 
-
 const MobileMenuIconWrap = styled(DropButton)`
   position: absolute;
-	top: .5rem;
-	right: .4rem;
-	padding: .4rem;
+  top: 0.5rem;
+  right: 0.4rem;
+  padding: 0.4rem;
   /*transition: all .4 ; TODO: $transition-base*/
 
-	&:active { outline: none; }
-	&:focus { background: ${props => props.theme.global.colors.green}; outline:none;}
-	&.collapsed { background: transparent; outline:none;}
-	&.collapsed:focus { background: ${props => props.theme.global.colors.lightblue}; }
+  &:active {
+    outline: none;
+  }
+  &:focus {
+    background: ${props => props.theme.global.colors.green};
+    outline: none;
+  }
+  &.collapsed {
+    background: transparent;
+    outline: none;
+  }
+  &.collapsed:focus {
+    background: ${props => props.theme.global.colors.lightblue};
+  }
 `
 
 const MobileMenuIcon = styled(FontAwesomeIcon)`
@@ -189,12 +205,10 @@ const MobileMenuIcon = styled(FontAwesomeIcon)`
   color: #fff;
 `
 
-
-const MyDropContentStyled = styled(DropContent) `
-`
+const MyDropContentStyled = styled(DropContent)``
 
 const MobileMenuOverlay = styled(Box)`
-  top: 7rem;/* TODO: ?? height: $navbar-height; */
+  top: 7rem; /* TODO: ?? height: $navbar-height; */
   height: calc(100vh - 11.5rem);
   max-height: calc(100vh - 11.5rem);
   overflow: auto;
