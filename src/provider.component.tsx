@@ -94,7 +94,8 @@ const theme = {
       lightblue: '#52a6d0',
       lighterblue: '#91c5e4',
       bluewhite: '#f0f7fb',
-      helperblue: '#00b4d5'
+      helperblue: '#00b4d5',
+      green: '#95bc1a'
     },
     font: {
       size: '16px',
@@ -149,6 +150,7 @@ export const GlobalStyle = createGlobalStyle`
   html  {
     font-size: 16px;
   }
+
   body {
     font-family: 'Karmilla';
     font-size: 1rem;
@@ -157,14 +159,18 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing:-0.01em;
     -webkit-text-stroke: .6px;
   }
+
+
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 700;
   }
+
   @media (min-width: ${theme.flexboxgrid.breakpoints.md + 'rem'} ){
     html{
       font-size: 18px;
     }
   }
+
   @media (min-width: ${theme.flexboxgrid.breakpoints.lg + 'rem'}){
 	html{
 		font-size: 20px;
