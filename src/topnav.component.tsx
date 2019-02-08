@@ -1,26 +1,20 @@
 import * as React from 'react'
-import {
-  Navbar,
-  UncontrolledDropdown,
-  DropdownToggle,
-  UncontrolledCollapse
-} from 'reactstrap'
-import DropdownMenu from 'reactstrap/lib/DropdownMenu'
-import DropdownItem from 'reactstrap/lib/DropdownItem'
-import { css } from 'emotion'
-import { cx } from 'emotion'
+// import {
+//   Navbar,
+//   UncontrolledDropdown,
+//   DropdownToggle,
+//   UncontrolledCollapse
+// } from 'reactstrap'
+// import DropdownMenu from 'reactstrap/lib/DropdownMenu'
+// import DropdownItem from 'reactstrap/lib/DropdownItem'
+import { Grommet, Menu, DropButton, Box, Heading, Button, Text } from 'grommet'
 
-// TODO: do some kind of autoimport, atm. it imports everything, also: how will the input data look like for icons?
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fab, fas)
+import { SearchInput } from './searchinput.component'
 
-const logo = require('./img/serlo-logo.svg')
+import Logo from './logo.component'
+import styled from 'styled-components'
 
-// TODO: should be in an external file
-const blue = '#007EC1'
+import { FontAwesomeIcon } from './fontawesome'
 
 type Entry = {
   title: string
@@ -29,128 +23,193 @@ type Entry = {
   icon?: string
   children?: Array<Entry>
 }
-type NavLinks = Array<Entry>
+type NavLinks = Entry[]
 
 export interface Props {
   links: NavLinks
 }
 
+const DropContent = ({ onClose }) => (
+  <MobileMenuOverlay pad="small">
+    HEYHEY
+    <Box direction="row" justify="between" align="center">
+      <Heading level={3} margin="small">
+        Heading
+      </Heading>
+      <Button
+        icon={<FontAwesomeIcon icon={['fas', 'times']} />}
+        onClick={onClose}
+      />
+    </Box>
+    <Text>Content</Text>
+  </MobileMenuOverlay>
+)
+
 export class Topnav extends React.Component<Props> {
+  constructor(props) {
+    super(props)
+    this.topNavBottomRef = React.createRef()
+  }
+
+  state = {}
+
+  onClose = () => {
+    this.setState({ open: false })
+    setTimeout(() => this.setState({ open: undefined }), 1)
+  }
+
   public render() {
+    const { open } = this.state
+
     return (
       <React.Fragment>
-        {/* FIXME: */}
-        <Navbar
-          id="top"
-          light
-          expand="md"
-          className={css({ backgroundColor: `${blue} !important` })}
-        >
-          <div className="container">
-            <div className="navbar-brand-wrap">
-              <h1>
-                <a className="navbar-brand" href=".">
-                  <img alt="Serlo" src={logo} />
-                </a>
-              </h1>
-              <h2>
-                <a className="navbar-subline" href="#subject">
-                  Mathematik
-                </a>
-              </h2>
-            </div>
+        <TopNavWrap>
+          <MobileMenuIconWrap
+            open={open}
+            onClose={() => this.setState({ open: undefined })}
+            dropContent={<DropContent onClose={this.onClose} />}
+            dropTarget={this.topNavBottomRef.current}
+          >
+            <MobileMenuIcon icon={open ? ['fas', 'times'] : ['fas', 'bars']} />
+          </MobileMenuIconWrap>
 
-            <button
-              id="mobile-toggle"
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarMobileMenu"
-              aria-controls="navbarMobileMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
+          <Logo subline="Mathematik" />
+          {/* <Menu
+          label="Actions"
+          items={[
+            { label: "Launch", onClick: () => {} },
+            { label: "Abort", onClick: () => {} }
+          ]}
+          /> */}
+          <SearchInput />
 
-            <UncontrolledCollapse
-              toggler="#mobile-toggle"
-              navbar
-              className="justify-content-end"
-            >
-              <ul className="navbar-nav">
-                {this.props.links.map((link, index) => {
-                  const linkClass = cx('nav-item', {
-                    [link.class]: !!link.class
-                  })
+          {/*<Navbar
+            id="top"
+            light
+            expand="md"
+          >
+            <div className="container">
+            
+        
 
-                  var iconStr = null
-                  if (link.icon)
-                    iconStr = <FontAwesomeIcon icon={link.icon} size="xs" />
-
-                  var linkStr = {}
-                  if (!link.children)
-                    linkStr = (
-                      <a className="nav-link" href={link.url}>
-                        {iconStr} {link.title}
-                      </a>
-                    )
-                  else linkStr = this.getDropdown(link)
-
-                  return (
-                    <li key={index} className={linkClass}>
-                      {linkStr}
-                    </li>
-                  )
-                })}
-              </ul>
-            </UncontrolledCollapse>
-
-            <form className="form-inline">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Suche"
-                aria-label="Suche"
-              />
-              <button className="btn btn-success" type="submit">
-                <i className="fas fa-search" />
+              <button
+                id="mobile-toggle"
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarMobileMenu"
+                aria-controls="navbarMobileMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon" />
               </button>
-            </form>
-          </div>
-          {/* </nav> */}
-        </Navbar>
+
+              <UncontrolledCollapse
+                toggler="#mobile-toggle"
+                navbar
+                className="justify-content-end"
+              >
+                <ul className="navbar-nav">
+                  {this.props.links.map((link, index) => {
+                    // const linkClass = cx('nav-item', {
+                    //   [link.class]: !!link.class
+                    // })
+
+                    var iconStr = null
+                    if (link.icon)
+                      iconStr = <FontAwesomeIcon icon={link.icon} size="xs" />
+
+                    var linkStr = {}
+                    if (!link.children)
+                      linkStr = (
+                        <a className="nav-link" href={link.url}>
+                          {iconStr} {link.title}
+                        </a>
+                      )
+                    else linkStr = this.getDropdown(link)
+
+                    return (
+                      <li key={index} /*className={linkClass}*/}
+          {/*>
+                        {linkStr}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </UncontrolledCollapse>
+
+              <SearchInput />
+            </div>
+                </Navbar> */}
+        </TopNavWrap>
+        <div ref={this.topNavBottomRef} />
       </React.Fragment>
     )
   }
 
-  getDropdown(parent: Entry) {
-    return (
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
-          <FontAwesomeIcon icon={parent.icon} size="xs" /> {parent.title}
-        </DropdownToggle>
-        <DropdownMenu right>
-          {parent.children.map((link, index) => {
-            return <DropdownItem key={index}>{link.title}</DropdownItem>
-          })}
-        </DropdownMenu>
-      </UncontrolledDropdown>
-    )
+  // getDropdown(parent: Entry) {
+  //   return (
+  //     <UncontrolledDropdown nav inNavbar>
+  //       <DropdownToggle nav caret>
+  //         <FontAwesomeIcon icon={parent.icon} size="xs" /> {parent.title}
+  //       </DropdownToggle>
+  //       <DropdownMenu right>
+  //         {parent.children.map((link, index) => {
+  //           return <DropdownItem key={index}>{link.title}</DropdownItem>
+  //         })}
+  //       </DropdownMenu>
+  //     </UncontrolledDropdown>
+  //   )
+  // }
+}
+
+const TopNavWrap = styled.div`
+  background-color: ${props => props.theme.global.colors.brand};
+  padding: 1rem 0 0 0;
+  height: 11.5rem;/* TODO: ?? height: $navbar-height; */
+  align-items: left;
+	position: static;
+
+	/* .container {
+		align-items: start;
+	} */
+}
+`
+
+const MobileMenuIconWrap = styled(DropButton)`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.4rem;
+  padding: 0.4rem;
+  /*transition: all .4 ; TODO: $transition-base*/
+
+  &:active {
+    outline: none;
   }
-}
+  &:focus {
+    background: ${props => props.theme.global.colors.green};
+    outline: none;
+  }
+  &.collapsed {
+    background: transparent;
+    outline: none;
+  }
+  &.collapsed:focus {
+    background: ${props => props.theme.global.colors.lightblue};
+  }
+`
 
-{
-  /*
+const MobileMenuIcon = styled(FontAwesomeIcon)`
+  font-size: 1.66rem;
+  color: #fff;
+`
 
-  <UncontrolledDropdown nav inNavbar>
-  <DropdownToggle nav caret>
-    <i className="far fa-xs fa-newspaper" /> Was ist Serlo?
-  </DropdownToggle>
-  <DropdownMenu right>
-    <DropdownItem>Action</DropdownItem>
-    <DropdownItem>Another action</DropdownItem>
-    <DropdownItem>Something else here</DropdownItem>
-  </DropdownMenu>
-</UncontrolledDropdown> */
-}
+const MyDropContentStyled = styled(DropContent)``
+
+const MobileMenuOverlay = styled(Box)`
+  top: 7rem; /* TODO: ?? height: $navbar-height; */
+  height: calc(100vh - 11.5rem);
+  max-height: calc(100vh - 11.5rem);
+  overflow: auto;
+`
