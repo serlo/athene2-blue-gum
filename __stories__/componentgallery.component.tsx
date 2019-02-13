@@ -11,6 +11,8 @@ import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Char
 
 import Logo from '../src/logo.component'
 import LicenseInfo from '../src/licenseinfo.component'
+import Subjects from '../src/landing/subjects'
+
 
 import { grommet } from "grommet/themes";
 import { generate } from "grommet/themes/base";
@@ -339,5 +341,12 @@ storiesOf("Components Gallery", module).add("All", () => <Components />)
     <Box pad="medium" width="large">
       <LicenseInfo />
     </Box>
+  </Provider>
+)
+.add("Landing: Subjects", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Subjects/>
   </Provider>
 )

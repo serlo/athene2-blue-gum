@@ -96,8 +96,10 @@ const theme = {
       lightblue: '#52a6d0',
       lighterblue: '#91c5e4',
       bluewhite: '#f0f7fb',
-      helperblue: '#00b4d5'
+      helperblue: '#00b4d5',
+      transparent: 'rgba(255,255,255,0)'
     },
+    defaultTransition: 'all .4s ease-in-out;',
     // font: {
     //   size: '16px',
     //   height: '22px',
