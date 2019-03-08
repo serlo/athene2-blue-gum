@@ -1,7 +1,7 @@
 import { Grommet } from 'grommet'
 import * as React from 'react'
 import { createGlobalStyle } from 'styled-components'
-import { transparentize } from 'polished'
+import { lighten, transparentize } from 'polished'
 
 import './fonts/fonts.css'
 
@@ -35,19 +35,8 @@ const theme = {
   },
   global: {
     colors: {
-      icon: {
-        '0': '#',
-        '1': '6',
-        '2': '6',
-        '3': '6',
-        '4': '6',
-        '5': '6',
-        '6': '6',
-        dark: '#f8f8f8',
-        light: '#666666'
-      },
       //'active': 'rgba(221,221,221,0.5)',
-      //'black': '#000000',
+      'black': '#000000',
       //'border': {
       //  'dark': 'rgba(255,255,255,0.33)',
       //  'light': 'rgba(0,0,0,0.33)'
@@ -184,6 +173,23 @@ const theme = {
     }
   }
 }
+
+
+export function getColor( colorName: keyof (typeof theme)["global"]["colors"]) : string {
+  return theme.global.colors[colorName]
+}
+
+export function lightenColor( colorName: keyof (typeof theme)["global"]["colors"], amount: number ) : string {
+  return lighten(amount,theme.global.colors[colorName]);
+}
+
+export function transparentizeColor( colorName: keyof (typeof theme)["global"]["colors"], amount: number ) : string {
+  return transparentize(amount,theme.global.colors[colorName]);
+}
+
+// export function getColor<K extends keyof (typeof theme)["global"]["colors"]>( colorName: K): ((typeof theme)["global"]["colors"][K]) {
+
+
 
 export const GlobalStyle = createGlobalStyle`
 
