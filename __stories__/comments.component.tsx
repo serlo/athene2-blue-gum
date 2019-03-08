@@ -1,8 +1,9 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
-import { Comments } from '../src/comments.component'
-import { Provider } from '../src/provider.component'
+import { Comments } from '../src/comments'
+import { Provider, GlobalStyle } from '../src/provider.component'
+import { Normalize } from 'styled-normalize'
 import { action, configureActions } from '@storybook/addon-actions'
 
 import { UserContext, EntityContext } from '../src/context'
@@ -14,6 +15,8 @@ storiesOf('Comments', module).add('default', () => {
         value={{ entity: { id: '1234', label: 'Aufgabe' } }}
       >
         <Provider>
+          <Normalize/>
+          <GlobalStyle/>
           <Comments
             data={[
               {

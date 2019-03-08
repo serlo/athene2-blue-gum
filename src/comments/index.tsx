@@ -1,52 +1,16 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Box, Button, Heading, Text, Anchor, Grid, DropButton } from 'grommet'
-import TextareaAutosize from 'react-textarea-autosize'
 import * as moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faComments,
-  faShare,
-  faCog,
-  faSortDown,
-  faFlag,
-  faCheck,
-  faTrash
-} from '@fortawesome/free-solid-svg-icons'
+import { faComments, faShare, faCog, faSortDown, faFlag, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { UserContext, EntityContext } from '../context'
 
-import { UserContext, EntityContext } from './context'
+import CommentForm from './commentform'
 
 const outerBorderColor = '#2e6da4'
 const innerBorderColor = '#46b8da'
-const BoxStyle = styled(Box)({
-  height: '10px',
-  border: `5px solid ${outerBorderColor}`,
-  borderTop: `0px `
-})
-const TextareaStyle = styled(TextareaAutosize)({
-  border: 'none',
-  outline: 'none',
-  overflow: 'hidden',
-  resize: 'none',
-  paddingLeft: '10px',
-  paddingRight: '10px'
-})
 
-const SpanStyle = styled.span({
-  cursor: 'help',
-  borderBottom: '1px dotted #777',
-  color: '#979797'
-})
-
-const ButtonStyle = styled(Button)({
-  // ToDo : Maße absolut
-  height: '22px',
-  width: '37px',
-  borderRadius: '0',
-  border: '1px solid rgb(173,173,173)',
-  textAlign: 'center',
-  verticalAlign: 'middle'
-})
 
 const renderItems = (leaf: boolean | undefined) => (
   <Box>
@@ -79,58 +43,13 @@ const renderItems = (leaf: boolean | undefined) => (
   </Box>
 )
 
-export class CommentForm extends React.Component<
-  CommentFormProps,
-  { newCommentValue: string }
-> {
-  constructor(props: CommentFormProps) {
-    super(props)
-    this.state = { newCommentValue: '' }
-  }
-  render() {
-    const { parent_id, onSendComment } = this.props
-    return (
-      <UserContext.Consumer>
-        {({ user }) => (
-          <EntityContext.Consumer>
-            {({ entity }) => (
-              <React.Fragment>
-                <Box margin={{ bottom: 'medium' }}>
-                  <TextareaStyle
-                    value={this.state.newCommentValue}
-                    onChange={event => {
-                      this.setState({ newCommentValue: event.target.value })
-                    }}
-                    placeholder="Frage oder Verbesserungsvorschlag"
-                  />
-                  <BoxStyle />
-                </Box>
-                <Button
-                  label="Kommentar abschicken"
-                  primary
-                  onClick={() =>
-                    onSendComment({
-                      entity_id: entity.id,
-                      parent_id: parent_id,
-                      user_id: user.id,
-                      user_name: user.username,
-                      body: this.state.newCommentValue
-                    })
-                  }
-                />
-              </React.Fragment>
-            )}
-          </EntityContext.Consumer>
-        )}
-      </UserContext.Consumer>
-    )
-  }
-}
+
+
 export function Comments({ data, onSendComment }: CommentsProps) {
   return (
     <React.Fragment>
       <Box pad="medium">
-        <Heading level="2">Kommentare</Heading>
+        <Heading level="2">Hast du eine Frage?</Heading>
         <CommentForm parent_id="" onSendComment={onSendComment} />
         {data
           ? data.map(comment => {
@@ -247,22 +166,28 @@ function Comment({
   )
 }
 
+
+const SpanStyle = styled.span({
+  cursor: 'help',
+  borderBottom: '1px dotted #777',
+  color: '#979797'
+})
+
+const ButtonStyle = styled(Button)({
+  // ToDo : Maße absolut
+  height: '22px',
+  width: '37px',
+  borderRadius: '0',
+  border: '1px solid rgb(173,173,173)',
+  textAlign: 'center',
+  verticalAlign: 'middle'
+})
+
+
 interface CommentsProps {
   data: Comment[]
   entity: Entity
   user: User
-  onSendComment: (props: SendProps) => void
-}
-
-interface SendProps {
-  entity_id: string
-  parent_id: string
-  user_id: string
-  user_name: string
-  body?: string
-}
-interface CommentFormProps {
-  parent_id: string
   onSendComment: (props: SendProps) => void
 }
 
