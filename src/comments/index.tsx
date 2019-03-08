@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Box, Button, Heading, Text, Anchor, Grid, DropButton } from 'grommet'
+import { Box, Button, Text, Anchor, Grid, DropButton } from 'grommet'
+import { Heading } from '../heading.component'
 import * as moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments, faShare, faCog, faSortDown, faFlag, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { UserContext, EntityContext } from '../context'
+import { faComments, faShare, faCog, faSortDown, faFlag, faCheck, faTrash, faFeatherAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 import CommentForm from './commentform'
 
@@ -49,8 +49,10 @@ export function Comments({ data, onSendComment }: CommentsProps) {
   return (
     <React.Fragment>
       <Box pad="medium">
-        <Heading level="2">Hast du eine Frage?</Heading>
+        <Heading level="2" icon={faQuestionCircle}>Hast du eine Frage?</Heading>
         <CommentForm parent_id="" onSendComment={onSendComment} />
+        
+        <Heading level="2" icon={faComments}>Kommentare</Heading>
         {data
           ? data.map(comment => {
               return (
