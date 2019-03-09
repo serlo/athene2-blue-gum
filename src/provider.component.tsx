@@ -88,7 +88,14 @@ const theme = {
       helperblue: '#00b4d5',
       transparent: 'rgba(255,255,255,0)'
     },
-    defaultTransition: 'all .4s ease-in-out;',
+    borderSize: {
+      xsmall: '1px',
+      small: '2px',
+      medium: '.2rem',
+      large: '.4rem',
+      xlarge: '1rem'
+    },
+    defaultTransition: 'all .2s ease-in-out;',
     // font: {
     //   size: '16px',
     //   height: '22px',
@@ -185,6 +192,10 @@ export function lightenColor( colorName: keyof (typeof theme)["global"]["colors"
 
 export function transparentizeColor( colorName: keyof (typeof theme)["global"]["colors"], amount: number ) : string {
   return transparentize(amount,theme.global.colors[colorName]);
+}
+
+export function getDefaultTransition() {
+  return theme.global.defaultTransition;
 }
 
 // export function getColor<K extends keyof (typeof theme)["global"]["colors"]>( colorName: K): ((typeof theme)["global"]["colors"][K]) {

@@ -4,8 +4,8 @@ import { UserContext, EntityContext } from '../../src/context'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from 'grommet'
 import { IconButton } from '../iconbutton.component'
-import { getColor, lightenColor } from '../provider.component'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { getColor, lightenColor, getDefaultTransition } from '../provider.component'
+import { faArrowRight, faReply } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class CommentForm extends React.Component<
@@ -30,11 +30,11 @@ export default class CommentForm extends React.Component<
                     onFocus={ () => { this.setState({ focus: true }) }}
                     onBlur={ () => { this.setState({ focus: false }) }}
                     onChange={event => { this.setState({ newCommentValue: event.target.value }) }}
-                    placeholder="Deine Frage oder Anregung …"
+                    placeholder={this.props.placeholder}
                     focused = {this.state.focus}
                   />
                   <SendButton
-                    icon={faArrowRight}
+                    icon={ this.props.reply ? faReply : faArrowRight}
                     title="Abschicken"
                     active={this.state.focus}
                     onClick={() =>
@@ -65,6 +65,7 @@ const StyledTextarea = styled(TextareaAutosize) `
     background: ${ lightenColor('brandGreen', 0.445) };
     color: ${ getColor('black') };
 
+    margin-top: 1rem;
     border: none;
     border-radius: 1.8rem;
     padding: 1.25rem 1rem;
@@ -86,7 +87,7 @@ const StyledTextarea = styled(TextareaAutosize) `
       : null
     }
         
-    transition: all .2s ease-in-out;
+    transition: ${ getDefaultTransition() };
 `
 
 const SendButton = styled(IconButton) `    
@@ -105,4 +106,6 @@ interface SendProps {
   interface CommentFormProps {
     parent_id: string
     onSendComment: (props: SendProps) => void
+    placeholder: string
+    reply?: boolean
   }

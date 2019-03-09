@@ -6,7 +6,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
 import { Button } from 'grommet'
 
-import { getColor } from './provider.component'
+import { getColor, getDefaultTransition } from './provider.component'
 
 export interface Props {
   title?: string,
@@ -48,6 +48,11 @@ const StyledButton = styled(Button) `
   height: 2.5em;
   padding-top: .08em;
   padding-left: .5em;
+  transition: ${ getDefaultTransition() };
+
+  &:hover {
+    background-color: ${ getColor('brand') }
+  }
 `
 
 const Icon = styled(FontAwesomeIcon) `
