@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
 
-import { library, FontAwesomeIcon } from './fontawesome'
+import { FontAwesomeIcon } from './fontawesome'
 import Logo from './logo.component'
 
 const participateSrc = require('./img/footer_participate.svg')

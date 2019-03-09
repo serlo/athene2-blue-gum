@@ -110,20 +110,6 @@ const theme = {
       dark: 'accent-1',
       light: 'brand'
     },
-    // font: {
-    //   size: '16px',
-    //   height: '22px',
-    //   maxWidth: '432px',
-    //   family: 'Karmilla, sans-serif'
-    // }
-  },
-  anchor: {
-    textDecoration: 'none',
-    fontWeight: 600,
-    color: {
-      dark: 'accent-1',
-      light: 'brand'
-    },
     hover: {
       textDecoration: 'none'
     },
@@ -196,6 +182,10 @@ export function transparentizeColor( colorName: keyof (typeof theme)["global"]["
 
 export function getDefaultTransition() {
   return theme.global.defaultTransition;
+}
+
+export function getBreakpoint( pointName: keyof (typeof theme)["flexboxgrid"]["breakpoints"]) : number {
+  return theme.flexboxgrid.breakpoints[pointName]+"rem";
 }
 
 // export function getColor<K extends keyof (typeof theme)["global"]["colors"]>( colorName: K): ((typeof theme)["global"]["colors"][K]) {

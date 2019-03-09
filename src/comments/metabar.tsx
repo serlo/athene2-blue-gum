@@ -78,19 +78,19 @@ const Time = styled.span `
 const DropContent = styled(Box) `
   background-color: ${ getColor('bluewhite') };
   padding: 1rem .5rem .5rem .5rem;
-`
+` as typeof Box
 
 const DropContentButton = styled(Button) `
   padding: .15rem;
   &:hover {
     color: #fff;
   }
-`
+` as typeof Button
 
 const MetaBarBox = styled(Box) `
   color: #222;
   margin-bottom: .3rem;
-`
+` as typeof Box
 
 const StyledDropButton = styled(DropButton) `
   cursor: context-menu;
@@ -100,4 +100,4 @@ const StyledDropButton = styled(DropButton) `
     color: #fff;
     background: ${getColor('lightblue')}
   }
-`
+` as typeof DropButton

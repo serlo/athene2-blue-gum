@@ -59,7 +59,7 @@ export default class CommentForm extends React.Component<
 
 const StyledBox = styled(Box) `
     position: relative;
-`
+` as typeof Box
 
 const StyledTextarea = styled(TextareaAutosize) `
     background: ${ lightenColor('brandGreen', 0.445) };
@@ -88,13 +88,13 @@ const StyledTextarea = styled(TextareaAutosize) `
     }
         
     transition: ${ getDefaultTransition() };
-`
+` as typeof TextareaAutosize | any
 
 const SendButton = styled(IconButton) `    
     position: absolute;
     right: .6rem;
     bottom: .5rem;
-`
+` as typeof IconButton | any
 
 interface SendProps {
     entity_id: string

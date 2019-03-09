@@ -53,9 +53,9 @@ const StyledButton = styled(Button) `
   &:hover {
     background-color: ${ getColor('brand') }
   }
-`
+` as typeof Button
 
 const Icon = styled(FontAwesomeIcon) `
   width: 1.5em !important;
   height: 1.5em !important;
-`
+` as typeof FontAwesomeIcon

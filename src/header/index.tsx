@@ -1,47 +1,10 @@
 import { Box, Button, DropButton, Heading, Text } from 'grommet'
 import * as React from 'react'
 import styled from 'styled-components'
-
+import { getColor, getBreakpoint } from '../provider.component'
 import { FontAwesomeIcon } from '../fontawesome'
-
-const MobileMenuIconWrap = styled(DropButton)(({ theme }) => {
-  return {
-    position: 'absolute',
-    top: '0.5rem',
-    right: '0.4rem',
-    padding: '0.4rem',
-
-    '&:active': {
-      outline: 'none'
-    },
-
-    '&:focus': {
-      background: theme.global.colors.green,
-      outline: 'none'
-    },
-
-    '&.collapsed': {
-      background: 'transparent',
-      outline: 'none'
-    },
-
-    '&.collapsed:focus': {
-      background: theme.global.colors.lightblue
-    }
-  }
-}) as typeof DropButton
-
-const MobileMenuOverlay = styled(Box)({
-  top: '7rem' /* TODO: ?? height: $navbar-height; */,
-  height: 'calc(100vh - 11.5rem)',
-  maxHeight: 'calc(100vh - 11.5rem)',
-  overflow: 'auto'
-}) as typeof Box
-
-const MobileMenuIcon = styled(FontAwesomeIcon)({
-  fontSize: '1.66rem',
-  color: '#fff'
-})
+import MobileMenu from './mobilemenu'
+import Logo from '../logo.component'
 
 export function Header() {
   const [open, toggleOpen] = useToggle(false)
@@ -56,32 +19,21 @@ export function Header() {
             e.preventDefault()
             toggleOpen()
           }}
+          // label="Menü"
           dropContent={<MobileMenu onClose={toggleOpen} />}
           dropTarget={dropTarget}
-        >
-          <MobileMenuIcon icon={open ? ['fas', 'times'] : ['fas', 'bars']} />
-        </MobileMenuIconWrap>
-      </TopNavWrap>
-      <div ref={dropTargetRef} />
-    </React.Fragment>
-  )
-}
-
-function MobileMenu({ onClose }: { onClose: () => void }) {
-  return (
-    <MobileMenuOverlay pad="small">
-      HEYHEY
-      <Box direction="row" justify="between" align="center">
-        <Heading level="3" margin="small">
-          Heading
-        </Heading>
-        <Button
-          icon={<FontAwesomeIcon icon={['fas', 'times']} />}
-          onClick={onClose}
+          reverse
+          icon={<MobileMenuIcon icon={open ? ['fas', 'times'] : ['fas', 'bars']} />}
         />
-      </Box>
-      <Text>Content</Text>
-    </MobileMenuOverlay>
+        <MenuWrap>
+          Superb Content!
+        </MenuWrap>
+        <Box pad="medium" background="brand">
+          <Logo subline="Super good Serlo Slogan" />
+        </Box>
+      </TopNavWrap>
+      <div id="test" ref={dropTargetRef} />
+    </React.Fragment>
   )
 }
 
@@ -96,10 +48,11 @@ function useToggle(initialValue: boolean = false): [boolean, () => void] {
   ]
 }
 
+
 function useDropTarget<E extends HTMLElement>(): [
   E | undefined,
   React.LegacyRef<E>
-] {
+  ] {
   const [dropTarget, setDropTarget] = React.useState<E | undefined>(undefined)
   const refCallback: React.LegacyRef<E> = ref => {
     if (ref && ref !== dropTarget) {
@@ -112,10 +65,55 @@ function useDropTarget<E extends HTMLElement>(): [
 
 const TopNavWrap = styled.div(props => {
   return {
-    backgroundColor: props.theme.global.colors.brand,
-    padding: '1rem 0 0 0',
+    backgroundColor: getColor('brand'),
+    padding: '0',
     height: '11.5rem', // TODO: ?? height: $navbar-height
     alignItems: 'left',
     position: 'static'
   }
+})
+
+const MobileMenuIconWrap = styled(DropButton) `
+  position: absolute;
+  top: .7rem;
+  right: .7rem;
+  padding: .4rem;
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    background-color: ${ getColor('brandGreen') };
+    outline: none;
+  }
+
+  &.collapsed {
+    background: transparent;
+    outline: none;
+  }
+
+  &.collapsed:focus {
+    background-color: ${ getColor('lightblue') };
+  }
+
+  @media screen and (min-width: ${ getBreakpoint('sm') }) {
+    display: none;
+  }
+`
+
+const MenuWrap = styled(Box) `
+  display: none;
+  @media screen and (min-width: ${ getBreakpoint('sm') }) {
+    display: block;
+    background-color: ${getColor("lighterblue")};
+    height: 3rem;
+    color: ${getColor("brand")};
+  }
+
+`
+
+const MobileMenuIcon = styled(FontAwesomeIcon)({
+  fontSize: '1.66rem',
+  color: '#fff'
 })
