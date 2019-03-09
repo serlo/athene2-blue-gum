@@ -1,26 +1,21 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Col } from 'react-styled-flexboxgrid'
-const outerBorderColor = '#2e6da4'
-
 import { UserContext, EntityContext } from '../../src/context'
 import TextareaAutosize from 'react-textarea-autosize'
-
-import { Box, Button } from 'grommet'
-import { getColor, transparentizeColor, lightenColor } from '../provider.component'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box } from 'grommet'
+import { IconButton } from '../iconbutton.component'
+import { getColor, lightenColor } from '../provider.component'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-// import SVG from 'react-inlinesvg';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 export default class CommentForm extends React.Component<
-  CommentFormProps, { newCommentValue: string }> {
+  CommentFormProps, { newCommentValue: string, focus: boolean }> {
   constructor(props: CommentFormProps) {
     super(props)
-    this.state = { newCommentValue: '' }
+    this.state = {
+      newCommentValue: '',
+      focus: false
+    }
   }
   render() {
     const { parent_id, onSendComment } = this.props
@@ -32,22 +27,23 @@ export default class CommentForm extends React.Component<
               <StyledBox margin={{ bottom: 'medium' }}>
                   <StyledTextarea
                     value={this.state.newCommentValue}
-                    onChange={event => {
-                      this.setState({ newCommentValue: event.target.value })
-                    }}
+                    onFocus={ () => { this.setState({ focus: true }) }}
+                    onBlur={ () => { this.setState({ focus: false }) }}
+                    onChange={event => { this.setState({ newCommentValue: event.target.value }) }}
                     placeholder="Deine Frage oder Anregung …"
+                    focused = {this.state.focus}
                   />
                   <SendButton
-                //   label="Kommentar abschicken"
-                  icon={<FontAwesomeIcon icon={faArrowRight}/>}
-                  primary
-                  onClick={() =>
-                    onSendComment({
-                      entity_id: entity.id,
-                      parent_id: parent_id,
-                      user_id: user.id,
-                      user_name: user.username,
-                      body: this.state.newCommentValue
+                    icon={faArrowRight}
+                    title="Abschicken"
+                    active={this.state.focus}
+                    onClick={() =>
+                      onSendComment({
+                        entity_id: entity.id,
+                        parent_id: parent_id,
+                        user_id: user.id,
+                        user_name: user.username,
+                        body: this.state.newCommentValue
                     })
                   }
                 />
@@ -82,31 +78,21 @@ const StyledTextarea = styled(TextareaAutosize) `
         color: ${ getColor('brandGreen') };
     }
     
-    &:focus {
-        min-height: 3rem;
-        background: ${ lightenColor('brandGreen', 0.2) };
+    ${ props => props.focused ?  
+      `
+      min-height: 3rem;
+      background: ${ lightenColor('brandGreen', 0.35) };
+      `
+      : null
     }
-
+        
     transition: all .2s ease-in-out;
 `
 
-const SendButton = styled(Button) `
-    height: 2rem;
-    width: 2rem;
-    background-color: ${ getColor('brandGreen') };
-    border-radius: 5rem;
-
+const SendButton = styled(IconButton) `    
     position: absolute;
-    right: .75rem;
-    bottom: .75rem;
-
-    padding-top: .35em;
-    padding-left: .4rem;
-
-    svg {
-        width: 1.3rem !important;
-        height: 1.3rem !important;
-    }
+    right: .6rem;
+    bottom: .5rem;
 `
 
 interface SendProps {

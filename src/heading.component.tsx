@@ -40,4 +40,5 @@ const Icon = styled(FontAwesomeIcon) `
   width: 0.75em;
   height: 0.75em;
   margin-right: .1em;
+  margin-bottom: .075em;
 `
