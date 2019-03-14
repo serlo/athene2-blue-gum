@@ -11,36 +11,52 @@ import { getColor, getDefaultTransition } from './provider.component'
 export interface Props {
   title?: string,
   icon: IconDefinition,
-  size?: number,
-  color?: string,
+  size?: (1.0 | 1.1 |1.2 | 1.33 | 1.5 | 1.75 | 2.0 | 2.33 | 2.5 | 3.0 ),
+  active?: boolean,
+  iconColor?: string,
   backgroundColor?: string,
-  onClick: Function,
+  activeIconColor?: string,
+  activeBackgroundColor?: string,
+  onClick?: Function,
   className?: string
 }
 
-export class IconButton extends React.Component<Props> {
-  public render() {
-
-    return (
-      <StyledButton
-        className={this.props.className}
-        title={this.props.title}
-        size={this.props.size}
-        a11yTitle={this.props.title}
-        plain
-        onClick={() => this.props.onClick() } 
-        >
-        {<Icon icon={this.props.icon}/>}
-      </StyledButton>
-    )
-  }
+IconButton.defaultProps = {
+  active: false,
+  title: "",
+  size: 1.0,
+  backgroundColor: getColor('brandGreen'),
+  activeBackgroundColor: getColor('brand'),
+  activeIconColor: '#fff',
+  iconColor: '#fff',
+  onClick: () => {}
 }
 
-export const StyledButton = styled(Button) `
+export function IconButton( props : Props) {
+  return (
+    <StyledButton
+      className={props.className}
+      title={props.title}
+      size={props.size}
+      a11yTitle={props.title}
+      plain
+      onClick={() => { if(props) props.onClick()} } 
 
-  color: ${props => props.color ? props.color : '#fff' };
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : getColor('brandGreen') };
-  font-size: ${props => props.size ? props.size+'rem' : '1rem' };
+      active={props.active}
+      backgroundColor={props.backgroundColor}
+      activeBackgroundColor={props.activeBackgroundColor}
+      iconColor={props.iconColor}
+      activeIconColor={props.activeIconColor}
+
+      >
+      {<Icon icon={props.icon}/>}
+    </StyledButton>
+  )
+}
+
+export const StyledButton = styled(Button)`
+
+  font-size: ${props => props.size+'rem' };
 
   display: block;
   border-radius: 5em;
@@ -50,9 +66,13 @@ export const StyledButton = styled(Button) `
   padding-left: .5em;
   transition: ${ getDefaultTransition() };
 
+  color: ${ props => ( props.active && props.activeIconColor ) ? props.activeIconColor : props.iconColor };
+  background-color: ${props => props.active ? props.activeBackgroundColor : props.backgroundColor };
+
   &:hover {
-    background-color: ${ getColor('brand') }
+    background-color: ${props => !props.active ? props.activeBackgroundColor : props.backgroundColor };
   }
+  
 ` as typeof Button
 
 export const Icon = styled(FontAwesomeIcon) `

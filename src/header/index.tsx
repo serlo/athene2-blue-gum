@@ -1,10 +1,12 @@
-import { Box, Button, DropButton, Heading, Text } from 'grommet'
+import { Box, DropButton, Heading, Text } from 'grommet'
 import * as React from 'react'
 import styled from 'styled-components'
 import { getColor, getBreakpoint } from '../provider.component'
 import { FontAwesomeIcon } from '../fontawesome'
 import MobileMenu from './mobilemenu'
+import { MobileMenuButton } from './mobilemenubutton'
 import Logo from '../logo.component'
+import { StyledButton, Icon } from '../iconbutton.component'
 
 export function Header() {
   const [open, toggleOpen] = useToggle(false)
@@ -13,25 +15,23 @@ export function Header() {
   return (
     <React.Fragment>
       <TopNavWrap>
-        <MobileMenuIconWrap
+        <MobileMenuButton
+          onClick={toggleOpen}
           open={open}
-          onClick={e => {
-            e.preventDefault()
-            toggleOpen()
-          }}
-          // label="Menü"
           dropContent={<MobileMenu onClose={toggleOpen} />}
           dropTarget={dropTarget}
-          reverse
-          icon={<MobileMenuIcon icon={open ? ['fas', 'times'] : ['fas', 'bars']} />}
         />
+
         <MenuWrap>
           Superb Content!
         </MenuWrap>
+
         <Box pad="medium" background="brand">
           <Logo subline="Super good Serlo Slogan" />
         </Box>
+
       </TopNavWrap>
+
       <div id="test" ref={dropTargetRef} />
     </React.Fragment>
   )
@@ -73,34 +73,35 @@ const TopNavWrap = styled.div(props => {
   }
 })
 
-const MobileMenuIconWrap = styled(DropButton) `
-  position: absolute;
-  top: .7rem;
-  right: .7rem;
-  padding: .4rem;
+// const MobileMenuIconWrap StyledButton
+// const MobileMenuIconWrap = styled(DropButton) `
+//   position: absolute;
+//   top: .7rem;
+//   right: .7rem;
+//   padding: .4rem;
+//   background-color: red;
+//   border-radius: 5rem;
+//   width: 2.5rem;
+//   height: 2.5rem;
 
-  &:active {
-    outline: none;
-  }
+//   &:active { outline: none;}
+//   &:hover { background-color: ${ getColor('lightblue') } };
+  
 
-  &:focus {
-    background-color: ${ getColor('brandGreen') };
-    outline: none;
-  }
+//   /* background-color: ${ props => props.open ? getColor('brandGreen') : 'transparent'}; */
+  
+//   &:focus {
+//     outline: none;
+//   }
 
-  &.collapsed {
-    background: transparent;
-    outline: none;
-  }
+//   &.collapsed:focus {
+//     background-color: ${ getColor('lightblue') };
+//   }
 
-  &.collapsed:focus {
-    background-color: ${ getColor('lightblue') };
-  }
-
-  @media screen and (min-width: ${ getBreakpoint('sm') }) {
-    display: none;
-  }
-`
+//   @media screen and (min-width: ${ getBreakpoint('sm') }) {
+//     display: none;
+//   }
+// `
 
 const MenuWrap = styled(Box) `
   display: none;
@@ -113,7 +114,9 @@ const MenuWrap = styled(Box) `
 
 `
 
-const MobileMenuIcon = styled(FontAwesomeIcon)({
-  fontSize: '1.66rem',
-  color: '#fff'
-})
+// const MobileMenuIcon = styled(FontAwesomeIcon)({
+//   fontSize: '1.66rem',
+//   color: '#fff'
+// })
+
+const MobileMenuIcon = Icon.withComponent(FontAwesomeIcon);

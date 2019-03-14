@@ -184,7 +184,7 @@ export function getDefaultTransition() {
   return theme.global.defaultTransition;
 }
 
-export function getBreakpoint( pointName: keyof (typeof theme)["flexboxgrid"]["breakpoints"]) : number {
+export function getBreakpoint( pointName: keyof (typeof theme)["flexboxgrid"]["breakpoints"]) : string {
   return theme.flexboxgrid.breakpoints[pointName]+"rem";
 }
 

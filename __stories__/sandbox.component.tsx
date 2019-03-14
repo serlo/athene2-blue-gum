@@ -2,13 +2,14 @@ import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
 import { Header } from '../src/header'
-import { SearchInput } from '../src/header/search-input'
+import { SearchInput } from '../src/header/searchinput'
 import { Footer } from '../src/footer'
+import { MobileMenuButton } from '../src/header/mobilemenubutton'
 
 import { Provider, GlobalStyle } from '../src/provider.component'
 import { Normalize } from 'styled-normalize'
 
-import { articleContent,topNavLinks,footerNavLinks, serloSlogan } from './dummycontent';
+import { articleContent, topNavLinks, footerNavLinks, serloSlogan } from './dummycontent';
 
 
 storiesOf('Header', module).add('SearchInput', () => {
@@ -18,6 +19,17 @@ storiesOf('Header', module).add('SearchInput', () => {
       <GlobalStyle/>
       <div style={{backgroundColor: '#007ec1', padding: '3rem', height: '15rem'}}>
         <SearchInput />
+      </div>
+    </Provider>
+  )
+}).add('Mobile Menu Button', () => {
+  return(
+    <Provider>
+      <Normalize/>
+      <GlobalStyle/>
+      <div style={{backgroundColor: '#007ec1', padding: '3rem', height: '15rem'}}>
+        <p><MobileMenuButton open={false} onClick={ () => alert('open!') }/></p>
+        <p><MobileMenuButton open={true} onClick={ () => alert('close!') }/></p>
       </div>
     </Provider>
   )
