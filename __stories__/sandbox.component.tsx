@@ -3,8 +3,8 @@ import * as React from 'react'
 
 import { Header } from '../src/header'
 import { SearchInput } from '../src/header/search-input'
-import { FooterNav } from '../src/footernav.component'
-import { FooterBranding } from '../src/footerbranding.component'
+import { Footer } from '../src/footer'
+
 import { Provider, GlobalStyle } from '../src/provider.component'
 import { Normalize } from 'styled-normalize'
 
@@ -39,18 +39,7 @@ storiesOf('Footer', module).add('complete', () => {
     <Provider>
       <Normalize/>
       <GlobalStyle/>
-      <footer>
-        <FooterBranding serloSlogan = {serloSlogan} />
-        <FooterNav links = {footerNavLinks} />
-      </footer>
-    </Provider>
-  )
-}).add('only nav', () => {
-  return(
-    <Provider>
-      <footer>
-        <FooterNav links = {footerNavLinks} />
-      </footer>
+      <Footer navLinks={footerNavLinks} slogan={serloSlogan}/>
     </Provider>
   )
 });

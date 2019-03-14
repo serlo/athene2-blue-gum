@@ -36,7 +36,7 @@ export class IconButton extends React.Component<Props> {
   }
 }
 
-const StyledButton = styled(Button) `
+export const StyledButton = styled(Button) `
 
   color: ${props => props.color ? props.color : '#fff' };
   background-color: ${props => props.backgroundColor ? props.backgroundColor : getColor('brandGreen') };
@@ -55,7 +55,7 @@ const StyledButton = styled(Button) `
   }
 ` as typeof Button
 
-const Icon = styled(FontAwesomeIcon) `
+export const Icon = styled(FontAwesomeIcon) `
   width: 1.5em !important;
   height: 1.5em !important;
 ` as typeof FontAwesomeIcon
