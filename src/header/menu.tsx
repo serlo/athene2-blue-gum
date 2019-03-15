@@ -61,10 +61,10 @@ function Entry({href, title, key, icon, isChild, children, highlight}: EntryProp
 
           backgroundColor= { highlight ? getColor("brandGreen") : "transparent" }
           fontColor={ highlight ? "#fff" : getColor("brand") }
-          activeBackgroundColor={ highlight ? getColor("brand") : "lightblue" }
-          activeFontColor={ highlight ? "#fff" : getColor("brand") }
+          activeBackgroundColor={ highlight ? getColor("brand") : "transparent" }
+          activeFontColor="#fff"
           iconColor={ highlight ? "#fff" : getColor("lightblue") }
-          activeIconColor={ highlight ? "#fff" : getColor("brand") }
+          activeIconColor="#fff"
 
           as={!children ? Button : DropButton}
           a11yTitle={children ? ("Untermenü " + title + " öffnen") : title }

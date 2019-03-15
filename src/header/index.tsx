@@ -5,6 +5,7 @@ import { getColor, getBreakpoint } from '../provider.component'
 import MobileMenu from './mobilemenu'
 import Menu from './menu'
 import Logo from '../logo.component'
+import { SearchInput } from './searchinput'
 
 const topNavLinks = [
   { title: '', class: 'seperator'},
@@ -33,6 +34,8 @@ export function Header() {
         <Box pad="medium" background="brand">
           <Logo subline="Super good Serlo Slogan" />
         </Box>
+        
+        <SearchInput />
         <div id="test" ref={overlayTargetRef} />
       </TopNavWrap>
 

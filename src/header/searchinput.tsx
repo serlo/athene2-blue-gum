@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '../fontawesome'
+import { getColor } from '../provider.component';
 
 export interface Props {
   value?: string
@@ -25,14 +26,14 @@ export class SearchInput extends React.Component<Props> {
 }
 
 const SearchWrap = styled.form`
-  background-color: ${props => props.theme.global.colors.lightblue};
+  background-color: ${getColor('lightblue')};
   width: 100%;
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0;
   transition: background-color 0.4s ease;
 
   &:focus-within {
-    background-color: ${props => props.theme.global.colors.green};
+    background-color: ${getColor('brandGreen')};
   }
 
   > input {
@@ -60,10 +61,10 @@ const SearchWrap = styled.form`
     border-radius: 0;
   }
 
-  @media (min-width: ${props => props.theme.md}) {
+  @media (min-width: ${props => props.theme.sm}) {
     width: 7rem;
     position: absolute;
-    top: 5.6rem;
+    top: 11.3rem;
     right: 2rem;
     background-color: transparent;
     border-radius: 1.1rem;

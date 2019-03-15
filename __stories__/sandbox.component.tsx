@@ -28,8 +28,8 @@ storiesOf('Header', module).add('SearchInput', () => {
       <Normalize/>
       <GlobalStyle/>
       <div style={{backgroundColor: '#007ec1', padding: '3rem', height: '15rem'}}>
-        <p><MobileMenuButton open={false} onClick={ () => alert('open!') }/></p>
-        <p><MobileMenuButton open={true} onClick={ () => alert('close!') }/></p>
+        <p style={{ position:"relative"}} ><MobileMenuButton open={false} onClick={ () => alert('open!') }/></p>
+        <p  style={{ position:"relative", top: "2rem" }} ><MobileMenuButton open={true} onClick={ () => alert('close!') }/></p>
       </div>
     </Provider>
   )
