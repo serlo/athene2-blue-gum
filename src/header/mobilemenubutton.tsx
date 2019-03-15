@@ -2,8 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { getColor } from '../provider.component';
 import { DropButton} from 'grommet'
-import { IconButton } from '../iconbutton.component'
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Button } from '../button.component'
 
 export interface Props {
   open : boolean,
@@ -17,16 +16,14 @@ export function MobileMenuButton( {open, onClick, dropContent, dropTarget} : Pro
       <React.Fragment>
         <MenuButton
           title="Menü öffnen"
-          icon={open ? faTimes : faBars}
+          iconName={open ? 'times' : 'bars'}
           active={open}
           size={1.1}
           activeBackgroundColor={getColor('lighterblue')}
           onClick={onClick}
         />
         <HiddenDropButton
-          label="Mobiles Menü öffnen"
           open={open}
-          onClick={onClick}
           dropContent={dropContent}
           dropTarget={dropTarget}
         />
@@ -37,10 +34,12 @@ export function MobileMenuButton( {open, onClick, dropContent, dropTarget} : Pro
 
 const HiddenDropButton = styled(DropButton)`
   display: none;
-`
-
-const MenuButton = styled(IconButton) `
-  /* color: red !important; */
 ` as typeof DropButton
+
+const MenuButton = styled(Button) `
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+` as typeof Button
 
 

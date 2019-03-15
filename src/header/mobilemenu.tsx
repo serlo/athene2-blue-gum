@@ -1,70 +1,102 @@
 import * as React from 'react'
-import { Box, Button, Heading, Text, Accordion, AccordionPanel } from 'grommet'
+import { Box } from 'grommet'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '../fontawesome'
-import { getColor, transparentizeColor, lightenColor } from '../provider.component';
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { getColor, transparentizeColor, getBreakpoint } from '../provider.component';
 import Collapsible from 'react-collapsible';
+import { MobileMenuButton as Button } from './mobilemenubutton'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+
+type Child = { title: string; url: string; icon?: string }
+type Entry = { title: string; class?: string; icon?: string; children: Child[] }
+
+export interface Props {
+  links: Entry[]
+  overlayTarget: object,
+  className?: string
+}
+
+/* TODO: Replace Grommet DropButton with own code
+ so we can easily change the styling of the overlay and also load the overlay inside of the header 
+ -> this way we can make the header 100% VP-Height and scroll inside this box. */
 
 
-// type Child = { title: string; url: string; icon?: IconProp }
-// type Entry = { title: string; class?: string; children: Child[] }
-// export interface Props {
-//   links: Entry[]
-// }
+export default function MobileMenu( {overlayTarget, links, className}: Props ) {
+  const [open, toggleOpen] = useToggle(false)
 
-const topNavLinks = [
-  { title: '', class: 'seperator'},
-  { title: 'Neu hier?', url: '#', icon: 'question-circle' },
-  { title: 'Anmelden', url: '#', icon: 'user-circle' },
-  { title: '', class: 'seperator'},
-  { title: 'Lernen', url: '#', icon: 'arrow-circle-right' },
-  { title: 'Was ist Serlo?', url: '#', icon: 'newspaper', children: [
-      {title: 'Action', url: '#'},
-      {title: 'Test', url: '#'},
-      {title: 'Längerer Eintrag', url: '#'},
-  ]},
-  { title: 'Spenden', url: '#', class: 'donate', icon: 'hand-holding-heart' },
-]
-
-export default function MobileMenu({ onClose, className }: { onClose: () => void }) {
-    return (
-      <MobileMenuOverlay className={className}>
-
-        <List>
-          {topNavLinks.map((header, index) => {
-            let children = []
-            if(header.children){
-              children = header.children.map((link, index) => {
-                return <Entry key={index} isChild href="test" icon={header.icon} title={header.title}/>
-              })
-              children.push(<Seperator />)
-            }
-            if( !header.title ) return (<Seperator />)
-            else if(children.length>0) return(
-              <Collapsible
-                trigger={<Entry key={index} href="test" icon={header.icon} hasChildren title={header.title}/>}
-                transitionTime={200}  
-              >
-                {children}
-              </Collapsible>
-
-            )
-            else return (
-                <Entry key={index} href="test" icon={header.icon} title={header.title}/>
-            )
-          })}
-        </List>
-      </MobileMenuOverlay>
-    )
-  }
-  
-
-
-function Entry({href, title, key, icon, hasChildren, isChild}){
   return (
-    <li><EntryLink key={key} href={href} isChild={isChild}>
-      
+    <div className={className}>
+      <Button
+        onClick={toggleOpen}
+        open={open}
+        dropContent={<Overlay links={links} onClose={toggleOpen} />}
+        dropTarget={overlayTarget}
+      />
+    </div>
+  )
+}
+
+
+function useToggle(initialValue: boolean = false): [boolean, () => void] {
+  const [value, setValue] = React.useState(initialValue)
+
+  return [
+    value,
+    () => {
+      setValue(!value)
+    }
+  ]
+}
+
+
+function Overlay({ links, onClose, className }: { links: Entry[], onClose: () => void, className?: string }) {
+  return (
+    <OverlayBox className={className}>
+
+    <List>
+      {links.map((header, index) => {
+        let children = []
+        const key = "mn_"+index
+        const icon =  header.icon as IconProp
+
+        if(header.children){
+          children = header.children.map((link, index) => {
+            return <Entry key={key+"_child"+index} isChild href="test" icon={icon} title={header.title}/>
+          })
+          children.push(<Seperator />)
+        }
+        if( !header.title ) return (<Seperator />)
+        else if(children.length>0) return(
+          <Collapsible
+            trigger={<Entry key={key} href="test" icon={icon} hasChildren title={header.title}/>}
+            transitionTime={200}  
+          >
+            {children}
+          </Collapsible>
+
+        )
+        else return (
+            <Entry key={key} href="test" icon={icon} title={header.title}/>
+        )
+      })}
+    </List>
+  </OverlayBox>
+  )
+}
+
+
+interface EntryProps {
+  href: string,
+  title: string,
+  key: string,
+  icon: IconProp,
+  hasChildren?: boolean,
+  isChild?: boolean 
+}
+
+function Entry({href, title, key, icon, hasChildren, isChild}: EntryProps){
+  return (
+    <li><EntryLink key={key} href={href} isChild={isChild}> 
       { !isChild ?
         <IconWrapper>
           <FontAwesomeIcon icon={icon}/>
@@ -81,10 +113,10 @@ function Entry({href, title, key, icon, hasChildren, isChild}){
 }
 
 
-const EntryLinkText = styled.span `
+const EntryLinkText = styled.span`
   display: inline-block;
   vertical-align: middle;
-  margin-top: ${ props => props.isChild ? '0' : '1rem' };
+  margin-top: ${ ({isChild}:{isChild?: boolean}) => isChild ? '0' : '1rem' };
 `
 
 const List = styled.ul `
@@ -98,11 +130,11 @@ const List = styled.ul `
 `
 
 const Seperator = styled.li `
-  height: 5rem;
+  height: 1.5rem;
   border-bottom: 1px solid ${ getColor('lighterblue') };
 `
 
-const EntryLink = styled.a `
+const EntryLink = styled.a`
   background-color: ${ getColor('bluewhite') };
   display: block;
   padding: 1em;
@@ -111,7 +143,7 @@ const EntryLink = styled.a `
   border-color: ${ getColor('lighterblue') };
   font-weight: bold;
   text-decoration: none;
-  font-size: ${ props => props.isChild ? '1.33rem' : '1.66rem'};
+  font-size: ${ ({isChild}:{isChild?: boolean}) => isChild ? '1rem' : '1.33rem'};
 
   &:hover, &:focus, &:active{
     background: ${ transparentizeColor('brand',0.8) };
@@ -120,13 +152,11 @@ const EntryLink = styled.a `
   &.is-open {
     color: red !important;
   }
-
 `
-const StyledCollapsible = EntryLink.withComponent(Collapsible);
 
 const IconWrapper = styled(Box) `
-  width: 5em;
-  height: 5em;
+  width: 2.5em;
+  height: 2.5em;
   background-color: #D7EBF4;
   border-radius: 10em;
   display: inline-block;
@@ -135,19 +165,20 @@ const IconWrapper = styled(Box) `
   margin-right: 1em;
 
   svg {
-    margin-top: 1em;
-    width: 3em !important;
-    height: 3em !important;
+    margin-top: .5em;
+    width: 1.5em !important;
+    height: 1.5em !important;
     vertical-align: middle;
   }
-`
+` as typeof Box
 
-const MobileMenuOverlay = styled(Box) `
-
+const OverlayBox = styled(Box) `
+  @media screen and (min-width: ${ getBreakpoint('sm') }) {
+    display: none !important;
+  }
     /* height: calc(100vh - 11.5rem);
     // maxHeight: calc(100vh - 11.5rem);
     // overflow: auto; */
     /* overflow: visible; */
-` 
-// as typeof Box
+` as typeof Box
   

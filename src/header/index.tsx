@@ -1,66 +1,57 @@
-import { Box, DropButton, Heading, Text } from 'grommet'
+import { Box } from 'grommet'
 import * as React from 'react'
 import styled from 'styled-components'
 import { getColor, getBreakpoint } from '../provider.component'
-import { FontAwesomeIcon } from '../fontawesome'
 import MobileMenu from './mobilemenu'
-import { MobileMenuButton } from './mobilemenubutton'
+import Menu from './menu'
 import Logo from '../logo.component'
-import { StyledButton, Icon } from '../iconbutton.component'
+
+const topNavLinks = [
+  { title: '', class: 'seperator'},
+  { title: 'Neu hier?', url: 'https://google.de', icon: 'question-circle' },
+  { title: 'Anmelden', url: '#', icon: 'user-circle' },
+  { title: '', class: 'seperator'},
+  { title: 'Lernen', url: '#', icon: 'arrow-circle-right' },
+  { title: 'Was ist Serlo?', url: '#', icon: 'newspaper', children: [
+      {title: 'Action', url: '#'},
+      {title: 'Test', url: '#'},
+      {title: 'Längerer Eintrag', url: '#'},
+  ]},
+  { title: 'Spenden', url: '#', class: 'donate', icon: 'hand-holding-heart', highlight: true },
+]
 
 export function Header() {
-  const [open, toggleOpen] = useToggle(false)
-  const [dropTarget, dropTargetRef] = useDropTarget()
+  const [overlayTarget, overlayTargetRef] = useOverlayTarget()
 
   return (
     <React.Fragment>
       <TopNavWrap>
-        <MobileMenuButton
-          onClick={toggleOpen}
-          open={open}
-          dropContent={<MobileMenu onClose={toggleOpen} />}
-          dropTarget={dropTarget}
-        />
+        <StyledMobileMenu links={topNavLinks} overlayTarget={overlayTarget} />
 
-        <MenuWrap>
-          Superb Content!
-        </MenuWrap>
+        <StyledMenu links={topNavLinks}/>
 
         <Box pad="medium" background="brand">
           <Logo subline="Super good Serlo Slogan" />
         </Box>
-
+        <div id="test" ref={overlayTargetRef} />
       </TopNavWrap>
 
-      <div id="test" ref={dropTargetRef} />
+      
     </React.Fragment>
   )
 }
 
-function useToggle(initialValue: boolean = false): [boolean, () => void] {
-  const [value, setValue] = React.useState(initialValue)
-
-  return [
-    value,
-    () => {
-      setValue(!value)
-    }
-  ]
-}
-
-
-function useDropTarget<E extends HTMLElement>(): [
+function useOverlayTarget<E extends HTMLElement>(): [
   E | undefined,
   React.LegacyRef<E>
   ] {
-  const [dropTarget, setDropTarget] = React.useState<E | undefined>(undefined)
+  const [overlayTarget, setOverlayTarget] = React.useState<E | undefined>(undefined)
   const refCallback: React.LegacyRef<E> = ref => {
-    if (ref && ref !== dropTarget) {
-      setDropTarget(ref)
+    if (ref && ref !== overlayTarget) {
+      setOverlayTarget(ref)
     }
   }
-
-  return [dropTarget, refCallback]
+  return [overlayTarget, refCallback]
 }
 
 const TopNavWrap = styled.div(props => {
@@ -73,37 +64,14 @@ const TopNavWrap = styled.div(props => {
   }
 })
 
-// const MobileMenuIconWrap StyledButton
-// const MobileMenuIconWrap = styled(DropButton) `
-//   position: absolute;
-//   top: .7rem;
-//   right: .7rem;
-//   padding: .4rem;
-//   background-color: red;
-//   border-radius: 5rem;
-//   width: 2.5rem;
-//   height: 2.5rem;
+const StyledMobileMenu = styled(MobileMenu) `
+  display: block;
+  @media screen and (min-width: ${ getBreakpoint('sm') }) {
+    display: none;
+  }
+`
 
-//   &:active { outline: none;}
-//   &:hover { background-color: ${ getColor('lightblue') } };
-  
-
-//   /* background-color: ${ props => props.open ? getColor('brandGreen') : 'transparent'}; */
-  
-//   &:focus {
-//     outline: none;
-//   }
-
-//   &.collapsed:focus {
-//     background-color: ${ getColor('lightblue') };
-//   }
-
-//   @media screen and (min-width: ${ getBreakpoint('sm') }) {
-//     display: none;
-//   }
-// `
-
-const MenuWrap = styled(Box) `
+const StyledMenu = styled(Menu) `
   display: none;
   @media screen and (min-width: ${ getBreakpoint('sm') }) {
     display: block;
@@ -111,12 +79,4 @@ const MenuWrap = styled(Box) `
     height: 3rem;
     color: ${getColor("brand")};
   }
-
 `
-
-// const MobileMenuIcon = styled(FontAwesomeIcon)({
-//   fontSize: '1.66rem',
-//   color: '#fff'
-// })
-
-const MobileMenuIcon = Icon.withComponent(FontAwesomeIcon);
