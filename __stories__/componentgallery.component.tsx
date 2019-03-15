@@ -306,34 +306,6 @@ storiesOf("Components Gallery", module).add("All", () => <Components />)
     </Box>
   </Provider>
 )
-.add("Headings", () =>
-  <Provider>
-    <Normalize/>
-    <GlobalStyle/>
-    <Box pad="medium">
-      <Heading level={1}>Heading level 1</Heading>
-      <Heading level={2}>Heading level 2</Heading>
-      <Heading level={3}>Heading level 3</Heading>
-      <Heading level={4}>Heading level 4</Heading>
-      <Heading level={5}>Heading level 5</Heading>
-    </Box>
-  </Provider>
-)
-.add("Images", () =>
-  <Provider>
-    <Normalize/>
-    <GlobalStyle/>
-    <Box pad="medium" width="medium">
-      <h3>Responsive Image (cover)</h3>
-      <Image
-        fit="cover"
-        src="//assets.serlo.org/legacy/56d9f598ebea2_1581a51d8fbbce8e4abac1cb6793c714febe5a48.png"
-      />
-      <br />
-      <h3>Image with caption</h3>
-    </Box>
-  </Provider>
-)
 .add("Content: License Info", () =>
   <Provider>
     <Normalize/>

@@ -116,11 +116,12 @@ const theme = {
     extend: props => {
       const lightBlue = transparentize(0.35,props.theme.global.colors.brand)
       return `
+        padding: 0 .15em;
         &:hover {
           color: #fff;
           background-color: ${ lightBlue };
-          border-radius: .3em;
-          box-shadow: 0 0 0 .15em ${ lightBlue };
+          border-radius: .25em;
+          box-shadow: 0 0 0 .03em ${ lightBlue };
         }
       `
     }
