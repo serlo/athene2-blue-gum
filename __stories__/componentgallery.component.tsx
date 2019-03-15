@@ -306,15 +306,6 @@ storiesOf("Components Gallery", module).add("All", () => <Components />)
     </Box>
   </Provider>
 )
-.add("Content: License Info", () =>
-  <Provider>
-    <Normalize/>
-    <GlobalStyle/>
-    <Box pad="medium" width="large">
-      <LicenseInfo />
-    </Box>
-  </Provider>
-)
 .add("Landing: Subjects", () =>
   <Provider>
     <Normalize/>

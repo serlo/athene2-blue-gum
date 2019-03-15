@@ -8,32 +8,38 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { getColor } from './provider.component'
 
 export interface Props {
-  level: 1 | 2 | 3 | 4 | 5 | 6,
+  level: "1" | "2" | "3" | "4" | "5" | "6",
   icon?: IconDefinition,
   color?: string
 }
 
-export class Heading extends React.Component<Props> {
-  public render() {
-    return (
-      <StyledHeading level={this.props.level} color={this.props.color}>
 
-        {this.props.icon ?
-            <Icon
-                icon= {this.props.icon}
-                color="default"
-            />
-        : null }
-        
-        {this.props.children}
+export function Heading(props : Props) {
+
+  const fontSizes = [1.5,1.5,1.3,1.2,1,1]
+  const fontSize = fontSizes[ parseInt(props.level) ] + "rem"
+
+  return (
+    <StyledHeading level={props.level} color={props.color} fontSize={fontSize}>
+
+      {props.icon ?
+          <Icon
+              icon= {props.icon}
+              color="default"
+          />
+      : null }
       
-      </StyledHeading>
-    )
-  }
+      {props.children}
+    
+    </StyledHeading>
+  )
 }
 
 const StyledHeading = styled(GrommetHeading) `
   color: ${props => props.color ? props.color : getColor('brand') };
+  font-size: ${props => props.fontSize };
+
+  margin: 1.5em 0 .6em;
 `
 
 const Icon = styled(FontAwesomeIcon) `

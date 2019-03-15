@@ -1,24 +1,19 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
-import { Provider, GlobalStyle, getColor } from '../src/provider.component'
+import { Provider, GlobalStyle, getColor, lightenColor } from '../src/provider.component'
 import { Normalize } from 'styled-normalize'
 
-import { UserContext, EntityContext } from '../src/context'
-
-import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video, Image } from "grommet";
+import { Anchor, Box, Image } from "grommet";
 
 import { Heading } from '../src/heading.component'
 import { List } from '../src/list.component'
+import { Table } from '../src/table.component'
 
-import Logo from '../src/logo.component'
 import LicenseInfo from '../src/licenseinfo.component'
-import Subjects from '../src/landing/subjects'
 
-import { faComments, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-
-import { faHeart, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
-
+import { faComments, faQuestionCircle, faVideo } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
 
 storiesOf("Content Components", module)
 .add("(Images)", () =>
@@ -69,6 +64,32 @@ storiesOf("Content Components", module)
     </Box>
   </Provider>
 )
+.add("Tables", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box pad="medium">
+      <Table>
+        <thead><tr>
+          <th><p>Begriff</p></th>
+          <th><p>Formel</p></th>
+        </tr></thead>
+        <tbody><tr>
+          <td>Umfang:</td>
+          <td>U=2πrU=2πr</td></tr><tr>
+          <td>Kreisfläche:</td>
+          <td>A∘=πr2A∘=πr2</td></tr><tr>
+          <td>Kreisbogenlänge:</td>
+          <td>b=U⋅α360∘b=U⋅α360∘</td></tr><tr>
+          <td>Sektorfläche:</td>
+          <td>As=A∘⋅α360∘As=A∘⋅α360∘</td></tr><tr>
+          <td>Kreisring:</td>
+          <td>AKreisring=π⋅(r22–r21)AKreisring=π⋅(r22–r12)</td>
+        </tr></tbody></Table>
+    </Box>
+  </Provider>
+)
+
 .add("License Info", () =>
   <Provider>
     <Normalize/>
@@ -124,3 +145,62 @@ storiesOf("Content Components", module)
     </Box>
   </Provider>
 )
+.add("Example Content", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <StyledContent pad="medium" style={{maxWidth: '40rem'}}>
+      <Heading level={1} icon="newspaper">Berechnungen am Kreis</Heading>
+      <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+      <List>
+        <li><Anchor href="#bestimmungdesumfangs">Berechnung des Umfangs</Anchor></li>
+        <li><Anchor href="#berechnungdesflcheninhalts">Berechnung der Kreisfläche</Anchor></li>
+        <li><Anchor href="#berechnungderkreisbogenlnge">Berechnung der Kreisbogenlänge</Anchor></li>
+        <li><Anchor href="#berechnungdersektorflche">Berechnung der Sektorfläche</Anchor></li>
+        <li><Anchor href="#berechnungdeskreisrings">Berechnung des Kreisrings</Anchor></li>
+      </List>
+
+      <Heading level={2}>Zusammenfassung</Heading>
+      
+      <Table>
+        <thead><tr>
+          <th><p>Begriff</p></th>
+          <th><p>Formel</p></th>
+        </tr></thead>
+        <tbody><tr>
+          <td>Umfang:</td>
+          <td>U=2πrU=2πr</td></tr><tr>
+          <td>Kreisfläche:</td>
+          <td>A∘=πr2A∘=πr2</td></tr><tr>
+          <td>Kreisbogenlänge:</td>
+          <td>b=U⋅α360∘b=U⋅α360∘</td></tr><tr>
+          <td>Sektorfläche:</td>
+          <td>As=A∘⋅α360∘As=A∘⋅α360∘</td></tr><tr>
+          <td>Kreisring:</td>
+          <td>AKreisring=π⋅(r22–r21)AKreisring=π⋅(r22–r12)</td>
+        </tr></tbody></Table>
+
+        <Heading level="2">Bestimmung des Umfangs</Heading>
+
+        <p>Den <Anchor href="/36162">Umfang</Anchor> erhältst du durch Abrollen des <Anchor href="/36162">Kreises</Anchor>
+        und messen der abgerollten <Anchor href="https://de.serlo.org/mathe/geometrie/grundbegriffe/geraden-strecken-halbgeraden/strecke">Strecke</Anchor>.
+        Auf diese Weise kannst du die <Anchor href="/2107">Kreiszahl</Anchor> <b>π</b> definieren.</p>
+        <p>In der Abbildung rechts siehst du, wie ein Kreis mit <Anchor href="/36162">Durchmesser</Anchor>
+        <b>d=1</b> abgerollt wird.</p><p>Sein Umfang beträgt 
+        <b>π</b>, also etwa <b>3,14</b></p><p>Für den Umfang findest du so den folgenden Zusammenhang: </p><p>
+        <b>U=2⋅r⋅π=d⋅π</b></p>
+        
+        
+        <Heading level="2" icon={faVideo}>Video zur Flächenberechnung</Heading>
+
+    </StyledContent>
+  </Provider>
+)
+
+
+const StyledContent = styled(Box) `
+  p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+`

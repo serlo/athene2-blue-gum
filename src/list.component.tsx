@@ -44,6 +44,7 @@ const StyledList = styled.ul `
     &:hover:before {
       color: #fff;
       background-color: ${getColor('brand')};
+      transform: scale(1.6);
     }
     
     &:before {
@@ -53,7 +54,7 @@ const StyledList = styled.ul `
       width: .5em;
       content: ' ' !important;
       height: .5em;
-      border-radius: 1em;
+      border-radius: 3em;
       margin-left: -0.9em;
       margin-top: .45em
     }
