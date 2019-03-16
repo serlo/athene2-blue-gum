@@ -31,14 +31,6 @@ const StyledTable = styled.table `
     border-top: 3px solid ${lightenColor('brand',0.55)};
   }
 
-  @media (hover: hover) {
-    >tbody >tr{
-      &:hover {
-        background-color: ${getColor('footerBackground')};
-      }
-    }
-   }
-
   >tbody >tr:nth-of-type(odd) { 
     background-color: ${getColor('footerBackground')};
   }
@@ -49,7 +41,7 @@ const StyledTable = styled.table `
         background-color: transparent;
       }
       &:hover{
-        background-color: ${getColor('footerBackground')};
+        background-color: ${lightenColor('brand',0.55)};
       }
     }
   }
