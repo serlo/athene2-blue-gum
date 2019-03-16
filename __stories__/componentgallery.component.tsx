@@ -7,6 +7,7 @@ import { Normalize } from 'styled-normalize'
 
 import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Heading as GrommetHeading, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video, Image } from "grommet";
 import { Heading } from '../src/heading.component'
+import { Breadcrumb } from '../src/breadcrumb.component'
 
 import Logo from '../src/logo.component'
 import Subjects from '../src/landing/subjects'
@@ -313,7 +314,7 @@ storiesOf("Components Gallery", module).add("All", () => <Components />)
     <Subjects/>
   </Provider>
 )
-.add("Edit Button", () =>
+.add("Edit Box", () =>
   <Provider>
     <Normalize/>
     <GlobalStyle/>
@@ -344,6 +345,43 @@ storiesOf("Components Gallery", module).add("All", () => <Components />)
       </StyledContent>
     </Box>
     <EditBox />
+    
+  </Provider>
+)
+.add("Breadcrumb / Back to Taxonomy", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box direction="row-responsive" justify="center">
+
+      <StyledContent pad="large" alignSelf="center" width="large" style={{opacity: 1}}>
+
+        <Breadcrumb aprop/>
+
+        <Heading level={1} icon="newspaper">Example Content</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+        <p>Den <Anchor href="/36162">Umfang</Anchor> erhältst du durch Abrollen des <Anchor href="/36162">Kreises</Anchor>
+        und messen der abgerollten <Anchor href="https://de.serlo.org/mathe/geometrie/grundbegriffe/geraden-strecken-halbgeraden/strecke">Strecke</Anchor>.
+        Auf diese Weise kannst du die <Anchor href="/2107">Kreiszahl</Anchor> <b>π</b> definieren.</p>
+        <p>In der Abbildung rechts siehst du, wie ein Kreis mit <Anchor href="/36162">Durchmesser</Anchor>
+        <b>d=1</b> abgerollt wird.</p><p>Sein Umfang beträgt 
+        <b>π</b>, also etwa <b>3,14</b></p><p>Für den Umfang findest du so den folgenden Zusammenhang: </p><p>
+        <b>U=2⋅r⋅π=d⋅π</b></p>
+        
+      </StyledContent>
+    </Box>
     
   </Provider>
 )

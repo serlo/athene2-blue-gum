@@ -115,8 +115,9 @@ export const Icon = styled(FontAwesomeIcon) `
   }
 
   ${ ( {label}:{ label?: string})  => label && `
-    width: .7em !important;
-    height: .7em !important;
+    width: .9em !important;
+    height: .9em !important;
+    vertical-align: -.6em;
   `
   }
 ` as typeof FontAwesomeIcon
