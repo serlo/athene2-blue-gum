@@ -43,6 +43,7 @@ const theme = {
       //},
       brand: '#007ec1',
       brandGreen: '#95bc1a',
+      darkGray: '#212529',
       //'control': {
       //  'dark': 'accent-1',
       //  'light': 'brand'

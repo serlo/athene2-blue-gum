@@ -1,40 +1,35 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Box, Button, Anchor, DropButton } from 'grommet'
+import { Box, Anchor } from 'grommet'
+import { Button, DropButton } from '../button.component'
 import * as moment from 'moment'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faFlag, faCheck, faTrash, faUserGraduate } from '@fortawesome/free-solid-svg-icons'
 import { getColor } from '../provider.component'
 
 const renderItems = ( leaf: boolean | undefined, timestamp : Date ) => (
   <DropContent>
     {leaf ? null : (
-      <DropContentButton>
-        <FontAwesomeIcon
-          icon={faCheck}
-          style={{ padding: '5px 5px 0px 5px' }}
-          size="xs"
-        />
-        Diskussion archivieren
-      </DropContentButton>
+      <DropContentButton 
+        label="Diskussion archivieren"
+        iconName="check"
+        backgroundColor="transparent"
+        activeBackgroundColor={getColor('lightblue')}
+        fontColor={getColor('darkGray')}
+      />
     )}
-    <DropContentButton>
-      <FontAwesomeIcon
-        icon={faFlag}
-        style={{ padding: '5px 5px 0px 5px' }}
-        size="xs"
-      />
-      Diskussion melden
-    </DropContentButton>
-    <DropContentButton>
-      <FontAwesomeIcon
-        icon={faTrash}
-        style={{ padding: '5px 5px 0px 5px' }}
-        size="xs"
-      />
-      Diskussion löschen
-    </DropContentButton>
-
+    <DropContentButton 
+      label="Diskussion melden"
+      iconName="flag"
+      backgroundColor="transparent"
+      activeBackgroundColor={getColor('lightblue')}
+      fontColor={getColor('darkGray')}
+    />
+    <DropContentButton 
+      label="Diskussion löschen"
+      iconName="trash"
+      backgroundColor="transparent"
+      activeBackgroundColor={getColor('lightblue')}
+      fontColor={getColor('darkGray')}
+    />
     <Time>Gepostet am {moment(timestamp)
             .locale('de')
             .format('DD.MM.YYYY, HH:mm:ss ')}
@@ -46,16 +41,22 @@ const renderItems = ( leaf: boolean | undefined, timestamp : Date ) => (
 export default function MetaBar({author, timestamp, leaf}:{author: any, timestamp: Date, leaf: boolean | undefined}) {
   return (
     <MetaBarBox direction="row" justify="between">
-      <Anchor href={`https://serlo.org/${author.id}`}>
-        <FontAwesomeIcon icon={faUserGraduate} />
-        {' '}
-        {author.username}
-      </Anchor>{' '}
+      <Button
+        label={author.username}
+        iconName="user-graduate"
+        href={`https://serlo.org/${author.id}`}
+        backgroundColor="transparent"
+        activeBackgroundColor={getColor('lightblue')}
+        fontColor={getColor('brand')}
+        style={{fontWeight: 'bold'}}
+      />
       <span>
         <StyledDropButton
           dropAlign={{ top: 'bottom', right: 'right' }}
           dropContent={renderItems(leaf, timestamp)}
-          icon={<FontAwesomeIcon icon={faCaretDown} />}
+          iconName='caret-down'
+          fontColor={getColor('lighterblue')}
+          activeFontColor={'#fff'}
           reverse
           label={moment(timestamp)
             .locale('de')
@@ -81,10 +82,7 @@ const DropContent = styled(Box) `
 ` as typeof Box
 
 const DropContentButton = styled(Button) `
-  padding: .15rem;
-  &:hover {
-    color: #fff;
-  }
+  margin-bottom: .2rem;
 ` as typeof Button
 
 const MetaBarBox = styled(Box) `
@@ -93,11 +91,8 @@ const MetaBarBox = styled(Box) `
 ` as typeof Box
 
 const StyledDropButton = styled(DropButton) `
-  cursor: context-menu;
-  padding: .15rem;
-  color: ${getColor('lighterblue')};
-  &:hover, &:focus{
-    color: #fff;
-    background: ${getColor('lightblue')}
+  >svg {
+    width: 1.3rem;
+    height: 1.3rem;
   }
-` as typeof DropButton
+`

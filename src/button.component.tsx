@@ -103,10 +103,11 @@ const StyledButton = styled(grommetButton)`
 export const Icon = styled(FontAwesomeIcon) `
   width: 1.5em !important;
   height: 1.5em !important;
+  vertical-align: -0.4em;
 
   color: ${ props => props.active ? props.activeColor : props.color };
   
-  transition: ${ getDefaultTransition() };
+  /* transition: ${ getDefaultTransition() }; */
 
   ${StyledButton}:hover &{
     color: ${ props => !props.active ? props.activeColor : props.color };

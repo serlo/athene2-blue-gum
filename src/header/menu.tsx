@@ -56,7 +56,7 @@ function Entry({href, title, key, icon, isChild, children, highlight}: EntryProp
           size={1.1}
           href={href}
           key={key}
-          iconName={icon? icon : undefined}
+          iconName={ ( highlight && icon) ? icon : undefined}
           active = { highlight ? true :  false }
 
           backgroundColor= { highlight ? getColor("brandGreen") : "transparent" }

@@ -3,10 +3,25 @@ import styled from 'styled-components'
 import { UserContext, EntityContext } from '../../src/context'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from 'grommet'
-import { IconButton } from '../iconbutton.component'
+import { Button } from '../button.component'
 import { getColor, lightenColor, getDefaultTransition } from '../provider.component'
 import { faArrowRight, faReply } from '@fortawesome/free-solid-svg-icons'
 
+
+interface SendProps {
+  entity_id: string
+  parent_id: string
+  user_id: string
+  user_name: string
+  body?: string
+}
+
+interface CommentFormProps {
+parent_id: string
+onSendComment: (props: SendProps) => void
+placeholder: string
+reply?: boolean
+}
 
 export default class CommentForm extends React.Component<
   CommentFormProps, { newCommentValue: string, focus: boolean }> {
@@ -34,7 +49,7 @@ export default class CommentForm extends React.Component<
                     focused = {this.state.focus}
                   />
                   <SendButton
-                    icon={ this.props.reply ? faReply : faArrowRight}
+                    iconName={ this.props.reply ? "reply" : "arrow-right"}
                     title="Abschicken"
                     active={this.state.focus}
                     onClick={() =>
@@ -58,54 +73,42 @@ export default class CommentForm extends React.Component<
 
 
 const StyledBox = styled(Box) `
-    position: relative;
+  position: relative;
 ` as typeof Box
 
 const StyledTextarea = styled(TextareaAutosize) `
-    background: ${ lightenColor('brandGreen', 0.445) };
-    color: ${ getColor('black') };
+  background: ${ lightenColor('brandGreen', 0.445) };
+  color: ${ getColor('black') };
 
-    margin-top: 1rem;
-    border: none;
-    border-radius: 1.8rem;
-    padding: 1.25rem 1rem;
-    outline: none;
-    overflow: hidden;
-    resize: none;
-    
-    min-height: 1rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 1.8rem;
+  padding: 1.25rem 1rem;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  
+  min-height: 1rem;
 
-    ::placeholder {
-        color: ${ getColor('brandGreen') };
-    }
-    
-    ${ props => props.focused ?  
-      `
-      min-height: 3rem;
-      background: ${ lightenColor('brandGreen', 0.35) };
-      `
-      : null
-    }
+  ::placeholder {
+      color: ${ getColor('brandGreen') };
+  }
+  
+  ${ props => props.focused ?  
+    `
+    min-height: 3rem;
+    background: ${ lightenColor('brandGreen', 0.35) };
+    `
+    : null
+  }
         
-    transition: ${ getDefaultTransition() };
+  transition: ${ getDefaultTransition() };
+
 ` as typeof TextareaAutosize | any
 
-const SendButton = styled(IconButton) `    
+const SendButton = styled(Button) `    
     position: absolute;
     right: .6rem;
     bottom: .5rem;
-` as typeof IconButton | any
+` as typeof Button | any
 
-interface SendProps {
-    entity_id: string
-    parent_id: string
-    user_id: string
-    user_name: string
-    body?: string
-  }
-  interface CommentFormProps {
-    parent_id: string
-    onSendComment: (props: SendProps) => void
-    placeholder: string
-    reply?: boolean
-  }
