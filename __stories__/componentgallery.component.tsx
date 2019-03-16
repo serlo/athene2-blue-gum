@@ -5,21 +5,21 @@ import { Comments } from '../src/comments.component'
 import { Provider, GlobalStyle } from '../src/provider.component'
 import { Normalize } from 'styled-normalize'
 
-import { UserContext, EntityContext } from '../src/context'
-
-import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Heading, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video, Image } from "grommet";
+import { Grommet, Accordion, AccordionPanel, Anchor, Box, Button, Calendar, Chart, CheckBox, Clock, DataTable, Diagram, Distribution, FormField, Grid, Heading as GrommetHeading, Menu, Meter, Paragraph, RadioButton, RangeInput, RangeSelector, Select, Stack, Tab, Tabs, Text, TextArea, TextInput, Video, Image } from "grommet";
+import { Heading } from '../src/heading.component'
 
 import Logo from '../src/logo.component'
-import LicenseInfo from '../src/licenseinfo.component'
 import Subjects from '../src/landing/subjects'
-
+import styled from 'styled-components'
 
 import { grommet } from "grommet/themes";
-import { generate } from "grommet/themes/base";
-import { deepMerge } from "grommet/utils";
+// import { generate } from "grommet/themes/base";
+// import { deepMerge } from "grommet/utils";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
+
+import { EditBox } from '../src/editbox.component'
 
 
 const Node = ({ id, ...rest }) => (
@@ -69,7 +69,7 @@ class Components extends React.Component {
 
     const content = [
       <Box key="type" align="start">
-        <Heading margin={{ top: "none" }}>Heading</Heading>
+        <GrommetHeading margin={{ top: "none" }}>Heading</GrommetHeading>
         <Paragraph>Paragraph</Paragraph>
         <Text>Text</Text>
         <Anchor href="">Anchor</Anchor>
@@ -313,3 +313,44 @@ storiesOf("Components Gallery", module).add("All", () => <Components />)
     <Subjects/>
   </Provider>
 )
+.add("Edit Button", () =>
+  <Provider>
+    <Normalize/>
+    <GlobalStyle/>
+    <Box direction="row-responsive" justify="center">
+      <StyledContent alignSelf="center" width="large" style={{opacity: 1}}>
+        <Heading level={1} icon="newspaper">Example Content</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+
+        <Heading level={2}>Zusammenfassung</Heading>
+        <p>Ein Kreis beschreibt die Menge aller Punkte, die denselben Abstand rr zum Mittelpunkt MM besitzen. In diesem Artikel lernst du die folgenden Formeln kennen:</p>
+        <p>Den <Anchor href="/36162">Umfang</Anchor> erhältst du durch Abrollen des <Anchor href="/36162">Kreises</Anchor>
+        und messen der abgerollten <Anchor href="https://de.serlo.org/mathe/geometrie/grundbegriffe/geraden-strecken-halbgeraden/strecke">Strecke</Anchor>.
+        Auf diese Weise kannst du die <Anchor href="/2107">Kreiszahl</Anchor> <b>π</b> definieren.</p>
+        <p>In der Abbildung rechts siehst du, wie ein Kreis mit <Anchor href="/36162">Durchmesser</Anchor>
+        <b>d=1</b> abgerollt wird.</p><p>Sein Umfang beträgt 
+        <b>π</b>, also etwa <b>3,14</b></p><p>Für den Umfang findest du so den folgenden Zusammenhang: </p><p>
+        <b>U=2⋅r⋅π=d⋅π</b></p>
+        
+      </StyledContent>
+    </Box>
+    <EditBox />
+    
+  </Provider>
+)
+
+const StyledContent = styled(Box) `
+  p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+`

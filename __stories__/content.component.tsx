@@ -9,6 +9,7 @@ import { Anchor, Box, Image } from "grommet";
 import { Heading } from '../src/heading.component'
 import { List } from '../src/list.component'
 import { Table } from '../src/table.component'
+import { EditButton } from '../src/editbutton.component'
 
 import LicenseInfo from '../src/licenseinfo.component'
 
@@ -196,7 +197,6 @@ storiesOf("Content Components", module)
     </StyledContent>
   </Provider>
 )
-
 
 const StyledContent = styled(Box) `
   p{

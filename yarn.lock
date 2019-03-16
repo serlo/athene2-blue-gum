@@ -6108,6 +6108,11 @@ react-treebeard@^3.1.0:
     shallowequal "^1.1.0"
     velocity-react "^1.4.1"
 
+react-use-scroll-position@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-use-scroll-position/-/react-use-scroll-position-1.0.0.tgz#6243b053ae0b0a94cf72263932018e1694cbc010"
+  integrity sha512-nidZCCxYMCM+tKD+zC7qvW8c1ihEKrv31hrF89Ppuh7vPahDBXLgHtlEjmCm/lWc6nquProQ5rJC2iHSRftB1g==
+
 react@^16.6.3, react@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.7.0.tgz#b674ec396b0a5715873b350446f7ea0802ab6381"

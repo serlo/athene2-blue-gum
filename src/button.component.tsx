@@ -10,7 +10,7 @@ import { getColor, getDefaultTransition } from './provider.component'
 export interface ButtonProps extends grommetButtonProps{
   title?: string,
   iconName: string,
-  size?: (1.0 | 1.1 |1.2 | 1.33 | 1.5 | 1.75 | 2.0 | 2.33 | 2.5 | 3.0 ),
+  size?: (0.8 | 1.0 | 1.1 |1.2 | 1.33 | 1.5 | 1.75 | 2.0 | 2.33 | 2.5 | 3.0 ),
   active?: boolean,
   fontColor?: string,
   iconColor?: string,
