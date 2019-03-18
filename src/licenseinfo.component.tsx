@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { lighten } from 'polished'
 import { Anchor } from 'grommet'
 import SVG from 'react-inlinesvg'
-const licenseSymbols = require('./img/license_ccbysa.svg')
 
 interface LicenseInfoProps {
   title: string
@@ -67,4 +66,4 @@ const IconAnchor = styled(Anchor)(props => {
       height: auto;
     }
   `
-})
+}) as typeof Anchor

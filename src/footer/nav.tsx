@@ -2,17 +2,24 @@ import * as React from 'react'
 import { FontAwesomeIcon } from '../fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
-import { getColor, getBreakpoint } from '../provider.component';
+import { getColor, getBreakpoint } from '../provider.component'
 import styled from 'styled-components'
 
-type Child = { title: string; url: string; icon?: IconProp }
-export type NavEntry = { title: string; class?: string; children: Child[] }
+export interface NavChild {
+  title: string
+  url: string
+  icon?: IconProp
+}
+export interface NavEntry {
+  title: string
+  children: NavChild[]
+}
 
 export interface NavProps {
   links: NavEntry[]
 }
 
-export function Nav( props : NavProps) {
+export function Nav(props: NavProps) {
   return (
     <FooterNavGrid fluid>
       <nav>
@@ -43,11 +50,10 @@ export function Nav( props : NavProps) {
   )
 }
 
-
 const FooterNavGrid = styled(Grid)`
   padding-top: 3rem;
   padding-bottom: 3rem;
-  background-color: ${getColor('footerBackground')} ;
+  background-color: ${getColor('footerBackground')};
 `
 
 const CategoryHeader = styled.h3`
@@ -95,10 +101,10 @@ const NavList = styled.ul`
       content: '';
     }
   }
-  &.connect li:after {
+  /* li:after {
     content: ' ';
     margin-left: 0.4rem;
-  }
+  } */
 
   @media (min-width: ${getBreakpoint('lg')}) {
     li {
