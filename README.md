@@ -14,7 +14,7 @@ The idea is to develop the html+css parts with quicker tools and then move this 
 
 ```
 # 1 Clone this repo
-git clone https://github.com/elbotho/athene2-blue-gum.git
+git clone https://github.com/serlo/athene2-blue-gum.git
 
 # 2 Navigate into the repo directory
 cd athene2-blue-gum
