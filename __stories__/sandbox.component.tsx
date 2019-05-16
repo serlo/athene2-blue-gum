@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Header } from '../src/header'
 import { SearchInput } from '../src/header/searchinput'
 import { Footer } from '../src/footer'
+import { Nav } from '../src/footer/nav'
 import { MobileMenuButton } from '../src/header/mobilemenubutton'
 
 // import { Icon } from '../src/icon.component'
@@ -74,6 +75,17 @@ storiesOf('Footer', module).add('complete', () => {
       <Normalize />
       <GlobalStyle />
       <Footer navEntries={footerNavEntries} slogan={serloSlogan} />
+    </Provider>
+  )
+}).
+add('only nav', ()=>{
+  return(
+    <Provider>
+      <Normalize />
+      <GlobalStyle />
+      <footer>
+        <Nav navEntries={footerNavEntries} />
+      </footer>
     </Provider>
   )
 })

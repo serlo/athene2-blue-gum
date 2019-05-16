@@ -20,7 +20,7 @@ const icons: iconObject  = {
 
 type AllowedIcons = keyof (typeof icons)
 
-type Props = Exclude<"icon", FontAwesomeProps> & { icon: AllowedIcons }
+type Props = Exclude<"icon", FontAwesomeProps> & { icon: AllowedIcons, className: string, size: string }
 
 // interface Props extends Exclude<"icon", FontAwesomeProps>{
 //   icon: AllowedIcons
@@ -30,6 +30,6 @@ const getIcon = (name: string) => icons[name]
 
 export function Icon(props: Props) {
   return (
-    <FontAwesomeIcon {...props} icon={getIcon(props.icon)} />
+    <FontAwesomeIcon className={props.className} size={props.size} icon={getIcon(props.icon)} />
   )
 }

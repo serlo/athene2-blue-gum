@@ -10,53 +10,55 @@ export interface Props {
 export default class Logo extends React.Component<Props> {
   public render() {
     return (
-      <LogoWrap>
-        <h1>
-          <a className="brand" href=".">
-            <img alt="Serlo" src={logoSrc} />
-          </a>
-        </h1>
+      <React.Fragment>
+        <Header>
+          <Link className="brand" href=".">
+            <Image alt="Serlo" src={logoSrc} />
+          </Link>
+        </Header>
         { !this.props.subline ? null :
         <h2>
-          <a className="subline icon" href="#subject">
+          <SublineLink className="subline icon" href="#subject">
             {this.props.subline}
-          </a>
+          </SublineLink>
         </h2>
         }
-      </LogoWrap>
+      </React.Fragment>
     )
   }
 }
 
-const LogoWrap = styled.div`
-
-  a {
-    border: 0 !important;
-    padding-bottom: 0
-  }
-
-  h1 {
+const Header = styled.h1`
     padding-bottom: 0;
-    margin-bottom: 0.2rem;
-  }
+    margin-bottom: -0.85rem;
 
-  img{
-    width: 9rem;
-    padding: 0.8rem 0 0 0.8rem;
-  }
+`
 
-  h2 {
-    a.subline {
+const Link = styled.a`
+    border: 0 !important;
+    padding-bottom: 0;
+`
+const SublineLink = styled(Link)`
       color: rgba(255, 255, 255, 0.4);
-      font-weight: 300;
+      font-weight: 500;
       font-size: 1.66rem;
-      padding-left: 3.5rem;
+      padding-left: 0.5rem;
+      display: block;
+      line-height: 1.4;
       letter-spacing: 0.04rem;
       text-decoration: none;
 
       &:hover {
         color: #fff;
       }
-    }
-  }
+
+      @media screen and (min-width: 35rem) {
+        padding-left: 3.5rem;
+      }
+`
+
+
+const Image = styled.img`
+    width: 9rem;
+    padding: 0.8rem 0 0 0.8rem;
 `

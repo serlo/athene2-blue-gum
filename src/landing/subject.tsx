@@ -1,12 +1,16 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Col } from 'react-styled-flexboxgrid'
-import { lighten } from 'polished'
+import { Icon } from '../icon.component'
+import {
+  getColor,
+  getBreakpoint,
+  lightenColor,
+  getDefaultTransition
+} from '../provider.component'
+
 
 import SVG from 'react-inlinesvg';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 export interface SubjectProps {
   url: string,
@@ -17,11 +21,11 @@ export interface SubjectProps {
 export default class Subject extends React.Component<SubjectProps> {
   public render() {
     return (
-      <SubjectCol xs={12} sm={12} md={6} lg={3} >
+      <SubjectCol xs={12} sm={6} lg={3} >
         <a href={this.props.url}>
           <SubjectSVG src={this.props.iconSrc}/>
           <Header>{this.props.text}
-            <SmallIcon icon={faArrowCircleRight}/>
+            <SmallIcon icon="faArrowCircleRight"/>
           </Header>
         </a>
       </SubjectCol>
@@ -30,80 +34,106 @@ export default class Subject extends React.Component<SubjectProps> {
 }
 
 const SubjectCol = styled(Col) `
-  border-bottom: 1px solid ${props => props.theme.global.colors.lightblue};
+  border-bottom: 1px solid ${props => getColor('lightblue')};
+  padding-left:0.5rem;
 
-  @media (min-width: ${props => props.theme.md}) {
+  &:hover {
+    background-color: ${props => lightenColor('brand',0.5)};
+    cursor: pointer;
+  }
+
+  @media (min-width: ${props => getBreakpoint('sm')}) {
     border-bottom: 0;
+    border-radius: 3rem;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  @media (min-width: ${props => getBreakpoint('lg')}) {
     text-align: center;
+  }
+
+
+  > a {
+    display: block;
   }
 `
 
 const Header = styled.h2 `
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 5.8rem;
   display: inline-block;
   padding: .1rem;
   vertical-align: top;
-  margin-top: 2.5rem;
-  color: ${props => props.theme.global.colors.brand};
+  margin-top: 1rem;
+  color: ${props => getColor('brand')};
 
-  ${SubjectCol}:hover & {
-    background-color: ${props => lighten(0.5,props.theme.global.colors.brand)};
-  }
-  
-  @media (min-width: ${props => props.theme.md}) {
+  @media (min-width: ${props => getBreakpoint('sm')}) {
     font-size: 1.5rem;
     line-height: 1.45;
     display: inline-block;
     width: auto;
-    padding: .3rem .6rem;
     border-radius: .4em;
-    margin-top: 0;
+    margin-top: 2.5rem;
     transition: color .4s ease, background-color .4s ease;
+
+    ${SubjectCol}:hover & {
+      background-color: ${props => lightenColor('brand',0.5)};
+    }
   }
+
+  @media (min-width: ${props => getBreakpoint('lg')}) {
+    padding: .3rem .6rem;
+    margin-top: 0;
+  }
+
 `
 
-const SmallIcon = styled(FontAwesomeIcon) `
+const SmallIcon = styled(Icon) `
   margin-left: .4rem;
   vertical-align: middle;
 
-  @media (min-width: ${props => props.theme.md}) {
+  @media (min-width: ${props => getBreakpoint('sm')}) {
     display: none;
   }
 `
 
 const SubjectSVG = styled(SVG) `
-  width: 25vw;
-  height: 6.2rem;
 
 	.blue {
-		fill: ${props => props.theme.global.colors.helperblue};
-		transition: ${props => props.theme.global.defaultTransition};
+		fill: ${props => getColor('helperblue')};
+		transition: ${props => getDefaultTransition()};
 	}
 
 	.green {
 		fill: #becd2b;
-    transition: ${props => props.theme.global.defaultTransition};
+    transition: ${props => getDefaultTransition()};
   }
 
-  @media (min-width: ${props => props.theme.md}) {
+  @media (min-width: ${props => getBreakpoint('sm')}) {
     .blue {
-      fill: ${props => lighten(0.07,props.theme.global.colors.lighterblue)};
+      fill: ${props => lightenColor('lighterblue',0.07)};
     }
   }
-   
-  @media (min-width: ${props => props.theme.lg}) {
+
+  @media (min-width: ${props => getBreakpoint('lg')}) {
     display: block;
     margin: 0 auto;
     width: auto;
     height: auto;
-  }   
+  }
 
   /* animations */
   svg {
+    width: 6rem;
+    height: 6rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
     transition: transform .4s cubic-bezier(0.175, 0.885, 0.320, 1.275);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    animation-play-state: paused; 
+    animation-play-state: paused;
     &.math { transition-duration: .6s; }
     &.sus path.water{
       transform: scale(0) translateY(-30px);
@@ -119,8 +149,8 @@ const SubjectSVG = styled(SVG) `
     &.sus { transform: rotate(-30deg); }
     &.sus .blue.water{ transform: scale(1.08); }
 
-    @media (min-width: ${props => props.theme.md}) {
-      .blue { fill: ${props => props.theme.global.colors.helperblue}; }
+    @media (min-width: ${props => getBreakpoint('sm')}) {
+      .blue { fill: ${props => getColor('helperblue')}; }
       .green { fill: #becd2b; }
     }
   }

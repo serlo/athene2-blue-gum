@@ -21,6 +21,10 @@ export function About(props: AboutProps) {
           <Logo subline={props.slogan} />
           <TopButton
             href="#top"
+            onClick={e => {
+              e.preventDefault()
+              document.documentElement.scrollTop = 0
+            }}
             title="Mit Serlo ganz nach oben ;)"
             iconName="faChevronUp"
             backgroundColor="transparent"
@@ -96,7 +100,7 @@ const TopButton = styled(Button)`
   right: 1.5rem;
 
   > svg {
-    vertical-align: -1em;
+    vertical-align: -1.6em;
   }
 ` as typeof Button
 

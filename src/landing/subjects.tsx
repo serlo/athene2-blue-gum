@@ -31,6 +31,5 @@ export default class Subjects extends React.Component {
 }
 
 const SubjectsGrid = styled(Grid) `
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  padding: 0 1rem;
 `

@@ -7,15 +7,8 @@ The idea is to develop the html+css parts with quicker tools and then move this 
 ## Demo
 
 - https://athene2-blue-gum.netlify.com
-- (not up to date) https://elbotho.github.io/athene2-blue-gum/
 
 ---
-
-## Based on:
-
-- [Bootstrap](https://getbootstrap.com/) (v4.1.0) and
-- [Sass](http://sass-lang.com/)
-- React, Storybook, yarn …
 
 ## Quick Start
 
@@ -32,7 +25,3 @@ yarn
 # 4 Get started
 yarn start
 ```
-
-## Overwriting Bootstrap sass variables
-
-You can overwrite specific bootstrap sass variables by uncommenting lines in assets/css/1-frameworks/bootstrap/bootstrap-user-variables.scss

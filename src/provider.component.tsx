@@ -212,7 +212,7 @@ html  {
     font-weight: 400;
     line-height: 1.35;
     letter-spacing:-0.01em;
-    -webkit-text-stroke: .6px;
+    // -webkit-text-stroke: .6px;
   }
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 700;
