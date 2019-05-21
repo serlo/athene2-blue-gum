@@ -41,11 +41,22 @@ export default function Menu({ links, className }: Props) {
 
 interface EntryProps extends MenuEntry {
   key: string
+  isChild?: boolean
 }
 
-function Entry({ url, title, key, icon, children, highlight }: EntryProps) {
+function Entry({
+  url,
+  title,
+  key,
+  icon,
+  children,
+  highlight,
+  isChild
+}: EntryProps) {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Li>
+    <Li key={key} isChild={isChild}>
       <Link
         label={
           !children ? (
@@ -59,19 +70,21 @@ function Entry({ url, title, key, icon, children, highlight }: EntryProps) {
         }
         size={1}
         href={url}
-        key={key}
         iconName={highlight && icon ? icon : undefined}
         active={highlight ? true : false}
         backgroundColor={highlight ? getColor('brandGreen') : 'transparent'}
-        fontColor={highlight ? '#fff' : getColor('brand')}
+        fontColor={highlight ? '#fff' : getColor('lightblue')}
         activeBackgroundColor={highlight ? getColor('brand') : 'transparent'}
-        activeFontColor="#fff"
-        iconColor={highlight ? '#fff' : getColor('lightblue')}
+        activeFontColor={highlight ? '#fff' : getColor('darkGray')}
+        iconColor={highlight ? '#fff' : getColor('brand')}
         activeIconColor="#fff"
         as={!children ? Button : DropButton}
         a11yTitle={children ? 'Untermenü ' + title + ' öffnen' : title}
         dropContent={children ? <Submenu entries={children} /> : undefined}
         dropAlign={children ? { top: 'bottom', right: 'right' } : undefined}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+        open={open}
       />
     </Li>
   )
@@ -79,7 +92,7 @@ function Entry({ url, title, key, icon, children, highlight }: EntryProps) {
 
 function Submenu({ entries }: { entries: MenuEntry[] }) {
   return (
-    <ul>
+    <SubmenuList>
       {entries.map((entry, index) => {
         if (!entry.title) return null //seperator
         return (
@@ -88,10 +101,11 @@ function Submenu({ entries }: { entries: MenuEntry[] }) {
             url={entry.url}
             icon={entry.icon}
             title={entry.title}
+            isChild={true}
           />
         )
       })}
-    </ul>
+    </SubmenuList>
   )
 }
 
@@ -106,11 +120,36 @@ const List = styled.ul`
   }
 `
 
+const SubmenuList = styled.ul`
+  background-color: ${'#fff'};
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  margin: 0;
+  text-align: right;
+`
+
 const Li = styled.li`
   display: inline-block;
+  ${props =>
+    props.isChild
+      ? `
+      text-align:right;
+    display: block;
+
+    >div {
+      display: block;
+    }
+   `
+      : null}
 `
 
 const Link = styled(Button)`
-  margin-top: 0.55rem;
   margin-right: 0.6rem;
+  font-weight: bold;
+  text-align: right;
+  ${props =>
+    props.open
+      ? `
+    color: ${getColor('darkGray')};
+   `
+      : null}
 `

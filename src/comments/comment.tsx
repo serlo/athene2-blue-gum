@@ -29,26 +29,27 @@ export function Comment({
           gridArea="content"
           pad={{
             vertical: 'xsmall',
-            left: leaf ? '.7rem' : 'none'        
+            left: leaf ? '.7rem' : 'none'
           }}
           margin={{ top: leaf ? 'medium' : 'none', bottom: 'small' }}
           border={{
             side: 'left',
             color: leaf ? '#BFDEEF' : 'transparent',
-            size: 'large'
+            size: leaf ? 'large' : 'xsmall'
           }}
         >
-          {entity !== undefined ?  null
-          //(
-            // <Text margin={{ bottom: 'small' }}>
-            //   Zu{' '}
-            //   <Anchor href={`https://serlo.org/${entity.id}`}>
-            //     {entity.label}
-            //   </Anchor>
-            //   :
-            // </Text>
-          //)
-          : null}
+          {entity !== undefined
+            ? null
+            : //(
+              // <Text margin={{ bottom: 'small' }}>
+              //   Zu{' '}
+              //   <Anchor href={`https://serlo.org/${entity.id}`}>
+              //     {entity.label}
+              //   </Anchor>
+              //   :
+              // </Text>
+              //)
+              null}
 
           <MetaBar author={author} timestamp={timestamp} leaf={leaf} />
           {body}
@@ -65,7 +66,12 @@ export function Comment({
               })
             : null}
           {leaf || entity === undefined ? null : (
-            <CommentForm placeholder="Deine Antwort …" reply parent_id={id} onSendComment={onSendComment} />
+            <CommentForm
+              placeholder="Deine Antwort …"
+              reply
+              parent_id={id}
+              onSendComment={onSendComment}
+            />
           )}
         </Box>
       </Grid>

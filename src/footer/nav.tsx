@@ -47,8 +47,7 @@ export function Nav(props: NavProps) {
 }
 
 const FooterNavGrid = styled(Grid)`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 2rem 1.5rem 4rem !important;
   background-color: ${getColor('lightBackground')};
 `
 
@@ -92,7 +91,7 @@ const NavLink = styled.a`
   text-decoration: none;
 
   &:hover {
-    color: #444;
+    color: ${getColor('darkGray')};
     border-bottom: 2px solid #ccc;
   }
 `

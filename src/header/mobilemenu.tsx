@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box } from 'grommet'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { Icon } from '../icon.component'
 import {
   getColor,
@@ -24,42 +24,42 @@ export interface Props {
  -> this way we can make the header 100% VP-Height and scroll inside this box. */
 
 export default function MobileMenu({ overlayTarget, links, className }: Props) {
-  const [open, toggleOpen] = useToggle(false)
+  const [open, setOpen] = React.useState(false)
+  const [top, setTop] = React.useState(0)
+
+  function handleOnClick() {
+    setOpen(!open)
+    setTop(overlayTarget.offsetTop)
+    console.log(top)
+  }
 
   return (
     <div className={className}>
+      {open ? <GlobalStyle /> : null}
       <Button
-        onClick={toggleOpen}
+        onClick={handleOnClick}
         open={open}
-        dropContent={<Overlay links={links} onClose={toggleOpen} />}
-        dropTarget={overlayTarget}
+        // dropContent={<Overlay links={links} onClose={toggleOpen} />}
+        // dropTarget={overlayTarget}
       />
+      {open ? <Overlay top={top} links={links} /> : null}
     </div>
   )
-}
-
-function useToggle(initialValue: boolean = false): [boolean, () => void] {
-  const [value, setValue] = React.useState(initialValue)
-
-  return [
-    value,
-    () => {
-      setValue(!value)
-    }
-  ]
 }
 
 function Overlay({
   links,
   onClose,
-  className
+  className,
+  top
 }: {
   links: Entry[]
   onClose: () => void
   className?: string
+  top: number
 }) {
   return (
-    <OverlayBox className={className}>
+    <OverlayBox top={top} className={className}>
       <List>
         {links.map((header, index) => {
           let children = []
@@ -204,11 +204,35 @@ const IconWrapper = styled(Box)`
 ` as typeof Box
 
 const OverlayBox = styled(Box)`
+  background-color: rgba(255, 255, 255, 0.5);
+
+  position: absolute;
+  top: ${props => props.top + 'px'};
+  width: 100%;
+
   @media screen and (min-width: ${getBreakpoint('sm')}) {
     display: none !important;
   }
+
   /* height: calc(100vh - 11.5rem);
     // maxHeight: calc(100vh - 11.5rem);
     // overflow: auto; */
   /* overflow: visible; */
-` as typeof Box
+`
+
+const GlobalStyle = createGlobalStyle`
+
+  header {
+    position: fixed !important;
+    overflow: scroll;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index:99;
+  }
+
+  body {
+    overflow: hidden;
+  }
+`

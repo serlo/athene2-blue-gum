@@ -18,7 +18,7 @@ export function About(props: AboutProps) {
     <AboutGrid fluid>
       <AboutWrap>
         <ColBrand xs={12} md={8}>
-          <Logo subline={props.slogan} />
+          <Logo subline={props.slogan} dark />
           <TopButton
             href="#top"
             onClick={e => {
@@ -115,7 +115,7 @@ const RowSummary = styled(Row)`
   padding-top: 2.5rem;
 
   @media (max-width: ${props => props.theme.md}) {
-    padding-left: 3rem;
+    padding-left: 0.5rem;
   }
 `
 
@@ -137,4 +137,5 @@ const RowSupport = styled(Row)`
 
 const AboutWrap = styled(Row)`
   margin-right: 0;
+  margin-left: 0;
 `

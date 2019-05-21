@@ -40,14 +40,13 @@ export function Header() {
       <TopNavWrap>
         <StyledMobileMenu links={topNavLinks} overlayTarget={overlayTarget} />
 
-        <StyledMenu links={topNavLinks} />
-
-        <Box pad="medium" background="brand">
+        <Box pad="medium">
+          <StyledMenu links={topNavLinks} />
           <Logo subline="Super good Serlo Slogan" />
         </Box>
 
         <SearchInput />
-        <div id="test" ref={overlayTargetRef} />
+        <div ref={overlayTargetRef} />
       </TopNavWrap>
     </React.Fragment>
   )
@@ -68,15 +67,13 @@ function useOverlayTarget<E extends HTMLElement>(): [
   return [overlayTarget, refCallback]
 }
 
-const TopNavWrap = styled.div(props => {
-  return {
-    backgroundColor: getColor('brand'),
-    padding: '0',
-    height: '11.5rem', // TODO: ?? height: $navbar-height
-    alignItems: 'left',
-    position: 'static'
-  }
-})
+const TopNavWrap = styled.header`
+  /* background-color: ${getColor('bluewhite')}; */
+  background-color: ${getColor('bluewhite')};
+  padding: 0;
+  align-items: start;
+  position: static;
+`
 
 const StyledMobileMenu = styled(MobileMenu)`
   display: block;
@@ -89,8 +86,11 @@ const StyledMenu = styled(Menu)`
   display: none;
   @media screen and (min-width: ${getBreakpoint('sm')}) {
     display: block;
-    background-color: ${getColor('lighterblue')};
-    height: 3rem;
+    /* background-color: ${getColor('lighterblue')}; */
+    /* height: 3rem; */
     color: ${getColor('brand')};
+    margin-bottom: -2rem;
+    position: relative;
+    z-index: 5;
   }
 `

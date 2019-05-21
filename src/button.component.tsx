@@ -98,11 +98,18 @@ const StyledButton = styled(GrommetButton)<ButtonProps>`
   background-color: ${props =>
     props.active ? props.activeBackgroundColor : props.backgroundColor};
 
-  &:hover {
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
     color: ${props =>
       !props.active ? props.activeFontColor : props.fontColor};
     background-color: ${props =>
       !props.active ? props.activeBackgroundColor : props.backgroundColor};
+  }
+
+  &:focus {
+    box-shadow: 0 0 4px 0 ${getColor('brand')};
   }
 
   ${props =>

@@ -7,35 +7,50 @@ import { faComments, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import CommentForm from './commentform'
 import { Comment } from './comment'
 
+// @ts-ignore
+import LazyLoad from 'react-lazy-load'
+
 export function Comments({ data, onSendComment }: CommentsProps) {
-  console.log(data);
+  console.log(data)
   return (
     <React.Fragment>
-      <CommentBox pad="medium" >
-        <Heading level="2" icon={faQuestionCircle}>Hast du eine Frage?</Heading>
-        <CommentForm placeholder="Deine Frage oder Anregung …" parent_id="" onSendComment={onSendComment} />
-        
-        <Heading level="2" icon={faComments}>99 Kommentare</Heading> 
+      <CommentBox pad="large" width="large" alignSelf="center">
+        <Heading level="2" icon={faQuestionCircle}>
+          Hast du eine Frage?
+        </Heading>
+        <CommentForm
+          placeholder="Deine Frage oder Anregung …"
+          parent_id=""
+          onSendComment={onSendComment}
+        />
+
+        <Heading level="2" icon={faComments}>
+          99 Kommentare
+        </Heading>
         {/* todo: calculate amount of comments (and children) or get from server */}
-        
-        {data
-          ? data.map(comment => {
-              return (
-                <Comment
-                  key={comment.id}
-                  {...comment}
-                  onSendComment={onSendComment}
-                />
-              )
-            })
-          : null}
+
+        <LazyLoad offset={200} once placeholder={<div>Loading…</div>}>
+          <div>
+            {data
+              ? data.map(comment => {
+                  return (
+                    <Comment
+                      key={comment.id}
+                      {...comment}
+                      onSendComment={onSendComment}
+                    />
+                  )
+                })
+              : null}
+          </div>
+        </LazyLoad>
       </CommentBox>
     </React.Fragment>
   )
 }
 
-const CommentBox = styled(Box) `
-  max-width: 40rem;
+const CommentBox = styled(Box)`
+  /* max-width: 40rem; */
 `
 
 interface CommentsProps {
