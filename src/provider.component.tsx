@@ -82,7 +82,7 @@ const theme = {
       //'status-ok': '#00C781',
       //'status-unknown': '#CCCCCC',
       //'status-disabled': '#CCCCCC',
-      footerBackground: '#f4fbff',
+      lightBackground: '#f4fbff',
       lightblue: '#52a6d0',
       lighterblue: '#91c5e4',
       bluewhite: '#f0f7fb',

@@ -28,8 +28,7 @@ export function Nav(props: NavProps) {
               return (
                 <NavLi key={index + childindex}>
                   <NavLink href={link.url}>
-                    {link.icon && <Icon icon={link.icon} />}{' '}
-                    {link.title}
+                    {link.icon && <Icon icon={link.icon} />} {link.title}
                   </NavLink>
                 </NavLi>
               )
@@ -50,7 +49,7 @@ export function Nav(props: NavProps) {
 const FooterNavGrid = styled(Grid)`
   padding-top: 3rem;
   padding-bottom: 3rem;
-  background-color: ${getColor('footerBackground')};
+  background-color: ${getColor('lightBackground')};
 `
 
 const CategoryHeader = styled.h3`
