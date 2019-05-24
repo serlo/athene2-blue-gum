@@ -438,27 +438,32 @@ storiesOf('Layout', module).add('Macro Layout', () => (
   <Provider>
     <Normalize />
     <GlobalStyle />
-    <MacroLayout>
-      <div layout="main" style={{ backgroundColor: 'yellow', minHeight: 400 }}>
-        <h1 style={{ margin: 0, paddingTop: '0.5rem' }}>
-          Das hier ist der Hauptinhalt
-        </h1>
-        <p>Bla bla bla</p>
-      </div>
-      <div
-        layout="right-col"
-        style={{ backgroundColor: 'grey', minHeight: 400 }}
-      >
-        <h2 style={{ margin: 0 }}>Zusätzliche Spalte</h2>
-        <p>Bla bla bla</p>
-      </div>
-      <div
-        layout="left-col"
-        style={{ backgroundColor: 'lightblue', minHeight: 400 }}
-      >
-        <h3 style={{ margin: 0 }}>Navigationsspalte</h3>
-        <p>Bla bla bla</p>
-      </div>
-    </MacroLayout>
+    <MacroLayout
+      main={
+        <div
+          style={{
+            backgroundColor: 'yellow',
+            minHeight: 400
+          }}
+        >
+          <h1 style={{ margin: 0, paddingTop: '0.5rem' }}>
+            Das hier ist der Hauptinhalt
+          </h1>
+          <p>Bla bla bla</p>
+        </div>
+      }
+      aside={
+        <div style={{ backgroundColor: 'grey', minHeight: 400 }}>
+          <h2 style={{ margin: 0 }}>Zusätzliche Spalte</h2>
+          <p>Bla bla bla</p>
+        </div>
+      }
+      nav={
+        <div style={{ backgroundColor: 'lightblue', minHeight: 400 }}>
+          <h3 style={{ margin: 0 }}>Navigationsspalte</h3>
+          <p>Bla bla bla</p>
+        </div>
+      }
+    />
   </Provider>
 ))
