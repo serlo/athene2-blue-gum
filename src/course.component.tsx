@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { getColor, lightenColor } from './provider.component'
 import { Heading } from './heading.component'
-import useWindowSize from '@rehooks/window-size'
 import styled from 'styled-components'
 import {
   faGraduationCap,
@@ -10,15 +9,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Box, Grid } from 'grommet'
 import { Button } from './button.component'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Breakpoint from 'react-socks'
+
+//TODO: only use component for navigation and handly layout via layout component
 
 export function Course(props) {
   // Layoutstrategie: Auf kleinen Bildschirmen Anzeige oberhalb
   // Auf größeren Bildschirmen links am Rand
   let [isExpanded, setExpanded] = React.useState(false)
-  if (useWindowSize().innerWidth < 840) {
-    return (
-      <React.Fragment>
+
+  return (
+    <React.Fragment>
+      <Breakpoint sm down>
         <CollapsedCourseOverview>
           <Box margin="large" justify="center">
             <OverviewTitle {...props} />
@@ -43,29 +45,28 @@ export function Course(props) {
             <PageTitle {...props} /> {props.children} <NextButton />
           </CourseContent>
         </Box>
-      </React.Fragment>
-    )
-  } else {
-    return (
-      <Grid columns={['250px', '2/4']}>
-        <Box margin="small">
-          <CollapsedCourseOverview>
-            <OverviewTitle {...props} />
-            <Box margin="small" justify="start">
-              <CourseList {...props} />
-            </Box>
-          </CollapsedCourseOverview>
-        </Box>
-        <Box margin="small">
-          <div>
-            <PageTitle {...props} />
-            {props.children}
-            <NextButton />
-          </div>
-        </Box>
-      </Grid>
-    )
-  }
+      </Breakpoint>
+      <Breakpoint sm up>
+        <Grid columns={['250px', '2/4']}>
+          <Box margin="small">
+            <CollapsedCourseOverview>
+              <OverviewTitle {...props} />
+              <Box margin="small" justify="start">
+                <CourseList {...props} />
+              </Box>
+            </CollapsedCourseOverview>
+          </Box>
+          <Box margin="small">
+            <div>
+              <PageTitle {...props} />
+              {props.children}
+              <NextButton />
+            </div>
+          </Box>
+        </Grid>
+      </Breakpoint>
+    </React.Fragment>
+  )
 }
 
 const PageTitle = props => {

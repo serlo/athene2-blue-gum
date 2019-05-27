@@ -9,7 +9,6 @@ import {
   getBreakpoint
 } from './provider.component'
 import { useScrollYPosition } from 'react-use-scroll-position'
-import useWindowSize from '@rehooks/window-size'
 
 export function EditBox(props) {
   const scrollY = useScrollYPosition()
