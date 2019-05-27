@@ -25,6 +25,7 @@
     "react-collapsible": "^2.6.0",
     "react-inlinesvg": "^0.8.4",
     "react-lazy-load": "^3.0.13",
+    "react-socks": "^1.0.1",
     "react-styled-flexboxgrid": "^3.0.0",
     "react-textarea-autosize": "^7.1.0",
     "react-use-scroll-position": "^1.0.0",

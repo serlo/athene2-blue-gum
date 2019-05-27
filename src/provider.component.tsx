@@ -2,11 +2,17 @@ import { Grommet } from 'grommet'
 import * as React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { lighten, transparentize } from 'polished'
+// @ts-ignore
+import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks'
 
 import './fonts/fonts.css'
 
 export function Provider({ children }: ProviderProps) {
-  return <Grommet theme={theme}>{children}</Grommet>
+  return (
+    <BreakpointProvider>
+      <Grommet theme={theme}>{children}</Grommet>
+    </BreakpointProvider>
+  )
 }
 
 /* full grommet theme output for reference: https://github.com/serlo/athene2-blue-gum/wiki/Grommet-default-theme-export */
@@ -18,8 +24,8 @@ const theme = {
   lg: '75rem',
   flexboxgrid: {
     gridSize: 12, // columns
-    gutterWidth: 2, // rem
-    outerMargin: 3, // rem
+    gutterWidth: 0, // rem
+    outerMargin: 0, // rem
     mediaQuery: 'only screen',
     container: {
       sm: 46, // rem
@@ -200,6 +206,14 @@ export function getBreakpoint(
 ): string {
   return theme.flexboxgrid.breakpoints[pointName] + 'rem'
 }
+
+setDefaultBreakpoints(
+  ['xs', 'sm', 'md', 'lg'].map(str => {
+    const x = {}
+    x[str] = theme.flexboxgrid.breakpoints[str] * 16
+    return x
+  })
+)
 
 // export function getColor<K extends keyof (typeof theme)["global"]["colors"]>( colorName: K): ((typeof theme)["global"]["colors"][K]) {
 

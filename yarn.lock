@@ -7652,6 +7652,11 @@ react-resize-detector@^3.2.1:
     prop-types "^15.6.2"
     resize-observer-polyfill "^1.5.1"
 
+react-socks@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-socks/-/react-socks-1.0.1.tgz#692477ebabdf5d07811540927c47581fd40f6e6d"
+  integrity sha512-3w88Y504k+vEju/mKoCXKWgXHvpdIcVNgcD3VrmnRD6R5g5x2hQYM1jVwftlJnWeA0YiSG7tHoxqPT5IxYBZXg==
+
 react-styled-flexboxgrid@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-styled-flexboxgrid/-/react-styled-flexboxgrid-3.1.0.tgz#be0d472c0be8f981a4dc3a390a870ce2785644c0"
