@@ -2,24 +2,19 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Button } from './button.component'
 import { getColor, lightenColor } from './provider.component'
-
-import useWindowSize from '@rehooks/window-size'
-
+import Breakpoint from 'react-socks'
 import { Anchor } from 'grommet'
 
 //TODO: Define Props when data structure from athene is clear
 
-export function Breadcrumb(props) {
-  const windowSize = useWindowSize()
-  const showFull = windowSize.innerWidth > 900 ? true : false
-
+export function Breadcrumb({ className, title }) {
   return (
     <div style={{ minHeight: '2rem' }}>
-      {!showFull ? (
+      <Breakpoint sm down>
         <StyledButton
           label={'Übersicht Prozentrechnung'}
-          className={props.className}
-          a11yTitle={props.title}
+          className={className}
+          a11yTitle={title}
           plain
           iconName={'faArrowCircleLeft'}
           size={1}
@@ -27,7 +22,8 @@ export function Breadcrumb(props) {
           fontColor={getColor('brand')}
           activeBackgroundColor={getColor('brand')}
         />
-      ) : (
+      </Breakpoint>
+      <Breakpoint md up>
         <BreadcrumbList>
           <StyledAnchor href="#">Mathematik </StyledAnchor> >&nbsp;
           <StyledAnchor href="#">Terme und Gleichungen</StyledAnchor> >&nbsp;
@@ -36,7 +32,7 @@ export function Breadcrumb(props) {
             Zusammenfassen, Ausmultiplizieren, Faktorisieren
           </StyledAnchor>
         </BreadcrumbList>
-      )}
+      </Breakpoint>
     </div>
   )
 }
