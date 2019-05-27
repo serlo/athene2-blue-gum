@@ -10,6 +10,7 @@ import {
 import { Box, Grid } from 'grommet'
 import { Button } from './button.component'
 import Breakpoint from 'react-socks'
+import { MacroLayout } from './macrolayout.component'
 
 //TODO: only use component for navigation and handly layout via layout component
 
@@ -20,7 +21,7 @@ export function Course(props) {
 
   return (
     <React.Fragment>
-      <Breakpoint sm down>
+      <Breakpoint md down>
         <CollapsedCourseOverview>
           <Box margin="large" justify="center">
             <OverviewTitle {...props} />
@@ -40,30 +41,38 @@ export function Course(props) {
             )}
           </Box>
         </CollapsedCourseOverview>
-        <Box justify="center" margin={{ left: 'large', right: 'large' }}>
-          <CourseContent>
-            <PageTitle {...props} /> {props.children} <NextButton />
-          </CourseContent>
-        </Box>
+        <MacroLayout
+          main={
+            <Box justify="center" margin={{ left: 'large', right: 'large' }}>
+              <CourseContent>
+                <PageTitle {...props} /> {props.children} <NextButton />
+              </CourseContent>
+            </Box>
+          }
+        />
       </Breakpoint>
-      <Breakpoint sm up>
-        <Grid columns={['250px', '2/4']}>
-          <Box margin="small">
-            <CollapsedCourseOverview>
-              <OverviewTitle {...props} />
-              <Box margin="small" justify="start">
-                <CourseList {...props} />
-              </Box>
-            </CollapsedCourseOverview>
-          </Box>
-          <Box margin="small">
-            <div>
-              <PageTitle {...props} />
-              {props.children}
-              <NextButton />
-            </div>
-          </Box>
-        </Grid>
+      <Breakpoint lg up>
+        <MacroLayout
+          nav={
+            <Box margin="small">
+              <CollapsedCourseOverview>
+                <OverviewTitle {...props} />
+                <Box margin="small" justify="start">
+                  <CourseList {...props} />
+                </Box>
+              </CollapsedCourseOverview>
+            </Box>
+          }
+          main={
+            <Box margin="small">
+              <div>
+                <PageTitle {...props} />
+                {props.children}
+                <NextButton />
+              </div>
+            </Box>
+          }
+        />
       </Breakpoint>
     </React.Fragment>
   )
