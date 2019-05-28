@@ -1537,13 +1537,6 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@rehooks/window-size@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@rehooks/window-size/-/window-size-1.0.2.tgz#24583dda021969e7b7166b923b055a47cca4e4b5"
-  integrity sha512-sqPpGM4kivmOFHG+UKqmJbVDBSLOpjMZgqnCNzpzXRZey8R84LL3MaYiE5hulAAosiOh3UJopvJhgUauccaoeA==
-  dependencies:
-    react "^16.7.0-alpha.0"
-
 "@storybook/addon-actions@^5.0.11":
   version "5.0.11"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.0.11.tgz#7ca6d6ce9400b9b97f2699935edade88905767c3"
@@ -7698,7 +7691,7 @@ react-use-scroll-position@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-use-scroll-position/-/react-use-scroll-position-1.0.0.tgz#6243b053ae0b0a94cf72263932018e1694cbc010"
   integrity sha512-nidZCCxYMCM+tKD+zC7qvW8c1ihEKrv31hrF89Ppuh7vPahDBXLgHtlEjmCm/lWc6nquProQ5rJC2iHSRftB1g==
 
-react@^16.7.0-alpha.0, react@^16.8.0:
+react@^16.8.0:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
   integrity sha512-0GQ6gFXfUH7aZcjGVymlPOASTuSjlQL4ZtVC5YKH+3JL6bBLCVO21DknzmaPlI90LN253ojj02nsapy+j7wIjg==

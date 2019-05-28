@@ -45,7 +45,8 @@ export function Course(props) {
           main={
             <Box justify="center" margin={{ left: 'large', right: 'large' }}>
               <CourseContent>
-                <PageTitle {...props} /> {props.children} <NextButton />
+                <PageTitle {...props} /> {props.children}{' '}
+                <NextButton {...props} />
               </CourseContent>
             </Box>
           }
@@ -68,7 +69,7 @@ export function Course(props) {
               <div>
                 <PageTitle {...props} />
                 {props.children}
-                <NextButton />
+                <NextButton {...props} />
               </div>
             </Box>
           }
@@ -95,16 +96,32 @@ const OverviewTitle = props => {
   )
 }
 
-const NextButton = () => {
+const NextButton = props => {
   return (
-    <div style={{ marginTop: '2rem', float: 'right' }}>
-      <Button
-        backgroundColor={getColor('brand')}
-        reverse
-        iconName={'faArrowCircleRight'}
-        label="Weiter"
-      />
-    </div>
+    <>
+      <Breakpoint lg up>
+        <div style={{ marginBottom: '-1.4rem', float: 'right' }}>
+          {props.currentPage < props.pages.length ? (
+            <>
+              <span style={{ color: lightenColor('brand', 0.3) }}>
+                {props.currentPage + 1}.{' '}
+              </span>
+              <span style={{ color: getColor('brand') }}>
+                {props.pages[props.currentPage]}
+              </span>
+            </>
+          ) : null}
+        </div>
+      </Breakpoint>
+      <div style={{ marginTop: '2rem', float: 'right', clear: 'both' }}>
+        <Button
+          backgroundColor={getColor('brand')}
+          reverse
+          iconName={'faArrowCircleRight'}
+          label="Weiter"
+        />
+      </div>
+    </>
   )
 }
 
