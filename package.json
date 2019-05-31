@@ -23,6 +23,7 @@
     "polished": "^2.3.3",
     "prop-types": "^15.7.2",
     "react-collapsible": "^2.6.0",
+    "react-horizontal-scrolling-menu": "^0.6.1",
     "react-inlinesvg": "^0.8.4",
     "react-lazy-load": "^3.0.13",
     "react-styled-flexboxgrid": "^3.0.0",

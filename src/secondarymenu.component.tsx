@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ScrollMenu from './horizontal-scroller/index'
+import ScrollMenu from 'react-horizontal-scrolling-menu'
 import styled from 'styled-components'
 import { Heading } from './heading.component'
 import { getColor } from './provider.component'
@@ -28,6 +28,9 @@ export const SecondaryMenu = props => {
         arrowLeft={<StyledArrowLeft />}
         hideSingleArrow={true}
         transition={0.8}
+        inertiaScrolling={true}
+        inertiaScrollingSlowdown={0.25}
+        useButtonRole={false}
       />
     </StyledScrollMenu>
   )
@@ -45,7 +48,7 @@ const StyledScrollMenu = styled.div`
     color: black;
   }
 
-  ul > li:not(:last-child) {
+  .menu-wrapper--inner > div:not(:last-child) {
     border-right: 1px solid ${getColor('lighterblue')};
   }
 

@@ -7567,6 +7567,11 @@ react-helmet-async@^0.2.0:
     react-fast-compare "^2.0.2"
     shallowequal "^1.0.2"
 
+react-horizontal-scrolling-menu@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-horizontal-scrolling-menu/-/react-horizontal-scrolling-menu-0.6.1.tgz#265624ce2d7c92e10086c448ce55163f9370490f"
+  integrity sha512-lUf96jdZ8Lfr7I9JUYyFO/raUgiR1s02lHnL5U3r0Et1OT/0Qd8lE+DUUNgX8BgmESuYv8Bxj7C9qa1B/Qq/Zg==
+
 react-hotkeys@2.0.0-pre4:
   version "2.0.0-pre4"
   resolved "https://registry.yarnpkg.com/react-hotkeys/-/react-hotkeys-2.0.0-pre4.tgz#a1c248a51bdba4282c36bf3204f80d58abc73333"
