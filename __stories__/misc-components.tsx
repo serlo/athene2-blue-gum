@@ -20,6 +20,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 import { EditBox } from '../src/editbox.component'
 
+import { SecondaryMenu } from '../src/secondarymenu.component'
+
 storiesOf('Misc Components', module)
   .add('Brand', () => (
     <Provider>
@@ -190,6 +192,31 @@ storiesOf('Misc Components', module)
       <Box direction="row-responsive" pad="large" justify="center">
         <Icon icon="faFilter" size="2x" />
         <Icon icon="faYoutube" size="2x" />
+      </Box>
+    </Provider>
+  ))
+
+  .add('Secondary Menu', () => (
+    <Provider>
+      <Normalize />
+      <GlobalStyle />
+      <Box margin="small">
+        <SecondaryMenu
+          entries={[
+            'Über Serlo',
+            'Lernen und Qualität',
+            'Wirkung',
+            'Transparenz',
+            'Team',
+            'Partner und Förderer',
+            'Die Geschichte von Serlo',
+            'Testimonials',
+            'Presse',
+            'Trägerverein',
+            'Spenden'
+          ]}
+          selectedIndex={4}
+        />
       </Box>
     </Provider>
   ))
