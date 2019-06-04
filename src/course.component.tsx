@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { getColor, lightenColor } from './provider.component'
 import { Heading } from './heading.component'
-import useWindowSize from '@rehooks/window-size'
 import styled from 'styled-components'
 import {
   faGraduationCap,
@@ -10,15 +9,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Box, Grid } from 'grommet'
 import { Button } from './button.component'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Breakpoint from 'react-socks'
+import { MacroLayout } from './macrolayout.component'
+
+//TODO: only use component for navigation and handly layout via layout component
 
 export function Course(props) {
   // Layoutstrategie: Auf kleinen Bildschirmen Anzeige oberhalb
   // Auf größeren Bildschirmen links am Rand
   let [isExpanded, setExpanded] = React.useState(false)
-  if (useWindowSize().innerWidth < 840) {
-    return (
-      <React.Fragment>
+
+  return (
+    <React.Fragment>
+      <Breakpoint md down>
         <CollapsedCourseOverview>
           <Box margin="large" justify="center">
             <OverviewTitle {...props} />
@@ -38,34 +41,42 @@ export function Course(props) {
             )}
           </Box>
         </CollapsedCourseOverview>
-        <Box justify="center" margin={{ left: 'large', right: 'large' }}>
-          <CourseContent>
-            <PageTitle {...props} /> {props.children} <NextButton />
-          </CourseContent>
-        </Box>
-      </React.Fragment>
-    )
-  } else {
-    return (
-      <Grid columns={['250px', '2/4']}>
-        <Box margin="small">
-          <CollapsedCourseOverview>
-            <OverviewTitle {...props} />
-            <Box margin="small" justify="start">
-              <CourseList {...props} />
+        <MacroLayout
+          main={
+            <Box justify="center" margin={{ left: 'large', right: 'large' }}>
+              <CourseContent>
+                <PageTitle {...props} /> {props.children}{' '}
+                <NextButton {...props} />
+              </CourseContent>
             </Box>
-          </CollapsedCourseOverview>
-        </Box>
-        <Box margin="small">
-          <div>
-            <PageTitle {...props} />
-            {props.children}
-            <NextButton />
-          </div>
-        </Box>
-      </Grid>
-    )
-  }
+          }
+        />
+      </Breakpoint>
+      <Breakpoint lg up>
+        <MacroLayout
+          nav={
+            <Box margin="small">
+              <CollapsedCourseOverview>
+                <OverviewTitle {...props} />
+                <Box margin="small" justify="start">
+                  <CourseList {...props} />
+                </Box>
+              </CollapsedCourseOverview>
+            </Box>
+          }
+          main={
+            <Box margin="small">
+              <div>
+                <PageTitle {...props} />
+                {props.children}
+                <NextButton {...props} />
+              </div>
+            </Box>
+          }
+        />
+      </Breakpoint>
+    </React.Fragment>
+  )
 }
 
 const PageTitle = props => {
@@ -85,16 +96,32 @@ const OverviewTitle = props => {
   )
 }
 
-const NextButton = () => {
+const NextButton = props => {
   return (
-    <div style={{ marginTop: '2rem', float: 'right' }}>
-      <Button
-        backgroundColor={getColor('brand')}
-        reverse
-        iconName={'faArrowCircleRight'}
-        label="Weiter"
-      />
-    </div>
+    <>
+      <Breakpoint lg up>
+        <div style={{ marginBottom: '-1.4rem', float: 'right' }}>
+          {props.currentPage < props.pages.length ? (
+            <>
+              <span style={{ color: lightenColor('brand', 0.3) }}>
+                {props.currentPage + 1}.{' '}
+              </span>
+              <span style={{ color: getColor('brand') }}>
+                {props.pages[props.currentPage]}
+              </span>
+            </>
+          ) : null}
+        </div>
+      </Breakpoint>
+      <div style={{ marginTop: '2rem', float: 'right', clear: 'both' }}>
+        <Button
+          backgroundColor={getColor('brand')}
+          reverse
+          iconName={'faArrowCircleRight'}
+          label="Weiter"
+        />
+      </div>
+    </>
   )
 }
 

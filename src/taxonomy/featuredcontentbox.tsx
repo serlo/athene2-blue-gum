@@ -6,14 +6,10 @@ import { Heading } from '../heading.component'
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
 import { getColor, lightenColor } from '../provider.component'
 import { Icon } from '../icon.component'
-import useWindowSize from '@rehooks/window-size'
 
 //TODO: Define Props when data structure from athene is clear
 
 export function FeaturedContentBox(props) {
-  const windowSize = useWindowSize()
-  const showFull = windowSize.innerWidth > 900 ? true : false
-
   return (
     <React.Fragment>
       <Grid fluid css={{ padding: '0', alignItems: 'center' }}>
