@@ -7,7 +7,8 @@ import { Button, DropButton } from '../button.component'
 export interface MenuEntry {
   title: string
   icon?: string
-  url: string
+  class?: string
+  url?: string
   children?: MenuEntry[]
   highlight?: boolean
 }
@@ -26,8 +27,9 @@ export default function Menu({ links, className }: Props) {
         if (!entry.title) return null //seperator
         return (
           <Entry
+            childKey={'_' + index}
             key={'_' + index}
-            href={entry.url}
+            url={entry.url}
             icon={icon}
             title={entry.title}
             children={entry.children}
@@ -40,23 +42,23 @@ export default function Menu({ links, className }: Props) {
 }
 
 interface EntryProps extends MenuEntry {
-  key: string
+  childKey: string
   isChild?: boolean
 }
 
 function Entry({
   url,
   title,
-  key,
+  childKey,
   icon,
   children,
   highlight,
   isChild
 }: EntryProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open] = React.useState(false)
 
   return (
-    <Li key={key} isChild={isChild}>
+    <Li key={childKey} isChild={isChild}>
       <Link
         label={
           !children ? (
@@ -82,8 +84,6 @@ function Entry({
         a11yTitle={children ? 'Untermenü ' + title + ' öffnen' : title}
         dropContent={children ? <Submenu entries={children} /> : undefined}
         dropAlign={children ? { top: 'bottom', right: 'right' } : undefined}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}
         open={open}
       />
     </Li>
@@ -97,6 +97,7 @@ function Submenu({ entries }: { entries: MenuEntry[] }) {
         if (!entry.title) return null //seperator
         return (
           <Entry
+            childKey={'__' + index}
             key={'__' + index}
             url={entry.url}
             icon={entry.icon}
@@ -127,7 +128,11 @@ const SubmenuList = styled.ul`
   text-align: right;
 `
 
-const Li = styled.li`
+interface LiProps {
+  isChild?: boolean
+}
+
+const Li = styled.li<LiProps>`
   display: inline-block;
   ${props =>
     props.isChild
@@ -142,7 +147,11 @@ const Li = styled.li`
       : null}
 `
 
-const Link = styled(Button)`
+interface LinkProps {
+  open: boolean
+}
+
+const Link = styled(Button)<LinkProps>`
   margin-right: 0.6rem;
   font-weight: bold;
   text-align: right;

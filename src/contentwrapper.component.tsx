@@ -1,7 +1,10 @@
 import * as React from 'react'
-import { css } from 'emotion'
 
-export class ContentWrapper extends React.Component {
+interface ContentWrapperProps {
+  dummyContent: string
+}
+
+export class ContentWrapper extends React.Component<ContentWrapperProps, {}> {
   public render() {
     return <div dangerouslySetInnerHTML={{ __html: this.props.dummyContent }} />
   }

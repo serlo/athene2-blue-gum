@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react'
+import * as React from 'react'
+import { useState, useRef } from 'react'
 import styled from 'styled-components'
 import { Icon } from '../icon.component'
 import { getColor, lightenColor } from '../provider.component'
@@ -9,9 +10,9 @@ export interface Props {
 
 export function SearchInput(props: Props) {
   const [focused, setFocused] = useState(false)
-  const inputRef = useRef(null)
+  const inputRef = useRef<any>(null)
 
-  function onButtonClick(e) {
+  function onButtonClick(e: React.MouseEvent) {
     e.preventDefault()
 
     if (focused && inputRef.current.value.length > 0)
@@ -85,7 +86,11 @@ const _Wrap = styled.form`
   }
 `
 
-const _Button = styled.button`
+interface _ButtonProps {
+  focused: boolean
+}
+
+const _Button = styled.button<_ButtonProps>`
   background-color: ${props =>
     props.focused ? getColor('brand') : lightenColor('lighterblue', 0.1)};
   transition: background-color 0.2s ease-in;
@@ -113,7 +118,11 @@ const _Button = styled.button`
   }
 `
 
-const _Input = styled.input`
+interface _InputProps {
+  focused: boolean
+}
+
+const _Input = styled.input<_InputProps>`
   color: ${getColor('brand')};
   font-weight: bold;
   width: calc(100% - 3rem);

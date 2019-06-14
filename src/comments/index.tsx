@@ -2,20 +2,17 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Box } from 'grommet'
 import { Heading } from '../heading.component'
-import { faComments, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
-import CommentForm from './commentform'
+import CommentForm, { SendProps } from './commentform'
 import { Comment } from './comment'
 
-// @ts-ignore
 import LazyLoad from 'react-lazy-load'
 
 export function Comments({ data, onSendComment }: CommentsProps) {
-  console.log(data)
   return (
     <React.Fragment>
-      <CommentBox pad="large" width="large" alignSelf="center">
-        <Heading level="2" icon={faQuestionCircle}>
+      <CommentBox pad="medium" alignSelf="center">
+        <Heading level={2} icon={'faQuestionCircle'}>
           Hast du eine Frage?
         </Heading>
         <CommentForm
@@ -24,7 +21,7 @@ export function Comments({ data, onSendComment }: CommentsProps) {
           onSendComment={onSendComment}
         />
 
-        <Heading level="2" icon={faComments}>
+        <Heading level={2} icon={'faComments'}>
           99 Kommentare
         </Heading>
         {/* todo: calculate amount of comments (and children) or get from server */}
@@ -55,8 +52,8 @@ const CommentBox = styled(Box)`
 
 interface CommentsProps {
   data: Comment[]
-  entity: Entity
-  user: User
+  entity?: Entity
+  user?: User
   onSendComment: (props: SendProps) => void
 }
 

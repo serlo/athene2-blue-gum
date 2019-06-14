@@ -3,9 +3,7 @@ import styled from 'styled-components'
 
 import { getColor, lightenColor } from './provider.component'
 
-export interface Props {}
-
-export function Table(props: Props) {
+export const Table: React.FunctionComponent = props => {
   return <StyledTable>{props.children}</StyledTable>
 }
 

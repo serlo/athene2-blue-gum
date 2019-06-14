@@ -6,42 +6,22 @@ import MobileMenu from './mobilemenu'
 import Menu from './menu'
 import Logo from '../logo.component'
 import { SearchInput } from './searchinput'
+import { Entry } from './mobilemenu'
 
-const topNavLinks = [
-  { title: '', class: 'seperator' },
-  { title: 'Neu hier?', url: 'https://google.de', icon: 'faQuestionCircle' },
-  { title: 'Anmelden', url: '#', icon: 'faUserCircle' },
-  { title: '', class: 'seperator' },
-  { title: 'Lernen', url: '#', icon: 'faArrowCircleRight' },
-  {
-    title: 'Was ist Serlo?',
-    url: '#',
-    icon: 'faNewspaper',
-    children: [
-      { title: 'Action', url: '#' },
-      { title: 'Test', url: '#' },
-      { title: 'Längerer Eintrag', url: '#' }
-    ]
-  },
-  {
-    title: 'Spenden',
-    url: '#',
-    class: 'donate',
-    icon: 'faHandHoldingHeart',
-    highlight: true
-  }
-]
+interface HeaderProps {
+  links: Entry[]
+}
 
-export function Header() {
+export function Header(props: HeaderProps) {
   const [overlayTarget, overlayTargetRef] = useOverlayTarget()
 
   return (
     <React.Fragment>
       <TopNavWrap>
-        <StyledMobileMenu links={topNavLinks} overlayTarget={overlayTarget} />
+        <StyledMobileMenu links={props.links} overlayTarget={overlayTarget} />
 
         <Box pad="medium">
-          <StyledMenu links={topNavLinks} />
+          <StyledMenu links={props.links} />
           <Logo subline="Super good Serlo Slogan" />
         </Box>
 

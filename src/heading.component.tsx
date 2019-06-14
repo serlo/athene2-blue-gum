@@ -2,49 +2,49 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { Heading as GrommetHeading } from 'grommet'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import { getColor } from './provider.component'
+import { Icon, AllowedIcons } from './icon.component'
 
-export interface Props {
-  level: "1" | "2" | "3" | "4" | "5" | "6",
-  icon?: IconDefinition,
+export interface HeadingProps {
+  level: 1 | 2 | 3 | 4 | 5 | 6
+  icon?: AllowedIcons
   color?: string
 }
 
-
-export function Heading(props : Props) {
-
-  const fontSizes = [1.66,1.5,1.3,1.2,1,1]
-  const fontSize = fontSizes[ parseInt(props.level)-1 ] + "rem"
+export const Heading: React.FunctionComponent<HeadingProps> = props => {
+  const fontSizes = [1.66, 1.5, 1.3, 1.2, 1, 1]
+  const fontSize = fontSizes[props.level - 1] + 'rem'
 
   return (
-    <StyledHeading level={props.level} color={props.color} fontSize={fontSize}>
+    <StyledHeading
+      level={props.level.toString() as GrommetHeadingLevel}
+      color={props.color}
+      fontSize={fontSize}
+    >
+      {props.icon ? <StyledIcon icon={props.icon} /> : null}
 
-      {props.icon ?
-          <Icon
-              icon= {props.icon}
-              color="default"
-          />
-      : null }
-      
       {props.children}
-    
     </StyledHeading>
   )
 }
 
-const StyledHeading = styled(GrommetHeading) `
-  color: ${props => props.color ? props.color : getColor('brand') };
-  font-size: ${props => props.fontSize };
+type GrommetHeadingLevel = '1' | '2' | '3' | '4' | '5' | '6'
 
-  margin: 1.5em 0 .6em;
+interface StyledHeadingProps {
+  fontSize: string
+}
+
+const StyledHeading = styled(GrommetHeading)`
+  color: ${props => (props.color ? props.color : getColor('brand'))};
+  font-size: ${(props: StyledHeadingProps) => props.fontSize};
+
+  margin: 1.5em 0 0.6em;
 `
 
-const Icon = styled(FontAwesomeIcon) `
+const StyledIcon = styled(Icon)`
   width: 0.75em;
   height: 0.75em;
-  margin-right: .1em;
-  margin-bottom: .075em;
+  margin-right: 0.1em;
+  margin-bottom: 0.075em;
 `

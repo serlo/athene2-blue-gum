@@ -5,7 +5,6 @@ import { Normalize } from 'styled-normalize'
 import { Provider, GlobalStyle } from '../src/provider.component'
 
 import {
-  Grommet,
   Accordion,
   AccordionPanel,
   Anchor,
@@ -34,18 +33,15 @@ import {
   Text,
   TextArea,
   TextInput,
-  Video,
-  Image
+  Video
 } from 'grommet'
-
-import { grommet } from 'grommet/themes'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
-const Node = ({ id, ...rest }) => (
+const Node = ({ id, ...rest }: { id: number; [x: string]: any }) => (
   <Box
-    id={id}
+    id={id.toString()}
     basis="xxsmall"
     margin="small"
     pad="medium"
@@ -55,25 +51,26 @@ const Node = ({ id, ...rest }) => (
   />
 )
 
-const connection = (fromTarget, toTarget, { color, ...rest } = {}) => ({
+const connection = (
+  fromTarget: string,
+  toTarget: string,
+  { color, ...rest }: { color?: string; [x: string]: any } = {}
+) => ({
   fromTarget,
   toTarget,
   color: color || 'accent-1',
   thickness: 'xsmall',
   round: true,
-  type: 'rectilinear',
+  type: 'rectilinear' as 'rectilinear',
   ...rest
 })
-
-const themes = {
-  grommet
-}
 
 class Components extends React.Component {
   state = {
     checkBox: true,
     radioButton: true,
-    rangeSelector: [1, 2]
+    rangeSelector: [1, 2],
+    tabIndex: -1
   }
 
   render() {
@@ -100,7 +97,10 @@ class Components extends React.Component {
           items={[{ label: 'One', onClick: () => {} }, { label: 'Two' }]}
         />
         <p>
-          <Button label="Secondary" secondary onClick={() => {}} />
+          {
+            // @ts-ignore // secondary is an extension from provider
+            <Button label="Secondary" secondary onClick={() => {}} />
+          }
         </p>
         <p>
           <Button label="Primary" primary onClick={() => {}} />
@@ -114,13 +114,16 @@ class Components extends React.Component {
           />
         </p>
         <p>
-          <Button
-            label="Reverse"
-            secondary
-            reverse
-            icon={<FontAwesomeIcon icon={faArrowCircleRight} />}
-            onClick={() => {}}
-          />
+          {
+            // @ts-ignore // secondary is an extension from provider
+            <Button
+              label="Reverse"
+              secondary
+              reverse
+              icon={<FontAwesomeIcon icon={faArrowCircleRight} />}
+              onClick={() => {}}
+            />
+          }
         </p>
         <p>
           <Button label="Green" primary color="brandGreen" onClick={() => {}} />
@@ -136,20 +139,24 @@ class Components extends React.Component {
           name="check"
           checked={checkBox}
           label="CheckBox"
-          onChange={event => this.setState({ checkBox: event.target.checked })}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            this.setState({ checkBox: event.target.checked })
+          }
         />
         <CheckBox
           name="toggle"
           toggle
           checked={checkBox}
           label="CheckBox toggle"
-          onChange={event => this.setState({ checkBox: event.target.checked })}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            this.setState({ checkBox: event.target.checked })
+          }
         />
         <RadioButton
           name="radio"
           checked={radioButton}
           label="RadioButton"
-          onChange={event =>
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             this.setState({ radioButton: event.target.checked })
           }
         />
@@ -172,7 +179,9 @@ class Components extends React.Component {
             size="full"
             round="small"
             values={rangeSelector}
-            onChange={values => this.setState({ rangeSelector: values })}
+            onChange={(values: React.ChangeEvent<HTMLInputElement>) =>
+              this.setState({ rangeSelector: values })
+            }
           />
         </Stack>
         <FormField label="FormField">
@@ -200,25 +209,34 @@ class Components extends React.Component {
           round
           size="small"
           background="light-3"
-          values={[{ value: 30 }]}
+          values={[{ label: 'some value', value: 30 }]}
         />
       </Box>,
       <Box key="visualize" gap="small">
         <Distribution
-          basis="small"
           values={[
-            { value: 50, color: 'light-3' },
-            { value: 30, color: 'accent-1' },
-            { value: 20, color: 'light-4' },
-            { value: 10, color: 'light-3' },
-            { value: 5, color: 'light-4' }
+            { value: 50 },
+            { value: 30 },
+            { value: 20 },
+            { value: 10 },
+            { value: 5 }
           ]}
         >
-          {value => (
-            <Box pad="xsmall" background={value.color} fill>
-              <Text size="large">{value.value}</Text>
-            </Box>
-          )}
+          {value => {
+            const lookupTable = [
+              { value: 50, color: 'light-3' },
+              { value: 30, color: 'accent-1' },
+              { value: 20, color: 'light-4' },
+              { value: 10, color: 'light-3' },
+              { value: 5, color: 'light-4' }
+            ]
+            const entry = lookupTable.find(x => x == value.value)
+            return (
+              <Box pad="xsmall" background={entry ? entry.color : ''} fill>
+                <Text size="large">{value.value}</Text>
+              </Box>
+            )
+          }}
         </Distribution>
         <Stack>
           <Box>
@@ -302,14 +320,15 @@ class Components extends React.Component {
         </Video>
       </Box>
     ]
-
+    // @ts-ignore // grommet availability checker
+    const gridAvailable = Grid.available
     return (
       <Provider>
         <Normalize />
         <GlobalStyle />
 
         <Box pad="medium" overflow="auto">
-          {Grid.available ? (
+          {gridAvailable ? (
             <Grid columns="small" gap="medium">
               {content}
             </Grid>
@@ -332,7 +351,11 @@ storiesOf('*(Grommet)', module)
       <GlobalStyle />
       <Box pad="medium" width="small">
         <h2>Grommet Buttons, don't use</h2>
-        <Button label="Secondary" secondary onClick={() => {}} />
+        {
+          // @ts-ignore
+          <Button label="Secondary" secondary onClick={() => {}} />
+        }
+
         <br />
         <Button label="Primary" primary onClick={() => {}} />
         <br />
@@ -343,13 +366,17 @@ storiesOf('*(Grommet)', module)
           onClick={() => {}}
         />
         <br />
-        <Button
-          label="Reverse"
-          secondary
-          reverse
-          icon={<FontAwesomeIcon icon={faArrowCircleRight} />}
-          onClick={() => {}}
-        />
+        {
+          // @ts-ignore
+          <Button
+            label="Reverse"
+            secondary
+            reverse
+            icon={<FontAwesomeIcon icon={faArrowCircleRight} />}
+            onClick={() => {}}
+          />
+        }
+
         <br />
         <Button label="Green" primary color="brandGreen" onClick={() => {}} />
         <br />

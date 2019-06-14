@@ -8,7 +8,7 @@ export const topNavLinks = [
   {
     title: 'Was ist Serlo?',
     url: '#',
-    icon: 'newspaper',
+    icon: 'faNewspaper',
     children: [
       { title: 'Action', url: '#' },
       { title: 'Test', url: '#' },

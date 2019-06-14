@@ -9,9 +9,8 @@ import {
   lightenColor,
   getDefaultTransition
 } from '../provider.component'
-import { faArrowRight, faReply } from '@fortawesome/free-solid-svg-icons'
 
-interface SendProps {
+export interface SendProps {
   entity_id: string
   parent_id: string
   user_id: string
@@ -21,7 +20,7 @@ interface SendProps {
 
 interface CommentFormProps {
   parent_id: string
-  onSendComment: (props: SendProps) => void
+  onSendComment?: (props: SendProps) => void
   placeholder: string
   reply?: boolean
 }
@@ -53,24 +52,27 @@ export default class CommentForm extends React.Component<
                   onBlur={() => {
                     this.setState({ focus: false })
                   }}
-                  onChange={event => {
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     this.setState({ newCommentValue: event.target.value })
                   }}
                   placeholder={this.props.placeholder}
-                  focused={this.state.focus}
+                  focused={this.state.focus ? "focused" : undefined}
                 />
                 <SendButton
                   iconName={this.props.reply ? 'faReply' : 'faArrowRight'}
                   title="Abschicken"
                   active={this.state.focus}
-                  onClick={() =>
-                    onSendComment({
-                      entity_id: entity.id,
-                      parent_id: parent_id,
-                      user_id: user.id,
-                      user_name: user.username,
-                      body: this.state.newCommentValue
-                    })
+                  onClick={
+                    onSendComment
+                      ? () =>
+                          onSendComment({
+                            entity_id: entity.id,
+                            parent_id: parent_id,
+                            user_id: user.id,
+                            user_name: user.username,
+                            body: this.state.newCommentValue
+                          })
+                      : () => {}
                   }
                 />
               </StyledBox>
@@ -84,9 +86,13 @@ export default class CommentForm extends React.Component<
 
 const StyledBox = styled(Box)`
   position: relative;
-` as typeof Box
+`
 
-const StyledTextarea = styled(TextareaAutosize)`
+interface StyledTextareaProps {
+  focused: boolean
+}
+
+const StyledTextarea = styled(TextareaAutosize)<StyledTextareaProps>`
   background: ${lightenColor('brandGreen', 0.445)};
   color: ${getColor('black')};
 
@@ -107,9 +113,9 @@ const StyledTextarea = styled(TextareaAutosize)`
   ${props =>
     props.focused
       ? css`
-    min-height: 3rem;
-    background: ${lightenColor('brandGreen', 0.35)};
-    `
+          min-height: 3rem;
+          background: ${lightenColor('brandGreen', 0.35)};
+        `
       : null}
 
   transition: ${getDefaultTransition()};

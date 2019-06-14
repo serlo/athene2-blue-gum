@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Box, Grid } from 'grommet'
 
-import CommentForm from './commentform'
+import CommentForm, { SendProps } from './commentform'
 import MetaBar from './metabar'
 
 export function Comment({

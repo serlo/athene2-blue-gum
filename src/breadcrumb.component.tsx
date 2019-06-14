@@ -5,9 +5,12 @@ import { getColor, lightenColor } from './provider.component'
 import Breakpoint from 'react-socks'
 import { Anchor } from 'grommet'
 
-//TODO: Define Props when data structure from athene is clear
+interface BreadcrumbProps {
+  className?: string
+  title?: string
+}
 
-export function Breadcrumb({ className, title }) {
+export function Breadcrumb({ className, title }: BreadcrumbProps) {
   return (
     <div style={{ minHeight: '2rem' }}>
       <Breakpoint sm down>
@@ -40,7 +43,7 @@ export function Breadcrumb({ className, title }) {
 const BreadcrumbList = styled.div`
   position: absolute;
   left: 2rem;
-  margin-top: -1.5rem;
+  margin-top: -0.5rem;
   font-size: 1rem;
   color: #ddd;
 `
@@ -48,10 +51,10 @@ const BreadcrumbList = styled.div`
 const StyledAnchor = styled(Anchor)`
   color: ${getColor('brand')};
   font-weight: normal;
-` as typeof Anchor
+`
 
 const StyledButton = styled(Button)`
   margin-top: 1rem;
   margin-bottom: 0;
   font-weight: bold;
-` as typeof Button
+`

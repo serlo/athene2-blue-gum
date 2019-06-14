@@ -10,7 +10,9 @@ import {
 } from './provider.component'
 import { useScrollYPosition } from 'react-use-scroll-position'
 
-export function EditBox(props) {
+export const EditBox: React.FunctionComponent<
+  React.HTMLAttributes<HTMLDivElement>
+> = props => {
   const scrollY = useScrollYPosition()
   const summary = scrollY > 30 ? false : true
 
@@ -18,7 +20,7 @@ export function EditBox(props) {
     <React.Fragment>
       <Summary show={summary}>
         {/* Bearbeitungen: <b>5</b> */}
-        <p>
+        <div>
           <SummaryButton
             label="Inhalt bearbeiten"
             iconName="faPencilAlt"
@@ -36,9 +38,9 @@ export function EditBox(props) {
             size={0.8}
             label="Weitere Funktionen"
             dropAlign={{ bottom: 'top', right: 'right' }}
-            {...!summary && { open: false }}
+            {...(!summary && { open: false })}
           />
-        </p>
+        </div>
       </Summary>
       <StyledButton
         className={props.className}
@@ -130,7 +132,11 @@ const SummaryDropButton = styled(DropButton)`
   }
 `
 
-const Summary = styled.div`
+interface SummaryProps {
+  show: boolean
+}
+
+const Summary = styled.div<SummaryProps>`
   display: none;
 
   @media screen and (min-width: ${getBreakpoint('md')}) {
@@ -147,7 +153,7 @@ const Summary = styled.div`
     /* border-left: 0.15rem solid ${lightenColor('lightblue', 0.3)}; */
     padding: 0.2rem 0 0.2rem 0.5rem;
 
-    > p {
+    > div {
       margin-bottom: 0;
     }
 
@@ -156,7 +162,13 @@ const Summary = styled.div`
     pointer-events: ${props => (props.show ? 'all' : 'none')};
   }
 `
-const StyledButton = styled(Button)`
+
+interface StyledButtonProps {
+  show: boolean
+  hiddenLabel: string
+}
+
+const StyledButton = styled(Button)<StyledButtonProps>`
   display: none;
   @media screen and (min-width: ${getBreakpoint('md')}){
     display: block;

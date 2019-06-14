@@ -24,4 +24,7 @@ yarn
 
 # 4 Get started
 yarn start
+
+# 5 Run Linter
+yarn lint
 ```

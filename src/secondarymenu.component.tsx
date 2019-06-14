@@ -4,7 +4,14 @@ import styled from 'styled-components'
 import { Heading } from './heading.component'
 import { getColor } from './provider.component'
 
-export const SecondaryMenu = props => {
+interface SecondaryMenuProps {
+  entries: string[]
+  selectedIndex: number
+}
+
+export const SecondaryMenu: React.FunctionComponent<
+  SecondaryMenuProps
+> = props => {
   return (
     <StyledScrollMenu>
       <ScrollMenu
@@ -21,13 +28,13 @@ export const SecondaryMenu = props => {
         })}
         selected={props.entries[props.selectedIndex]}
         scrollToSelected={true}
-        onSelect={x => {
+        onSelect={(x: string | number | null) => {
           alert(x)
         }}
         arrowRight={<StyledArrowRight />}
         arrowLeft={<StyledArrowLeft />}
         hideSingleArrow={true}
-        transition={0.8}
+        transition={0.6}
         inertiaScrolling={true}
         inertiaScrollingSlowdown={0.25}
         useButtonRole={false}

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css } from 'emotion'
 
 export class ContentFooter extends React.Component {
   public render() {

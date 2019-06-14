@@ -2,12 +2,12 @@ import { Grommet } from 'grommet'
 import * as React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { lighten, transparentize } from 'polished'
-// @ts-ignore
+
 import { BreakpointProvider, setDefaultBreakpoints } from 'react-socks'
 
 import './fonts/fonts.css'
 
-export function Provider({ children }: ProviderProps) {
+export const Provider: React.FunctionComponent = ({ children }) => {
   return (
     <BreakpointProvider>
       <Grommet theme={theme}>{children}</Grommet>
@@ -121,7 +121,7 @@ const theme = {
     hover: {
       textDecoration: 'none'
     },
-    extend: props => {
+    extend: (props: { theme: { global: { colors: { brand: string } } } }) => {
       const lightBlue = transparentize(0.35, props.theme.global.colors.brand)
       return `
         padding: 0 .15em;
@@ -147,7 +147,13 @@ const theme = {
     disabled: {
       opacity: 0.3
     },
-    extend: props => {
+    extend: (props: {
+      colorValue: string | number
+      theme: { global: { colors: { [x: string]: any; brand: any } } }
+      hasIcon: any
+      secondary: any
+      primary: any
+    }) => {
       const backgroundColor = props.colorValue
         ? props.theme.global.colors[props.colorValue]
         : props.theme.global.colors.brand
@@ -207,11 +213,18 @@ export function getBreakpoint(
   return theme.flexboxgrid.breakpoints[pointName] + 'rem'
 }
 
+let breakpoints: (keyof (typeof theme)['flexboxgrid']['breakpoints'])[] = [
+  'xs',
+  'sm',
+  'md',
+  'lg'
+]
+
 setDefaultBreakpoints(
-  ['xs', 'sm', 'md', 'lg'].map(str => {
-    const x = {}
-    x[str] = theme.flexboxgrid.breakpoints[str] * 16
-    return x
+  breakpoints.map(str => {
+    return {
+      [str]: theme.flexboxgrid.breakpoints[str] * 16
+    }
   })
 )
 
@@ -254,7 +267,3 @@ html  {
 	}*/
 }
 `
-
-interface ProviderProps {
-  children: React.ReactNode
-}

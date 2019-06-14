@@ -11,11 +11,18 @@ import Collapsible from 'react-collapsible'
 import { MobileMenuButton as Button } from './mobilemenubutton'
 
 type Child = { title: string; url: string; icon?: string }
-type Entry = { title: string; class?: string; icon?: string; children: Child[] }
+export type Entry = {
+  title: string
+  class?: string
+  icon?: string
+  highlight?: boolean
+  url?: string
+  children?: Child[]
+}
 
 export interface Props {
   links: Entry[]
-  overlayTarget: object
+  overlayTarget: { offsetTop: number }
   className?: string
 }
 
@@ -49,12 +56,11 @@ export default function MobileMenu({ overlayTarget, links, className }: Props) {
 
 function Overlay({
   links,
-  onClose,
   className,
   top
 }: {
   links: Entry[]
-  onClose: () => void
+  onClose?: () => void
   className?: string
   top: number
 }) {
@@ -62,18 +68,18 @@ function Overlay({
     <OverlayBox top={top} className={className}>
       <List>
         {links.map((header, index) => {
-          let children = []
+          let children: JSX.Element[] = []
           const key = 'mn_' + index
           const icon = header.icon
 
           if (header.children) {
-            children = header.children.map((link, index) => {
+            children = header.children.map((_, index) => {
               return (
                 <Entry
                   key={key + '_child' + index}
                   isChild
                   href="test"
-                  icon={icon}
+                  icon={icon ? icon : 'faBars'}
                   title={header.title}
                 />
               )
@@ -88,7 +94,7 @@ function Overlay({
                   <Entry
                     key={key}
                     href="test"
-                    icon={icon}
+                    icon={icon ? icon : 'faBars'}
                     hasChildren
                     title={header.title}
                   />
@@ -100,7 +106,12 @@ function Overlay({
             )
           else
             return (
-              <Entry key={key} href="test" icon={icon} title={header.title} />
+              <Entry
+                key={key}
+                href="test"
+                icon={icon ? icon : 'faBars'}
+                title={header.title}
+              />
             )
         })}
       </List>
@@ -201,9 +212,13 @@ const IconWrapper = styled(Box)`
     height: 1.5em !important;
     vertical-align: middle;
   }
-` as typeof Box
+`
 
-const OverlayBox = styled(Box)`
+interface OverlayBoxProps {
+  top: number
+}
+
+const OverlayBox = styled(Box)<OverlayBoxProps>`
   background-color: rgba(255, 255, 255, 0.5);
 
   position: absolute;

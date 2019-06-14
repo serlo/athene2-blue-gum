@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Box, Anchor } from 'grommet'
-import { Button } from '../button.component'
+import { Anchor } from 'grommet'
 import { Heading } from '../heading.component'
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
 import { getColor, lightenColor } from '../provider.component'
@@ -9,12 +8,12 @@ import { Icon } from '../icon.component'
 
 //TODO: Define Props when data structure from athene is clear
 
-export function FeaturedContentBox(props) {
+export function FeaturedContentBox() {
   return (
     <React.Fragment>
-      <Grid fluid css={{ padding: '0', alignItems: 'center' }}>
+      <Grid fluid style={{ padding: '0', alignItems: 'center' }}>
         <Row>
-          <Heading level="2">Passende Inhalte</Heading>
+          <Heading level={2}>Passende Inhalte</Heading>
         </Row>
 
         <Row>
@@ -32,7 +31,7 @@ export function FeaturedContentBox(props) {
 
         <Row>
           <Col md={6} lg={4}>
-            <Heading level="3">Aufgaben</Heading>
+            <Heading level={3}>Aufgaben</Heading>
             <StyledAnchor>
               <Icon icon="faCopy" /> Aufgaben zur Zinsrechnung
               <br />
@@ -43,7 +42,7 @@ export function FeaturedContentBox(props) {
             </StyledAnchor>
           </Col>
           <Col md={6} lg={4}>
-            <Heading level="3">Kurse</Heading>
+            <Heading level={3}>Kurse</Heading>
             <StyledAnchor>
               <Icon icon="faGraduationCap" /> Einführung in Grundwert,
               Prozentwert und Prozentsatz <br />
@@ -55,7 +54,7 @@ export function FeaturedContentBox(props) {
             </StyledAnchor>
           </Col>
           <Col md={6} lg={4}>
-            <Heading level="3">Artikel</Heading>
+            <Heading level={3}>Artikel</Heading>
             <StyledAnchor>
               <Icon icon="faNewspaper" /> Prozent
               <br />
@@ -75,11 +74,16 @@ export function FeaturedContentBox(props) {
   )
 }
 
-function AContentBox(props) {
+interface AContentBoxProps {
+  title: string
+  desc: string
+}
+
+function AContentBox(props: AContentBoxProps) {
   return (
     <Col xs={12} md={6} lg={4}>
       <ContentRow
-        onClick={(e: Event) => {
+        onClick={() => {
           // alert('clicked')
         }}
       >

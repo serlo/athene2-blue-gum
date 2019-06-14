@@ -11,7 +11,7 @@ const logoWhiteSrc = require('./img/serlo-logo-white.svg')
 
 export interface Props {
   subline?: string
-  dark: boolean
+  dark?: boolean
   //link href
 }
 
@@ -47,7 +47,12 @@ const Link = styled.a`
   border: 0 !important;
   padding-bottom: 0;
 `
-const SublineLink = styled(Link)`
+
+interface SublineLinkProps {
+  dark?: boolean
+}
+
+const SublineLink = styled(Link)<SublineLinkProps>`
   color: ${props =>
     props.dark
       ? transparentizeColor('white', 0.6)

@@ -9,23 +9,23 @@ import {
   getDefaultTransition
 } from '../provider.component'
 
-
-import SVG from 'react-inlinesvg';
+import SVG from 'react-inlinesvg'
 
 export interface SubjectProps {
-  url: string,
-  iconSrc: string,
+  url: string
+  iconSrc: string
   text: string
 }
 
 export default class Subject extends React.Component<SubjectProps> {
   public render() {
     return (
-      <SubjectCol xs={12} sm={6} lg={3} >
+      <SubjectCol xs={12} sm={6} lg={3}>
         <a href={this.props.url}>
-          <SubjectSVG src={this.props.iconSrc}/>
-          <Header>{this.props.text}
-            <SmallIcon icon="faArrowCircleRight"/>
+          <SubjectSVG src={this.props.iconSrc} />
+          <Header>
+            {this.props.text}
+            <SmallIcon icon="faArrowCircleRight" />
           </Header>
         </a>
       </SubjectCol>
@@ -33,16 +33,16 @@ export default class Subject extends React.Component<SubjectProps> {
   }
 }
 
-const SubjectCol = styled(Col) `
-  border-bottom: 1px solid ${props => getColor('lightblue')};
-  padding-left:0.5rem;
+const SubjectCol = styled(Col)`
+  border-bottom: 1px solid ${getColor('lightblue')};
+  padding-left: 0.5rem;
 
   &:hover {
-    background-color: ${props => lightenColor('brand',0.5)};
+    background-color: ${lightenColor('brand', 0.5)};
     cursor: pointer;
   }
 
-  @media (min-width: ${props => getBreakpoint('sm')}) {
+  @media (min-width: ${getBreakpoint('sm')}) {
     border-bottom: 0;
     border-radius: 3rem;
 
@@ -51,74 +51,72 @@ const SubjectCol = styled(Col) `
     }
   }
 
-  @media (min-width: ${props => getBreakpoint('lg')}) {
+  @media (min-width: ${getBreakpoint('lg')}) {
     text-align: center;
   }
-
 
   > a {
     display: block;
   }
 `
 
-const Header = styled.h2 `
+const Header = styled.h2`
   font-size: 1.5rem;
   line-height: 5.8rem;
   display: inline-block;
-  padding: .1rem;
+  padding: 0.1rem;
   vertical-align: top;
   margin-top: 1rem;
-  color: ${props => getColor('brand')};
+  color: ${getColor('brand')};
 
-  @media (min-width: ${props => getBreakpoint('sm')}) {
+  @media (min-width: ${getBreakpoint('sm')}) {
     font-size: 1.5rem;
     line-height: 1.45;
     display: inline-block;
     width: auto;
-    border-radius: .4em;
+    border-radius: 0.4em;
     margin-top: 2.5rem;
-    transition: color .4s ease, background-color .4s ease;
+    transition: color 0.4s ease, background-color 0.4s ease;
 
     ${SubjectCol}:hover & {
-      background-color: ${props => lightenColor('brand',0.5)};
+      background-color: ${lightenColor('brand', 0.5)};
     }
   }
 
-  @media (min-width: ${props => getBreakpoint('lg')}) {
-    padding: .3rem .6rem;
+  @media (min-width: ${getBreakpoint('lg')}) {
+    padding: 0.3rem 0.6rem;
     margin-top: 0;
   }
-
 `
 
-const SmallIcon = styled(Icon) `
-  margin-left: .4rem;
+const SmallIcon = styled(Icon)`
+  margin-left: 0.4rem;
   vertical-align: middle;
 
-  @media (min-width: ${props => getBreakpoint('sm')}) {
+  @media (min-width: ${getBreakpoint('sm')}) {
     display: none;
   }
 `
 
-const SubjectSVG = styled(SVG) `
+const SubjectSVG = styled(SVG)`
 
 	.blue {
-		fill: ${props => getColor('helperblue')};
-		transition: ${props => getDefaultTransition()};
+		fill: ${getColor('helperblue')};
+		transition: ${getDefaultTransition()};
 	}
 
 	.green {
 		fill: #becd2b;
-    transition: ${props => getDefaultTransition()};
+    transition: ${getDefaultTransition()};
   }
 
-  @media (min-width: ${props => getBreakpoint('sm')}) {
+  @media (min-width: ${getBreakpoint('sm')}) {
     .blue {
-      fill: ${props => lightenColor('lighterblue',0.07)};
+      fill: ${lightenColor('lighterblue', 0.07)};
     }
   }
 
-  @media (min-width: ${props => getBreakpoint('lg')}) {
+  @media (min-width: ${getBreakpoint('lg')}) {
     display: block;
     margin: 0 auto;
     width: auto;
@@ -149,8 +147,8 @@ const SubjectSVG = styled(SVG) `
     &.sus { transform: rotate(-30deg); }
     &.sus .blue.water{ transform: scale(1.08); }
 
-    @media (min-width: ${props => getBreakpoint('sm')}) {
-      .blue { fill: ${props => getColor('helperblue')}; }
+    @media (min-width: ${getBreakpoint('sm')}) {
+      .blue { fill: ${getColor('helperblue')}; }
       .green { fill: #becd2b; }
     }
   }

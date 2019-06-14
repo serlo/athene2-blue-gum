@@ -2,19 +2,18 @@ import * as React from 'react'
 import { getColor, lightenColor } from './provider.component'
 import { Heading } from './heading.component'
 import styled from 'styled-components'
-import {
-  faGraduationCap,
-  faBars,
-  faArrowCircleRight
-} from '@fortawesome/free-solid-svg-icons'
-import { Box, Grid } from 'grommet'
+import { Box } from 'grommet'
 import { Button } from './button.component'
 import Breakpoint from 'react-socks'
 import { MacroLayout } from './macrolayout.component'
 
-//TODO: only use component for navigation and handly layout via layout component
+interface CourseProps {
+  pages: string[]
+  currentPage: number
+  courseTitle: string
+}
 
-export function Course(props) {
+export const Course: React.FunctionComponent<CourseProps> = props => {
   // Layoutstrategie: Auf kleinen Bildschirmen Anzeige oberhalb
   // Auf größeren Bildschirmen links am Rand
   let [isExpanded, setExpanded] = React.useState(false)
@@ -79,24 +78,38 @@ export function Course(props) {
   )
 }
 
-const PageTitle = props => {
+interface PageTitleProps {
+  currentPage: number
+  pages: string[]
+}
+
+const PageTitle = (props: PageTitleProps) => {
   return (
-    <Heading level={'1'}>
+    <Heading level={1}>
       <HeadingNumber>{props.currentPage}.</HeadingNumber>{' '}
       {props.pages[props.currentPage - 1]}
     </Heading>
   )
 }
 
-const OverviewTitle = props => {
+interface OverviewTitleProps {
+  courseTitle: string
+}
+
+const OverviewTitle = (props: OverviewTitleProps) => {
   return (
-    <Heading level={'3'} icon={faGraduationCap}>
+    <Heading level={3} icon={'faGraduationCap'}>
       {props.courseTitle}
     </Heading>
   )
 }
 
-const NextButton = props => {
+interface NextButtonProps {
+  currentPage: number
+  pages: string[]
+}
+
+const NextButton = (props: NextButtonProps) => {
   return (
     <>
       <Breakpoint lg up>
@@ -134,10 +147,16 @@ const CollapsedCourseOverview = styled.div`
     max-width: none;
   }
 `
-const CourseList = props => {
+
+interface CourseListProps {
+  pages: string[]
+  currentPage: number
+}
+
+const CourseList = (props: CourseListProps) => {
   return (
     <StyledCourseList>
-      {props.pages.map((title, index) => (
+      {props.pages.map((title: string, index: number) => (
         <li
           key={index}
           className={index === props.currentPage - 1 ? 'active' : ''}

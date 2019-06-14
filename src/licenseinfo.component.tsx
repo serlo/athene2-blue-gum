@@ -1,20 +1,14 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { lightenColor } from './provider.component'
 import { Anchor } from 'grommet'
 import SVG from 'react-inlinesvg'
-const licenseSymbols = require('./img/license_ccbysa.svg')
 
 interface LicenseInfoProps {
   title: string
   licenseURL: string
   infoURL: string
   symbolURL?: string
-}
-
-interface LicenseProps extends LicenseInfoProps {
-  isStandard: boolean
-  agreement: string
 }
 
 export default class LicenseInfo extends React.Component<LicenseInfoProps> {

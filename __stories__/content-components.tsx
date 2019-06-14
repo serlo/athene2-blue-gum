@@ -1,12 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
-import {
-  Provider,
-  GlobalStyle,
-  getColor,
-  lightenColor
-} from '../src/provider.component'
+import { Provider, GlobalStyle, getColor } from '../src/provider.component'
 import { Normalize } from 'styled-normalize'
 
 import { Anchor, Box, Image } from 'grommet'
@@ -16,11 +11,6 @@ import { List } from '../src/list.component'
 import { Table } from '../src/table.component'
 import LicenseInfo from '../src/licenseinfo.component'
 
-import {
-  faComments,
-  faQuestionCircle,
-  faVideo
-} from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 
 storiesOf('*(Content Components for Editor)', module)
@@ -53,25 +43,25 @@ storiesOf('*(Content Components for Editor)', module)
         <br />
         <br />
         <b>With icons: </b>
-        <Heading level={1} icon={faComments}>
+        <Heading level={1} icon={'faComments'}>
           Heading level 1
         </Heading>
-        <Heading level={2} icon={faComments}>
+        <Heading level={2} icon={'faComments'}>
           Heading level 2
         </Heading>
-        <Heading level={3} icon={faComments}>
+        <Heading level={3} icon={'faComments'}>
           Heading level 3
         </Heading>
-        <Heading level={4} icon={faComments}>
+        <Heading level={4} icon={'faComments'}>
           Heading level 4
         </Heading>
-        <Heading level={5} icon={faComments}>
+        <Heading level={5} icon={'faComments'}>
           Heading level 5
         </Heading>
         <br />
         <br />
         <b>Custom Color: </b>
-        <Heading level={3} icon={faComments} color={getColor('brandGreen')}>
+        <Heading level={3} icon={'faComments'} color={getColor('brandGreen')}>
           Heading level 3
         </Heading>
       </Box>
@@ -141,7 +131,6 @@ storiesOf('*(Content Components for Editor)', module)
           title="Diese Inhalte stehen unter der freien CC-BY-SA 4.0 Lizenz, wenn nicht anders angeben."
           licenseURL="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
           infoURL="https://de.serlo.org/license/detail/1"
-          isStandard={true}
           symbolURL={require('../src/img/license_ccbysa.svg')}
         />
       </Box>
@@ -156,7 +145,7 @@ storiesOf('*(Content Components for Editor)', module)
         Fancy unordered list:
         <List>
           <li>Butter / Margarine</li>
-          <li>Half & half</li>
+          <li>Half &amp; half</li>
           <li>Heavy cream</li>
           <li>Milk</li>
           <li>Sour cream</li>
@@ -188,7 +177,7 @@ storiesOf('*(Content Components for Editor)', module)
         Fancy unstyled list:
         <List unstyled={true}>
           <li>Butter / Margarine</li>
-          <li>Half & half</li>
+          <li>Half &amp; half</li>
           <li>Heavy cream</li>
           <li>Milk</li>
           <li>Sour cream</li>
@@ -205,7 +194,7 @@ storiesOf('*(Content Components for Editor)', module)
       <Normalize />
       <GlobalStyle />
       <StyledContent pad="medium" style={{ maxWidth: '40rem' }}>
-        <Heading level={1} icon="newspaper">
+        <Heading level={1} icon="faNewspaper">
           Berechnungen am Kreis
         </Heading>
         <p>
@@ -276,7 +265,7 @@ storiesOf('*(Content Components for Editor)', module)
           </tbody>
         </Table>
 
-        <Heading level="2">Bestimmung des Umfangs</Heading>
+        <Heading level={2}>Bestimmung des Umfangs</Heading>
 
         <p>
           Den <Anchor href="/36162">Umfang</Anchor> erhältst du durch Abrollen
@@ -302,7 +291,7 @@ storiesOf('*(Content Components for Editor)', module)
           <b>U=2⋅r⋅π=d⋅π</b>
         </p>
 
-        <Heading level="2" icon={faVideo}>
+        <Heading level={2} icon={'faVideo'}>
           Video zur Flächenberechnung
         </Heading>
       </StyledContent>
