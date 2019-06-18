@@ -4,13 +4,13 @@
   "license": "Apache-2.0",
   "author": "Serlo Education e.V.",
   "scripts": {
-    "build": "build-storybook -c .storybook -o dist",
+    "storybook:build": "build-storybook -c .storybook -o dist",
     "format": "prettier --write \"{{.storybook,__stories__,src/**/*,*},*}.{js,jsx,ts,tsx,css,scss,json,md,markdown}\"",
-    "start": "next build && next start",
+    "storybook:start": "start-storybook -p 9000 -c .storybook",
     "lint": "yarn tsc --noemit",
     "next:dev": "next",
-    "next:build": "next build",
-    "next:start": "next start"
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
