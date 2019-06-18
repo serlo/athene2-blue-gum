@@ -67,7 +67,7 @@ storiesOf('Header', module)
       <Provider>
         <Normalize />
         <GlobalStyle />
-        <Header links={topNavLinks} />
+        <Header links={topNavLinks} slogan={serloSlogan}/>
       </Provider>
     )
   })
@@ -103,7 +103,7 @@ storiesOf('Example Page', module).add('test', () => {
         <Provider>
           <Normalize />
           <GlobalStyle />
-          <Header links={topNavLinks} />
+          <Header links={topNavLinks}  slogan={serloSlogan}/>
           <MacroLayout
             main={
               <StyledContent pad="medium" style={{ opacity: 1 }}>

@@ -4,10 +4,9 @@
     "paths": { "*": ["types/*"] },
     "allowSyntheticDefaultImports": false,
     "alwaysStrict": true,
-    "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "module": "commonjs",
+    "jsx": "preserve",
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -18,7 +17,15 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
-    "target": "es6"
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
-  "include": ["src", "__stories__"]
+  "include": ["src", "__stories__", "pages"],
+  "exclude": ["node_modules", "src/styles"]
 }
