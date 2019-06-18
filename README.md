@@ -22,9 +22,13 @@ cd athene2-blue-gum
 # 3 Install all node packages
 yarn
 
-# 4 Get started
-yarn start
+# 4 Development mode
+yarn next
 
 # 5 Run Linter
 yarn lint
+
+# 6 Build and Serve
+yarn next:build
+yarn next:start
 ```
