@@ -4,14 +4,15 @@
   "license": "Apache-2.0",
   "author": "Serlo Education e.V.",
   "scripts": {
-    "build": "next export -o dist",
+    "build": "cross-env next build && next export -o dist",
     "build__": "build-storybook -c .storybook -o dist -s ./static",
     "format": "prettier --write \"{{.storybook,__stories__,src/**/*,*},*}.{js,jsx,ts,tsx,css,scss,json,md,markdown}\"",
     "start": "start-storybook -p 9000 -c .storybook -s ./static",
     "lint": "yarn tsc --noemit",
     "next:dev": "next",
     "next:build": "next build",
-    "next:start": "next start"
+    "next:start": "next start",
+    "next:analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
@@ -71,11 +72,11 @@
     "node-sass": "^4.0.0",
     "prettier": "^1.0.0",
     "react": "^16.8.0",
+    "cross-env": "^5.2.0",
     "react-dom": "^16.8.0",
     "sass-loader": "^7.0.0",
     "style-loader": "^0.23.0",
-    "typescript": "^3.5.0",
-    "@babel/core": "^7.4.5"
+    "typescript": "^3.5.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",
