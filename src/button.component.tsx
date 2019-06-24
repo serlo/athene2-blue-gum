@@ -30,6 +30,8 @@ export interface ButtonProps extends grommetButtonProps {
   }
   dropContent?: JSX.Element
   dropTarget?: object
+  onOpen?: () => void
+  onClose?: () => void
 }
 
 Button.defaultProps = {
