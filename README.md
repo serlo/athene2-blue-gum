@@ -22,8 +22,11 @@ cd athene2-blue-gum
 # 3 Install all node packages
 yarn
 
-# 4 Development mode
+# 4a Development mode next.js (with ssr)
 yarn next
+
+# 4b Storybook
+yarn start
 
 # 5 Run Linter
 yarn lint
@@ -32,3 +35,5 @@ yarn lint
 yarn next:build
 yarn next:start
 ```
+
+Directory overview: `src` contains react components, `static` contains font files, `pages` and `.next` are related to next.js, `__stories__` and `.storybook` are related to storybook.
