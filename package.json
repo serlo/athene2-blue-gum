@@ -4,9 +4,9 @@
   "license": "Apache-2.0",
   "author": "Serlo Education e.V.",
   "scripts": {
-    "build": "build-storybook -c .storybook -o dist",
+    "build": "build-storybook -c .storybook -o dist -s ./static",
     "format": "prettier --write \"{{.storybook,__stories__,src/**/*,*},*}.{js,jsx,ts,tsx,css,scss,json,md,markdown}\"",
-    "start": "start-storybook -p 9000 -c .storybook",
+    "start": "start-storybook -p 9000 -c .storybook -s ./static",
     "lint": "yarn tsc --noemit",
     "next:dev": "next",
     "next:build": "next build",

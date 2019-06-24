@@ -22,6 +22,13 @@ import { EditBox } from '../src/editbox.component'
 
 import { Footer } from '../src/footer'
 
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import { Course } from '../src/course.component'
+import { SecondaryMenu } from '../src/secondarymenu.component'
+// Prevent fontawesome from dynamically adding its css since we did it manually above
+config.autoAddCss = false
+
 const StyledContent = styled(Box)`
   p {
     margin-top: 0;
@@ -95,8 +102,7 @@ export default function Index() {
                   <b>d=1</b> abgerollt wird.
                 </p>
                 <p>
-                  Sein Umfang beträgt
-                  <b>π</b>, also etwa <b>3,14</b>
+                  Sein Umfang beträgt <b>π</b>, also etwa <b>3,14</b>
                 </p>
                 <p>Für den Umfang findest du so den folgenden Zusammenhang: </p>
                 <p>
@@ -196,6 +202,63 @@ export default function Index() {
               />
             }
           />
+          <hr />
+          <div style={{ height: 30 }} />
+          <Course
+            courseTitle="Einführung des Prozentzeichens und seiner Umrechnung"
+            pages={[
+              'Übersicht',
+              'Prozente aus dem Alltag',
+              'Prozent - Eine neue Zahldarstellung',
+              'Prozentzahlen über 100%',
+              'Umformungen von Prozentzahlen und Dezimalzahlen',
+              'Übungsaufgaben zur Umrechnung von Prozentzahlen und Dezimalzahlen',
+              'Umrechnungen von Prozentzahlen und Bruchzahlen',
+              'Übungsaufgaben zur Umrechnung von Prozentzahlen und Bruchzahlen',
+              'Vorstellungen zu Prozenten und Brüchen',
+              'Grafische Veranschaulichung',
+              'Grafische Veranschaulichung - Übungsaufgaben',
+              'Zusammenfassung',
+              'Zeig, was du kannst!'
+            ]}
+            currentPage={2}
+          >
+            <p>
+              Das Prozentzeichen ist aus vielen Situationen bekannt. Häufig
+              findet man es im Supermarkt, bei Wahlergebnissen, auf
+              Lebensmitteln und bei vielem mehr. Bei einigen Prozentangaben weiß
+              man sofort, was gemeint ist, wohingegen man sich zu anderen
+              Prozentangaben weniger vorstellen kann.
+            </p>
+
+            <Heading level={2}>Beispiele</Heading>
+            <p>
+              Beim Elfmeterschießen berichten Fußballkommentatoren oft von
+              sogenannten Trefferquoten. Ein guter Elfmeterschütze hat zum
+              Beispiel eine Trefferquote von 90%.
+            </p>
+          </Course>
+          <hr />
+
+          <Box margin="small">
+            <SecondaryMenu
+              entries={[
+                'Über Serlo',
+                'Lernen und Qualität',
+                'Wirkung',
+                'Transparenz',
+                'Team',
+                'Partner und Förderer',
+                'Die Geschichte von Serlo',
+                'Testimonials',
+                'Presse',
+                'Trägerverein',
+                'Spenden'
+              ]}
+              selectedIndex={4}
+            />
+          </Box>
+
           <EditBox />
 
           <Footer navEntries={footerNavEntries} slogan={serloSlogan} />
