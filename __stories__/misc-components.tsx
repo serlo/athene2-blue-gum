@@ -188,8 +188,8 @@ storiesOf('Misc Components', module)
       <Normalize />
       <GlobalStyle />
       <Box direction="row-responsive" pad="large" justify="center">
-        <Icon icon="faFilter" size="2x" />
-        <Icon icon="faYoutube" size="2x" />
+        <Icon icon="faCog" size="2x" />
+        <Icon icon="faFacebookSquare" size="2x" />
       </Box>
     </Provider>
   ))
