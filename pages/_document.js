@@ -28,23 +28,27 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    return (
-      <html>
-        <head>
-          <meta charSet="utf-8" class="next-head" />
-          <meta
-            name="viewport"
-            content="width=device-width,minimum-scale=1,initial-scale=1"
-            class="next-head"
-          />
-        </head>
-        <body>
+    if (this.props.dangerousAsPath.startsWith('/__')) {
+      // render partial
+      return (
+        <>
           <MyScripts />
           <Main />
           <NextScript />
-        </body>
-      </html>
-    )
+        </>
+      )
+    } else {
+      // render normal
+      return (
+        <Html>
+          <Head />
+          <body>
+            <Main />
+            <NextScript />
+          </body>
+        </Html>
+      )
+    }
   }
 }
 
