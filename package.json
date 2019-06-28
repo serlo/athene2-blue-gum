@@ -21,6 +21,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.0.0",
     "@fortawesome/free-solid-svg-icons": "^5.0.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "babel-loader": "^8.0.6",
     "grommet": "^2.0.0",
     "moment": "^2.23.0",
     "polished": "^2.3.3",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^8.1.1-canary.52",
+    "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-options": "^5.0.11",
     "@storybook/react": "^5.0.11",
     "@storybook/theming": "^5.0.11",
@@ -46,16 +48,15 @@
     "@types/react-dom": "^16.8.0",
     "@types/react-inlinesvg": "^0.8.0",
     "@types/react-textarea-autosize": "^4.0.0",
+    "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.0.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
+    "cross-env": "^5.2.0",
     "next": "8.1.1-canary.52",
     "next-images": "^1.1.2",
     "prettier": "^1.0.0",
-    "cross-env": "^5.2.0",
-    "typescript": "^3.5.0",
-    "@storybook/addon-actions": "^5.0.11",
-    "@types/storybook__react": "^4.0.2"
+    "typescript": "^3.5.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",
