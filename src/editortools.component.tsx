@@ -73,10 +73,11 @@ const StyledButton = styled(Button)<StyledButtonProps>`
     top: ${props => (props.position ? props.position : '4rem')};
 
     font-weight: bold;
-    right: 0;
+    right: 2.5rem;
+    transform: translateX(100%);
     text-align: left;
 
-    transition: right .2s ease-in-out;
+    transition: transform .2s ease-in-out;
     padding: 0.7rem 0.7rem 0.7rem 1rem ;
 
     border-top-right-radius: 0;
@@ -85,7 +86,6 @@ const StyledButton = styled(Button)<StyledButtonProps>`
     > div {
       overflow: hidden;
       justify-content: start;
-      font-size: 0;
       > svg {
         width: 1.2rem !important;
         height: 1.2rem !important;
@@ -94,10 +94,10 @@ const StyledButton = styled(Button)<StyledButtonProps>`
 
     @media screen and (hover: hover) {
       &:hover {
+        transform: translateX(2.5rem);
         > div {
           font-size: 1rem;
         }
-        right: 0;
       }
     }
 
