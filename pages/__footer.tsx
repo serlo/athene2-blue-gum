@@ -10,13 +10,21 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 // Prevent fontawesome from dynamically adding its css since we did it manually above
 config.autoAddCss = false
 
-export default function Index() {
+export default function Index(props: any) {
   return (
     <Provider>
       <Normalize />
       <GlobalStyle />
 
-      <Footer navEntries={footerNavEntries} slogan={serloSlogan} />
+      <Footer navEntries={props.footerNavEntries} slogan={props.serloSlogan} />
     </Provider>
   )
+}
+Index.getInitialProps = async ({ req }: {req:any}) => {
+  if (req) {
+    // the server can access request object and extract props
+    const urlparams = new URLSearchParams(req.url.replace("/__footer?",""))
+    return { footerNavEntries, serloSlogan:urlparams.has("slogan")?urlparams.get("slogan"):serloSlogan    }
+  }
+  return null
 }
