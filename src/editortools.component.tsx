@@ -50,7 +50,7 @@ export const EditorTools: React.FunctionComponent<
         a11yTitle={props.title}
         plain
         iconName="faRedo"
-        label={'Wiederholen Langer '}
+        label={'Wiederholen – Test langer Content'}
         backgroundColor={transparentizeColor("brandGreen",0.5)}
         activeBackgroundColor={getColor('brandGreen')}
         position="15rem"
