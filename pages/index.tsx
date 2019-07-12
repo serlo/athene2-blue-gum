@@ -19,6 +19,7 @@ import styled from 'styled-components'
 import { Comments } from '../src/comments'
 
 import { EditBox } from '../src/editbox.component'
+import { EditorTools } from '../src/editortools.component'
 
 import { Footer } from '../src/footer'
 
@@ -46,6 +47,7 @@ export default function Index() {
           <Normalize />
           <GlobalStyle />
           <Header links={topNavLinks} slogan={serloSlogan} />
+          <EditorTools />
           <MacroLayout
             main={
               <StyledContent pad="medium" style={{ opacity: 1 }}>
