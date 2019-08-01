@@ -23,7 +23,7 @@ export default function Index(props: any) {
 Index.getInitialProps = async ({ req }: {req:any}) => {
   if (req) {
     // read req body and parse json EXAMPLE
-    let data:any = await new Promise(res => {
+    /*let data:any = await new Promise(res => {
       let data:any = []
       req.on('data', (chunk:any) => {
         data.push(chunk)
@@ -32,7 +32,7 @@ Index.getInitialProps = async ({ req }: {req:any}) => {
         res(JSON.parse(data))
       })
     })
-    console.log(data)
+    console.log(data)*/
     // use it with:
     // curl -X POST -H 'Content-Type: application/json' -d '{"name": "New item", "year": "2009"}' localhost:3000/__footer
     
