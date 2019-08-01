@@ -10,6 +10,7 @@ import { Entry } from './mobilemenu'
 
 interface HeaderProps {
   links: Entry[]
+  slogan: string
 }
 
 export function Header(props: HeaderProps) {
@@ -22,7 +23,7 @@ export function Header(props: HeaderProps) {
 
         <Box pad="medium">
           <StyledMenu links={props.links} />
-          <Logo subline="Super good Serlo Slogan" />
+          <Logo subline={props.slogan} />
         </Box>
 
         <SearchInput />

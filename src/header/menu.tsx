@@ -55,7 +55,7 @@ function Entry({
   highlight,
   isChild
 }: EntryProps) {
-  const [open] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
 
   return (
     <Li key={childKey} isChild={isChild}>
@@ -85,6 +85,8 @@ function Entry({
         dropContent={children ? <Submenu entries={children} /> : undefined}
         dropAlign={children ? { top: 'bottom', right: 'right' } : undefined}
         open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
       />
     </Li>
   )

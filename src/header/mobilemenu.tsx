@@ -77,6 +77,7 @@ function Overlay({
               return (
                 <Entry
                   key={key + '_child' + index}
+                  childKey={key}
                   isChild
                   href="test"
                   icon={icon ? icon : 'faBars'}
@@ -93,6 +94,7 @@ function Overlay({
                 trigger={
                   <Entry
                     key={key}
+                    childKey={key}
                     href="test"
                     icon={icon ? icon : 'faBars'}
                     hasChildren
@@ -108,6 +110,7 @@ function Overlay({
             return (
               <Entry
                 key={key}
+                childKey={key}
                 href="test"
                 icon={icon ? icon : 'faBars'}
                 title={header.title}
@@ -122,16 +125,23 @@ function Overlay({
 interface EntryProps {
   href: string
   title: string
-  key: string
+  childKey: string
   icon: string
   hasChildren?: boolean
   isChild?: boolean
 }
 
-function Entry({ href, title, key, icon, hasChildren, isChild }: EntryProps) {
+function Entry({
+  href,
+  title,
+  childKey,
+  icon,
+  hasChildren,
+  isChild
+}: EntryProps) {
   return (
     <li>
-      <EntryLink key={key} href={href} isChild={isChild}>
+      <EntryLink key={childKey} href={href} isChild={isChild}>
         {!isChild ? (
           <IconWrapper>
             <Icon icon={icon} />

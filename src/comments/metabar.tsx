@@ -32,9 +32,11 @@ const renderItems = (leaf: boolean | undefined, timestamp: Date) => (
     />
     <Time>
       Gepostet am{' '}
-      {moment(timestamp)
-        .locale('de')
-        .format('DD.MM.YYYY, HH:mm:ss ')}
+      {'' +
+        // @ts-ignore
+        moment(timestamp)
+          .locale('de')
+          .format('DD.MM.YYYY, HH:mm:ss ')}
     </Time>
   </DropContent>
 )
@@ -68,10 +70,14 @@ export default function MetaBar({
           backgroundColor="transparent"
           activeBackgroundColor={getColor('lightblue')}
           reverse
-          label={moment(timestamp)
-            .locale('de')
-            .startOf()
-            .fromNow()}
+          label={
+            '' +
+            // @ts-ignore
+            moment(timestamp)
+              .locale('de')
+              .startOf()
+              .fromNow()
+          }
         />
       </span>
     </MetaBarBox>
