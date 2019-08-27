@@ -116,7 +116,7 @@ const Summary = styled.div`
   padding: 2.5rem 0.8rem 0.1rem 1.5rem;
 `
 
-const RowSummary = styled(Row)`
+/*const RowSummary = styled(Row)`
   background-color: ${getColor('lightblue')};
   color: #fff;
   padding-top: 2.5rem;
@@ -124,7 +124,7 @@ const RowSummary = styled(Row)`
   @media (max-width: ${props => props.theme.md}) {
     padding-left: 0.5rem;
   }
-`
+`*/
 
 const SummaryHeading = styled.h2`
   font-size: 1rem;
