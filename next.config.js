@@ -20,6 +20,10 @@ module.exports = withCSS(
                 'node_modules\\next\\dist\\client\\index.js',
                 'patch\\next\\dist\\client\\index.js'
               )
+              resource.resource = resource.resource.replace(
+                'node_modules/next/dist/client/index.js',
+                'patch/next/dist/client/index.js'
+              )
             }
           )
         )
