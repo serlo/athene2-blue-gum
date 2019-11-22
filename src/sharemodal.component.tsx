@@ -19,6 +19,13 @@ Modal.setAppElement('#root')
 //   0.75
 // )
 
+/*
+LINKS:
+
+          https://twitter.com/intent/tweet?url={url}&text={title}&via={user_id}&hashtags={hash_tags}
+
+*/
+
 interface Props {
   // isOpen: boolean
 }
@@ -59,6 +66,44 @@ const ShareModal: React.FunctionComponent<
     setCopySuccess('Copied!')
   }
 
+  const urlEncoded = encodeURIComponent(window.location.href)
+  const titleEncoded = encodeURIComponent(document.title)
+
+  const socialShare = [
+    {
+      title: 'E-Mail',
+      icon: 'faEnvelope',
+      href: `mailto:?subject=${titleEncoded}&body=${encodeURIComponent(
+        document.title + '\n' + window.location.href
+      )}`
+    },
+    {
+      title: 'Facebook',
+      icon: 'faFacebookSquare',
+      href: `https://www.facebook.com/sharer.php?u=${urlEncoded}`
+    },
+    {
+      title: 'Whatsapp',
+      icon: 'faWhatsappSquare',
+      href: `whatsapp://send?text=${encodeURIComponent(
+        document.title + ': ' + window.location.href
+      )}`
+    }
+  ]
+
+  const lmsShare = [
+    {
+      title: 'Google Classroom',
+      icon: 'faGoogle',
+      href: `https://classroom.google.com/u/0/share?url=${urlEncoded}&title=${titleEncoded}&body=`
+    },
+    {
+      title: 'Mebis',
+      icon: 'faCompass',
+      href: 'https://www.facebook.com/sharer.php?u={url}'
+    }
+  ]
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -88,55 +133,36 @@ const ShareModal: React.FunctionComponent<
         <br />
         <Gray>{copySuccess}&nbsp;</Gray>
       </p>
-
-      <p>
-        <Button
-          label="E-Mail"
-          iconName="faEnvelope"
-          fontColor={getColor('brandGreen')}
-          backgroundColor="transparent"
-          activeBackgroundColor={getColor('brandGreen')}
-          size={1.1}
-        />{' '}
-        <Button
-          label="Facebook"
-          iconName="faFacebookSquare"
-          fontColor={getColor('brandGreen')}
-          backgroundColor="transparent"
-          activeBackgroundColor={getColor('brandGreen')}
-          size={1.1}
-        />{' '}
-        <Button
-          label="Whatsapp"
-          iconName="faWhatsappSquare"
-          fontColor={getColor('brandGreen')}
-          backgroundColor="transparent"
-          activeBackgroundColor={getColor('brandGreen')}
-          size={1.1}
-        />
-      </p>
-      <p>
-        <Button
-          label="Google Classroom"
-          iconName="faGoogle"
-          fontColor={getColor('brandGreen')}
-          backgroundColor="transparent"
-          activeBackgroundColor={getColor('brandGreen')}
-          size={1.1}
-        />{' '}
-        <Button
-          label="Mebis"
-          iconName="faCompass"
-          fontColor={getColor('brandGreen')}
-          backgroundColor="transparent"
-          activeBackgroundColor={getColor('brandGreen')}
-          size={1.1}
-        />
-      </p>
+      <p>{buildButtons(socialShare)} </p>
+      <p>{buildButtons(lmsShare)} </p>
       {/* <ModalFooter>Site ID: asdasd</ModalFooter> */}
     </Modal>
   )
 })
+
+function buildButtons(hosts) {
+  let result = hosts.map(function(host) {
+    return (
+      <React.Fragment>
+        <Button
+          label={host.title}
+          iconName={host.icon}
+          fontColor={getColor('brandGreen')}
+          backgroundColor="transparent"
+          activeBackgroundColor={getColor('brandGreen')}
+          size={1.1}
+          href={host.href}
+          target="_blank"
+          rel="noopener"
+        />{' '}
+      </React.Fragment>
+    )
+  })
+
+  return result
+}
+
+// const ShareButton = props => ( )
 
 export default ShareModal
 
