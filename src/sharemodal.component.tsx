@@ -26,7 +26,7 @@ interface Props {
 const ShareModal: React.FunctionComponent<
   React.HTMLAttributes<HTMLDivElement>
 > = forwardRef((props, ref) => {
-  const [modalIsOpen, setIsOpen] = React.useState(true)
+  const [modalIsOpen, setIsOpen] = React.useState(false)
 
   // if (!modalIsOpen && props.isOpen) openModal()
 
